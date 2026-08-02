@@ -47,9 +47,9 @@ export default function FlipBookContainer({ children }: FlipBookProps) {
     const touchEnd = e.changedTouches[0].clientX;
     const diff = touchStart - touchEnd;
 
-    if (diff > 50) {
+    if (diff > 40) {
       handleNext();
-    } else if (diff < -50) {
+    } else if (diff < -40) {
       handlePrev();
     }
     setTouchStart(null);
@@ -83,7 +83,7 @@ export default function FlipBookContainer({ children }: FlipBookProps) {
       opacity: 1,
       scale: 1,
       transition: {
-        duration: 0.45,
+        duration: 0.4,
       },
     },
     exit: (dir: "next" | "prev") => ({
@@ -91,7 +91,7 @@ export default function FlipBookContainer({ children }: FlipBookProps) {
       opacity: 0,
       scale: 0.98,
       transition: {
-        duration: 0.35,
+        duration: 0.3,
       },
     }),
   };
@@ -100,10 +100,10 @@ export default function FlipBookContainer({ children }: FlipBookProps) {
     <div
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
-      className="min-h-[calc(100vh-80px)] pt-20 pb-10 px-2 sm:px-6 flex flex-col justify-between items-center select-none"
+      className="min-h-[calc(100vh-70px)] pt-16 sm:pt-20 pb-6 px-1.5 sm:px-6 flex flex-col justify-between items-center select-none"
     >
-      {/* 3D Fixed Uniform Equal-Sized Notebook Container */}
-      <div className="w-full max-w-4xl mx-auto my-auto h-[580px] sm:h-[640px] relative [perspective:1400px] flex items-center justify-center">
+      {/* 3D Fixed Uniform Equal-Sized Notebook Container - Mobile Fluid Height */}
+      <div className="w-full max-w-4xl mx-auto my-auto h-[530px] sm:h-[640px] relative [perspective:1400px] flex items-center justify-center">
         <AnimatePresence mode="wait" custom={direction}>
           <motion.div
             key={currentPage}
@@ -120,34 +120,34 @@ export default function FlipBookContainer({ children }: FlipBookProps) {
         </AnimatePresence>
       </div>
 
-      {/* Clean Page Turner Bar - Positioned BELOW the notebook (No Overlapping!) */}
-      <div className="mt-4 w-full max-w-4xl mx-auto bg-[#FFFDF8] dark:bg-[#1A1A1E] border-2 border-stone-300 dark:border-stone-700/80 rounded-full px-4 py-2.5 shadow-lg flex items-center justify-between font-handwritten shrink-0">
+      {/* Clean Mobile-Responsive Page Turner Bar */}
+      <div className="mt-3 w-full max-w-4xl mx-auto bg-[#FFFDF8] dark:bg-[#1A1A1E] border-2 border-stone-300 dark:border-stone-700/80 rounded-full px-3 sm:px-4 py-2 shadow-lg flex items-center justify-between font-handwritten shrink-0">
         {/* Previous Page Button */}
         <button
           onClick={handlePrev}
           disabled={currentPage === 0}
-          className={`flex items-center gap-1.5 px-4 py-1.5 rounded-full border transition-all text-xs sm:text-sm font-bold ${
+          className={`flex items-center gap-1 px-3 sm:px-4 py-1 sm:py-1.5 rounded-full border transition-all text-xs sm:text-sm font-bold ${
             currentPage === 0
               ? "opacity-30 border-stone-300 dark:border-stone-800 text-stone-400 cursor-not-allowed"
               : "bg-white dark:bg-[#242429] border-stone-300 dark:border-stone-700 text-stone-900 dark:text-stone-100 hover:border-blue-500 hover:scale-105 shadow-xs"
           }`}
           title="Previous Page (Left Arrow)"
         >
-          <ChevronLeft className="w-4 h-4 text-blue-600 dark:text-blue-400" />
-          <span>{currentPage === 0 ? "Cover" : "Prev Page"}</span>
+          <ChevronLeft className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-blue-600 dark:text-blue-400" />
+          <span>{currentPage === 0 ? "Cover" : "Prev"}</span>
         </button>
 
         {/* Current Page Title & Number Indicator */}
-        <div className="flex items-center gap-2 text-center px-2">
-          <BookOpen className="w-4 h-4 text-amber-600 dark:text-amber-400 shrink-0" />
-          <div className="text-xs sm:text-sm font-bold text-stone-900 dark:text-stone-100">
+        <div className="flex items-center gap-1.5 text-center px-1">
+          <BookOpen className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-amber-600 dark:text-amber-400 shrink-0" />
+          <div className="text-[11px] sm:text-sm font-bold text-stone-900 dark:text-stone-100">
             {currentPage === 0 ? (
-              <span className="text-amber-600 dark:text-amber-400">Notebook Cover • Press Next to Open</span>
+              <span className="text-amber-600 dark:text-amber-400">Notebook Cover • Tap Next</span>
             ) : (
               <>
-                <span className="text-blue-600 dark:text-blue-400">Page {currentPage} of {TOTAL_PAGES}</span>
-                <span className="mx-1.5 opacity-40">•</span>
-                <span>{PAGE_TITLES[currentPage]}</span>
+                <span className="text-blue-600 dark:text-blue-400">P.{currentPage}/9</span>
+                <span className="mx-1 opacity-40">•</span>
+                <span className="truncate max-w-[120px] sm:max-w-none inline-block align-bottom">{PAGE_TITLES[currentPage]}</span>
               </>
             )}
           </div>
@@ -157,15 +157,15 @@ export default function FlipBookContainer({ children }: FlipBookProps) {
         <button
           onClick={handleNext}
           disabled={currentPage === TOTAL_PAGES}
-          className={`flex items-center gap-1.5 px-4 py-1.5 rounded-full border transition-all text-xs sm:text-sm font-bold ${
+          className={`flex items-center gap-1 px-3 sm:px-4 py-1 sm:py-1.5 rounded-full border transition-all text-xs sm:text-sm font-bold ${
             currentPage === TOTAL_PAGES
               ? "opacity-30 border-stone-300 dark:border-stone-800 text-stone-400 cursor-not-allowed"
               : "bg-blue-600 hover:bg-blue-700 border-blue-600 text-white hover:scale-105 shadow-md"
           }`}
           title="Next Page (Right Arrow)"
         >
-          <span>{currentPage === 0 ? "Open Book" : "Next Page"}</span>
-          <ChevronRight className="w-4 h-4" />
+          <span>{currentPage === 0 ? "Open" : "Next"}</span>
+          <ChevronRight className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
         </button>
       </div>
     </div>
