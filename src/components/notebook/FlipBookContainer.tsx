@@ -10,13 +10,11 @@ interface FlipBookProps {
 }
 
 export default function FlipBookContainer({ children }: FlipBookProps) {
-  const { currentPage, setCurrentPage, nextPage, prevPage, isNotebookOpened } = usePen();
+  const { currentPage, nextPage, prevPage } = usePen();
   const [direction, setDirection] = useState<"next" | "prev">("next");
 
   // Keyboard Navigation: ArrowLeft & ArrowRight
   useEffect(() => {
-    if (!isNotebookOpened) return;
-
     const handleKeyDown = (e: KeyboardEvent) => {
       // Don't trigger page flip if user is typing in form inputs
       if (
@@ -35,7 +33,7 @@ export default function FlipBookContainer({ children }: FlipBookProps) {
 
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [currentPage, isNotebookOpened]);
+  }, [currentPage]);
 
   // Touch Swipe Navigation for Mobile
   const [touchStart, setTouchStart] = useState<number | null>(null);
@@ -67,13 +65,13 @@ export default function FlipBookContainer({ children }: FlipBookProps) {
   };
 
   const handlePrev = () => {
-    if (currentPage > 1) {
+    if (currentPage > 0) {
       setDirection("prev");
       prevPage();
     }
   };
 
-  const activeChild = children[currentPage - 1];
+  const activeChild = children[currentPage];
 
   // 3D Page Flip Motion Variants
   const pageVariants: Variants = {
@@ -100,13 +98,11 @@ export default function FlipBookContainer({ children }: FlipBookProps) {
     }),
   };
 
-  if (!isNotebookOpened) return null;
-
   return (
     <div
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
-      className="min-h-screen pt-24 pb-28 px-2 sm:px-6 relative flex flex-col justify-between overflow-x-hidden"
+      className="min-h-screen pt-20 pb-28 px-2 sm:px-6 relative flex flex-col justify-between overflow-x-hidden"
     >
       {/* 3D Book Container */}
       <div className="w-full max-w-5xl mx-auto my-auto [perspective:1400px]">
@@ -131,25 +127,31 @@ export default function FlipBookContainer({ children }: FlipBookProps) {
         {/* Previous Page Button */}
         <button
           onClick={handlePrev}
-          disabled={currentPage === 1}
+          disabled={currentPage === 0}
           className={`flex items-center gap-1 px-3 py-1.5 rounded-full border transition-all text-sm sm:text-base font-bold ${
-            currentPage === 1
+            currentPage === 0
               ? "opacity-30 border-stone-300 dark:border-stone-800 text-stone-400 cursor-not-allowed"
               : "bg-white dark:bg-[#242429] border-stone-300 dark:border-stone-700 text-stone-900 dark:text-stone-100 hover:border-blue-500 hover:scale-105 shadow-xs"
           }`}
           title="Previous Page (Left Arrow)"
         >
           <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5 text-blue-600 dark:text-blue-400" />
-          <span className="hidden sm:inline">Prev Page</span>
+          <span className="hidden sm:inline">Cover / Prev</span>
         </button>
 
         {/* Current Page Title & Number Indicator */}
         <div className="flex items-center gap-2 text-center px-2">
           <BookOpen className="w-4 h-4 text-amber-600 dark:text-amber-400 shrink-0" />
           <div className="text-xs sm:text-sm font-bold text-stone-900 dark:text-stone-100">
-            <span className="text-blue-600 dark:text-blue-400">Page {currentPage} of {TOTAL_PAGES}</span>
-            <span className="mx-1 opacity-40">•</span>
-            <span className="hidden md:inline">{PAGE_TITLES[currentPage]}</span>
+            {currentPage === 0 ? (
+              <span className="text-amber-600 dark:text-amber-400">Notebook Cover • Click Next to Open</span>
+            ) : (
+              <>
+                <span className="text-blue-600 dark:text-blue-400">Page {currentPage} of {TOTAL_PAGES}</span>
+                <span className="mx-1 opacity-40">•</span>
+                <span className="hidden md:inline">{PAGE_TITLES[currentPage]}</span>
+              </>
+            )}
           </div>
         </div>
 
@@ -164,7 +166,7 @@ export default function FlipBookContainer({ children }: FlipBookProps) {
           }`}
           title="Next Page (Right Arrow)"
         >
-          <span className="hidden sm:inline">Next Page</span>
+          <span className="hidden sm:inline">{currentPage === 0 ? "Open Book" : "Next Page"}</span>
           <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5" />
         </button>
       </div>

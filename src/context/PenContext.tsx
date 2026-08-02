@@ -4,9 +4,10 @@ import React, { createContext, useContext, useState } from "react";
 
 export type PenType = "blue" | "red" | "black" | "yellow";
 
-export const TOTAL_PAGES = 9;
+export const TOTAL_PAGES = 9; // Pages 0 (Cover) to 9 (Contact)
 
 export const PAGE_TITLES: { [key: number]: string } = {
+  0: "Notebook Cover",
   1: "Hero & Introduction",
   2: "About Me & Journey",
   3: "Technical Skillset",
@@ -34,8 +35,7 @@ const PenContext = createContext<PenContextType | undefined>(undefined);
 
 export function PenProvider({ children }: { children: React.ReactNode }) {
   const [penType, setPenType] = useState<PenType>("blue");
-  const [isNotebookOpened, setIsNotebookOpened] = useState(false);
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(0); // Starts at Cover Page 0
 
   const getPenColor = (type: PenType) => {
     switch (type) {
@@ -53,12 +53,11 @@ export function PenProvider({ children }: { children: React.ReactNode }) {
   };
 
   const openNotebook = () => {
-    setIsNotebookOpened(true);
     setCurrentPage(1);
   };
 
   const setPage = (page: number) => {
-    if (page >= 1 && page <= TOTAL_PAGES) {
+    if (page >= 0 && page <= TOTAL_PAGES) {
       setCurrentPage(page);
     }
   };
@@ -70,7 +69,7 @@ export function PenProvider({ children }: { children: React.ReactNode }) {
   };
 
   const prevPage = () => {
-    if (currentPage > 1) {
+    if (currentPage > 0) {
       setCurrentPage((prev) => prev - 1);
     }
   };
@@ -81,7 +80,7 @@ export function PenProvider({ children }: { children: React.ReactNode }) {
         penType,
         setPenType,
         penColor: getPenColor(penType),
-        isNotebookOpened,
+        isNotebookOpened: currentPage > 0,
         openNotebook,
         currentPage,
         setCurrentPage: setPage,

@@ -40,13 +40,10 @@ export default function Home() {
         {/* Custom Pen Cursor Systemwide */}
         <CustomInkCursor />
 
-        {/* 3D Leather Cover Intro Page */}
-        <NotebookCoverIntro />
-
         {/* Paper texture, grid lines, margin rules */}
         <PaperTextureOverlay />
 
-        {/* Ribbon Header Navigation */}
+        {/* Brand & Pen Toolbar Header */}
         <NotebookHeader
           onToggleCoffee={handleToggleCoffee}
           onSharpenPencil={handleSharpenPencil}
@@ -55,19 +52,30 @@ export default function Home() {
         {/* 3D Interactive Flip Book Engine */}
         <main className="relative z-10">
           <FlipBookContainer>
+            {/* Page 0: Leather Cover */}
+            <NotebookCoverIntro />
+            {/* Page 1: Hero Intro */}
             <HeroSection
               coffeeSteamActive={coffeeSteamActive}
               onToggleCoffee={handleToggleCoffee}
               pencilSharpening={pencilSharpening}
               onSharpenPencil={handleSharpenPencil}
             />
+            {/* Page 2: About */}
             <AboutSection />
+            {/* Page 3: Skills */}
             <SkillsSection />
+            {/* Page 4: Experience */}
             <ExperienceSection />
+            {/* Page 5: Projects Desk */}
             <ProjectsSection />
+            {/* Page 6: Leadership */}
             <LeadershipSection />
+            {/* Page 7: Education */}
             <EducationSection />
+            {/* Page 8: Certifications */}
             <CertificationsSection />
+            {/* Page 9: Contact */}
             <ContactSection />
           </FlipBookContainer>
         </main>
