@@ -4,7 +4,7 @@ import React, { createContext, useContext, useState } from "react";
 
 export type PenType = "blue" | "red" | "black" | "yellow";
 
-export const TOTAL_PAGES = 9; // Pages 0 (Cover) to 9 (Contact)
+export const TOTAL_PAGES = 10; // Pages 0 (Front Cover) to 10 (Back Cover)
 
 export const PAGE_TITLES: { [key: number]: string } = {
   0: "Notebook Cover",
@@ -16,7 +16,8 @@ export const PAGE_TITLES: { [key: number]: string } = {
   6: "Leadership & Activities",
   7: "Academic Report Card",
   8: "Certifications & Credentials",
-  9: "Contact & Closing Note",
+  9: "Contact Page",
+  10: "Back Cover",
 };
 
 interface PenContextType {

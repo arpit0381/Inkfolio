@@ -7,6 +7,7 @@ import CustomInkCursor from "@/components/notebook/CustomInkCursor";
 import PaperTextureOverlay from "@/components/notebook/PaperTextureOverlay";
 import NotebookHeader from "@/components/notebook/NotebookHeader";
 import NotebookCoverIntro from "@/components/notebook/NotebookCoverIntro";
+import NotebookBackCover from "@/components/notebook/NotebookBackCover";
 import FlipBookContainer from "@/components/notebook/FlipBookContainer";
 import HeroSection from "@/components/hero/HeroSection";
 import AboutSection from "@/components/about/AboutSection";
@@ -52,7 +53,7 @@ export default function Home() {
         {/* 3D Interactive Flip Book Engine */}
         <main className="relative z-10">
           <FlipBookContainer>
-            {/* Page 0: Leather Cover */}
+            {/* Page 0: Leather Front Cover */}
             <NotebookCoverIntro />
             {/* Page 1: Hero Intro */}
             <HeroSection
@@ -61,13 +62,13 @@ export default function Home() {
               pencilSharpening={pencilSharpening}
               onSharpenPencil={handleSharpenPencil}
             />
-            {/* Page 2: About */}
+            {/* Page 2: About Me */}
             <AboutSection />
             {/* Page 3: Skills */}
             <SkillsSection />
             {/* Page 4: Experience */}
             <ExperienceSection />
-            {/* Page 5: Projects Desk */}
+            {/* Page 5: Projects */}
             <ProjectsSection />
             {/* Page 6: Leadership */}
             <LeadershipSection />
@@ -77,10 +78,12 @@ export default function Home() {
             <CertificationsSection />
             {/* Page 9: Contact */}
             <ContactSection />
+            {/* Page 10: Leather Back Cover */}
+            <NotebookBackCover />
           </FlipBookContainer>
         </main>
 
-        {/* Easter Egg Event Listener */}
+        {/* Secret Shortcuts & Easter Eggs */}
         <EasterEggs />
       </LenisScrollProvider>
     </PenProvider>

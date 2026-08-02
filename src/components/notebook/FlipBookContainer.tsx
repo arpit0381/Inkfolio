@@ -102,7 +102,7 @@ export default function FlipBookContainer({ children }: FlipBookProps) {
       onTouchEnd={handleTouchEnd}
       className="min-h-[calc(100vh-70px)] pt-16 sm:pt-20 pb-6 px-1.5 sm:px-6 flex flex-col justify-between items-center select-none"
     >
-      {/* 3D Fixed Uniform Equal-Sized Notebook Container - Mobile Fluid Height */}
+      {/* 3D Fixed Uniform Equal-Sized Notebook Container */}
       <div className="w-full max-w-4xl mx-auto my-auto h-[530px] sm:h-[640px] relative [perspective:1400px] flex items-center justify-center">
         <AnimatePresence mode="wait" custom={direction}>
           <motion.div
@@ -142,10 +142,12 @@ export default function FlipBookContainer({ children }: FlipBookProps) {
           <BookOpen className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-amber-600 dark:text-amber-400 shrink-0" />
           <div className="text-[11px] sm:text-sm font-bold text-stone-900 dark:text-stone-100">
             {currentPage === 0 ? (
-              <span className="text-amber-600 dark:text-amber-400">Notebook Cover • Tap Next</span>
+              <span className="text-amber-600 dark:text-amber-400">Front Cover • Tap Next</span>
+            ) : currentPage === TOTAL_PAGES ? (
+              <span className="text-amber-600 dark:text-amber-400">Back Cover • Re-Open</span>
             ) : (
               <>
-                <span className="text-blue-600 dark:text-blue-400">P.{currentPage}/9</span>
+                <span className="text-blue-600 dark:text-blue-400">P.{currentPage}/10</span>
                 <span className="mx-1 opacity-40">•</span>
                 <span className="truncate max-w-[120px] sm:max-w-none inline-block align-bottom">{PAGE_TITLES[currentPage]}</span>
               </>
