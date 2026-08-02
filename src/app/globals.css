@@ -1,0 +1,124 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --font-patrick: var(--font-patrick-hand), 'Patrick Hand', cursive;
+    --font-caveat-var: var(--font-caveat), 'Caveat', cursive;
+    --font-kalam-var: var(--font-kalam), 'Kalam', cursive;
+    --font-mono-var: var(--font-jetbrains-mono), monospace;
+  }
+}
+
+/* HIDE DEFAULT OS MOUSE CURSOR SYSTEMWIDE */
+html, body, a, button, input, textarea, select, [role="button"] {
+  cursor: none !important;
+}
+
+.font-handwritten {
+  font-family: var(--font-patrick-hand), 'Patrick Hand', cursive;
+}
+
+.font-script {
+  font-family: var(--font-caveat), 'Caveat', cursive;
+}
+
+.font-heading {
+  font-family: var(--font-kalam), 'Kalam', cursive;
+}
+
+.font-code {
+  font-family: var(--font-jetbrains-mono), monospace;
+}
+
+/* Notebook Lined Paper Background - Optimized for High Contrast Light & Dark */
+.paper-lines {
+  background-color: #FDFBF7;
+  background-image: 
+    linear-gradient(90deg, rgba(220, 38, 38, 0.3) 1px, transparent 1px),
+    linear-gradient(0deg, rgba(37, 99, 235, 0.09) 1px, transparent 1px);
+  background-size: 100% 100%, 100% 30px;
+  background-position: 56px 0, 0 0;
+}
+
+.dark .paper-lines {
+  background-color: #141415;
+  background-image: 
+    linear-gradient(90deg, rgba(239, 68, 68, 0.4) 1px, transparent 1px),
+    linear-gradient(0deg, rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+  background-size: 100% 100%, 100% 30px;
+  background-position: 56px 0, 0 0;
+}
+
+/* Grid Notebook Background */
+.paper-grid {
+  background-color: #FDFBF7;
+  background-image: 
+    linear-gradient(rgba(37, 99, 235, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(37, 99, 235, 0.08) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+.dark .paper-grid {
+  background-color: #141415;
+  background-image: 
+    linear-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.07) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* Moleskine Shadow & Paper Effects */
+.notebook-shadow {
+  box-shadow: 
+    0 10px 35px -5px rgba(0, 0, 0, 0.15),
+    0 20px 30px -5px rgba(0, 0, 0, 0.1),
+    -6px 0 14px -2px rgba(0, 0, 0, 0.12);
+}
+
+.dark .notebook-shadow {
+  box-shadow: 
+    0 10px 35px -5px rgba(0, 0, 0, 0.6),
+    0 20px 30px -5px rgba(0, 0, 0, 0.4),
+    -6px 0 14px -2px rgba(0, 0, 0, 0.5);
+}
+
+.sticky-shadow {
+  box-shadow: 2px 4px 14px rgba(0, 0, 0, 0.15), 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Custom Scrollbar styled as ink line */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #FDFBF7;
+}
+
+.dark ::-webkit-scrollbar-track {
+  background: #141415;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #2563EB;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #1D4ED8;
+}
+
+/* Leather Texture for Notebook Cover Intro */
+.notebook-cover-bg {
+  background: radial-gradient(circle at 50% 50%, #2A2421 0%, #151210 100%);
+  background-image: 
+    radial-gradient(circle at 50% 50%, #2A2421 0%, #151210 100%),
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.15'/%3E%3C/svg%3E");
+}
+
+/* Gold Emboss Effect */
+.gold-emboss {
+  background: linear-gradient(135deg, #FFE5A3 0%, #D4AF37 50%, #AA7C11 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.6);
+}
