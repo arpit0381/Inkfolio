@@ -10,7 +10,7 @@ export default function ProjectsSection() {
   return (
     <section id="projects" className="py-20 px-4 sm:px-6 relative max-w-6xl mx-auto">
       {/* Notebook Desk Container */}
-      <div className="bg-[#FFFDF8] dark:bg-[#1A1A1C] border-2 border-stone-300 dark:border-stone-700/80 rounded-lg p-6 sm:p-12 notebook-shadow paper-grid relative">
+      <div className="bg-[#FFFDF8] dark:bg-[#161618] border-2 border-stone-300 dark:border-stone-700/80 rounded-lg p-6 sm:p-12 notebook-shadow paper-grid relative text-stone-900 dark:text-stone-100">
         
         {/* Header */}
         <div className="flex items-center justify-between mb-8 border-b-2 border-stone-300 dark:border-stone-800 pb-4">
@@ -19,7 +19,7 @@ export default function ProjectsSection() {
               <Pin className="w-5 h-5" />
             </span>
             <div>
-              <h2 className="font-heading text-3xl sm:text-4xl text-stone-900 dark:text-stone-100">
+              <h2 className="font-heading text-3xl sm:text-4xl text-stone-900 dark:text-stone-50 font-bold">
                 Page #05 — Featured Projects
               </h2>
               <p className="font-handwritten text-stone-600 dark:text-stone-300 text-sm">
@@ -54,7 +54,7 @@ export default function ProjectsSection() {
                     Project #0{idx + 1}
                   </span>
                   {proj.domain && (
-                    <span className="font-handwritten text-xs opacity-90 underline">
+                    <span className="font-handwritten text-xs font-bold underline">
                       {proj.domain}
                     </span>
                   )}
@@ -63,7 +63,7 @@ export default function ProjectsSection() {
                 <h3 className="font-heading text-2xl font-bold mb-1 leading-snug">
                   {proj.title}
                 </h3>
-                <p className="font-handwritten text-sm opacity-90 line-clamp-2 mb-4">
+                <p className="font-handwritten text-sm font-medium line-clamp-2 mb-4">
                   {proj.subtitle}
                 </p>
               </div>
@@ -97,48 +97,48 @@ export default function ProjectsSection() {
         >
           <div
             onClick={(e) => e.stopPropagation()}
-            className="bg-[#FFFDF8] dark:bg-[#1A1A1C] border-2 border-stone-300 dark:border-stone-700 rounded-lg p-6 sm:p-10 max-w-2xl w-full notebook-shadow paper-lines relative max-h-[90vh] overflow-y-auto animate-in fade-in zoom-in-95 duration-200 text-stone-900 dark:text-stone-100"
+            className="bg-[#FFFDF8] dark:bg-[#161618] border-2 border-stone-300 dark:border-stone-700 rounded-lg p-6 sm:p-10 max-w-2xl w-full notebook-shadow paper-lines relative max-h-[90vh] overflow-y-auto animate-in fade-in zoom-in-95 duration-200 text-stone-900 dark:text-stone-100"
           >
             {/* Close Button */}
             <button
               onClick={() => setSelectedProject(null)}
-              className="absolute top-4 right-4 p-2 rounded-full hover:bg-stone-200 dark:hover:bg-stone-800 text-stone-600 dark:text-stone-300 transition-colors"
+              className="absolute top-4 right-4 p-2 rounded-full hover:bg-stone-200 dark:hover:bg-stone-800 text-stone-700 dark:text-stone-300 transition-colors"
             >
               <X className="w-6 h-6" />
             </button>
 
             {/* Header Tag */}
-            <div className="inline-flex items-center gap-1 mb-4 px-3 py-1 bg-amber-200 dark:bg-amber-950 text-amber-950 dark:text-amber-200 font-handwritten text-xs rounded border border-amber-300 font-bold">
+            <div className="inline-flex items-center gap-1 mb-4 px-3 py-1 bg-amber-200 dark:bg-amber-950 text-amber-950 dark:text-amber-100 font-handwritten text-xs rounded border border-amber-300 font-bold">
               <Pin className="w-3.5 h-3.5" /> NOTEBOOK BREAKDOWN — {selectedProject.title}
             </div>
 
-            <h3 className="font-heading text-3xl sm:text-4xl text-stone-900 dark:text-stone-100 mb-2">
+            <h3 className="font-heading text-3xl sm:text-4xl text-stone-900 dark:text-stone-50 font-bold mb-2">
               {selectedProject.title}
             </h3>
-            <p className="font-handwritten text-lg text-blue-600 dark:text-blue-400 mb-6">
+            <p className="font-handwritten text-lg text-blue-600 dark:text-blue-400 font-bold mb-6">
               {selectedProject.subtitle}
             </p>
 
             {/* Problem & Solution */}
-            <div className="space-y-4 font-handwritten text-lg sm:text-xl text-stone-800 dark:text-stone-200">
-              <div className="p-4 bg-red-50 dark:bg-red-950/50 rounded border border-red-200 dark:border-red-900/60">
-                <strong className="text-red-700 dark:text-red-300 font-heading text-xl flex items-center gap-1.5 mb-1">
+            <div className="space-y-4 font-handwritten text-lg sm:text-xl text-stone-900 dark:text-stone-100">
+              <div className="p-4 bg-red-50 dark:bg-red-950/60 rounded-lg border border-red-200 dark:border-red-900">
+                <strong className="text-red-700 dark:text-red-300 font-heading text-xl flex items-center gap-1.5 mb-1 font-bold">
                   <AlertCircle className="w-5 h-5" /> THE PROBLEM:
                 </strong>
-                {selectedProject.problem}
+                <p className="font-medium">{selectedProject.problem}</p>
               </div>
 
-              <div className="p-4 bg-emerald-50 dark:bg-emerald-950/50 rounded border border-emerald-200 dark:border-emerald-900/60">
-                <strong className="text-emerald-700 dark:text-emerald-300 font-heading text-xl flex items-center gap-1.5 mb-1">
+              <div className="p-4 bg-emerald-50 dark:bg-emerald-950/60 rounded-lg border border-emerald-200 dark:border-emerald-900">
+                <strong className="text-emerald-700 dark:text-emerald-300 font-heading text-xl flex items-center gap-1.5 mb-1 font-bold">
                   <CheckCircle2 className="w-5 h-5" /> THE SOLUTION:
                 </strong>
-                {selectedProject.solution}
+                <p className="font-medium">{selectedProject.solution}</p>
               </div>
             </div>
 
             {/* Tech Stack */}
             <div className="my-6 pt-4 border-t border-stone-300 dark:border-stone-800">
-              <h4 className="font-heading text-xl text-stone-900 dark:text-stone-100 mb-3 flex items-center gap-2">
+              <h4 className="font-heading text-xl text-stone-900 dark:text-stone-50 font-bold mb-3 flex items-center gap-2">
                 <Layers className="w-5 h-5 text-blue-600 dark:text-blue-400" />
                 <span>Tech Stack Used:</span>
               </h4>
@@ -146,7 +146,7 @@ export default function ProjectsSection() {
                 {selectedProject.stack.map((st) => (
                   <span
                     key={st}
-                    className="px-3 py-1 bg-stone-200 dark:bg-stone-800 rounded-full border border-stone-300 dark:border-stone-700 text-stone-800 dark:text-stone-200 font-bold"
+                    className="px-3 py-1 bg-white dark:bg-[#202024] rounded-full border border-stone-300 dark:border-stone-700 text-stone-900 dark:text-stone-100 font-bold shadow-2xs"
                   >
                     {st}
                   </span>
@@ -156,10 +156,10 @@ export default function ProjectsSection() {
 
             {/* Outcomes */}
             <div className="mb-6">
-              <h4 className="font-heading text-xl text-stone-900 dark:text-stone-100 mb-3">
+              <h4 className="font-heading text-xl text-stone-900 dark:text-stone-50 font-bold mb-3">
                 Key Outcomes & Deliverables:
               </h4>
-              <ul className="space-y-2 font-handwritten text-lg text-stone-800 dark:text-stone-200">
+              <ul className="space-y-2 font-handwritten text-lg text-stone-900 dark:text-stone-100 font-medium">
                 {selectedProject.outcomes.map((oc, i) => (
                   <li key={i} className="flex items-center gap-2">
                     <CheckCircle2 className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0" />

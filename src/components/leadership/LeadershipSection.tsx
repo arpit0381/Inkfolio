@@ -21,7 +21,7 @@ export default function LeadershipSection() {
   return (
     <section id="leadership" className="py-20 px-4 sm:px-6 relative max-w-6xl mx-auto">
       {/* Corkboard Background */}
-      <div className="bg-[#FFFDF8] dark:bg-[#1A1A1C] border-2 border-stone-300 dark:border-stone-700/80 rounded-lg p-6 sm:p-12 notebook-shadow paper-lines relative">
+      <div className="bg-[#FFFDF8] dark:bg-[#161618] border-2 border-stone-300 dark:border-stone-700/80 rounded-lg p-6 sm:p-12 notebook-shadow paper-lines relative text-stone-900 dark:text-stone-100">
         
         {/* Header */}
         <div className="flex items-center justify-between mb-8 border-b-2 border-stone-300 dark:border-stone-800 pb-4">
@@ -30,7 +30,7 @@ export default function LeadershipSection() {
               <Medal className="w-5 h-5" />
             </span>
             <div>
-              <h2 className="font-heading text-3xl sm:text-4xl text-stone-900 dark:text-stone-100">
+              <h2 className="font-heading text-3xl sm:text-4xl text-stone-900 dark:text-stone-50 font-bold">
                 Page #06 — Leadership & Activities
               </h2>
               <p className="font-handwritten text-stone-600 dark:text-stone-300 text-sm">
@@ -50,13 +50,13 @@ export default function LeadershipSection() {
           {RESUME_DATA.leadership.map((item, idx) => (
             <div
               key={item.role}
-              className="bg-stone-100/90 dark:bg-stone-900/90 border-2 border-stone-300/80 dark:border-stone-800 rounded-lg p-6 relative shadow-md hover:border-purple-500 transition-colors group"
+              className="bg-white dark:bg-[#202024] border-2 border-stone-200 dark:border-stone-700 rounded-lg p-6 relative shadow-xs hover:border-purple-500 transition-colors group"
             >
               {/* Metallic Pushpin top center */}
               <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-amber-500 border border-amber-700 shadow-md group-hover:scale-125 transition-transform" />
 
               <div className="flex items-start gap-4">
-                <div className="p-3 bg-[#FFFDF8] dark:bg-[#1C1C1E] rounded-full border border-stone-300 dark:border-stone-700 shrink-0">
+                <div className="p-3 bg-[#FFFDF8] dark:bg-[#161618] rounded-full border border-stone-300 dark:border-stone-700 shrink-0">
                   {getLeadershipIcon(idx)}
                 </div>
 
@@ -64,17 +64,17 @@ export default function LeadershipSection() {
                   <span className="font-handwritten text-xs text-purple-600 dark:text-purple-400 font-bold uppercase tracking-wider">
                     {item.organization}
                   </span>
-                  <h3 className="font-heading text-2xl text-stone-900 dark:text-stone-100 font-bold mt-0.5">
+                  <h3 className="font-heading text-2xl text-stone-900 dark:text-stone-50 font-bold mt-0.5">
                     {item.role}
                   </h3>
-                  <p className="font-handwritten text-lg text-stone-800 dark:text-stone-200 mt-2 leading-snug">
+                  <p className="font-handwritten text-lg text-stone-900 dark:text-stone-100 font-medium mt-2 leading-snug">
                     {item.description}
                   </p>
                 </div>
               </div>
 
               {/* Bottom Stamp */}
-              <div className="mt-4 pt-3 border-t border-stone-300/60 dark:border-stone-800 flex justify-end">
+              <div className="mt-4 pt-3 border-t border-stone-200 dark:border-stone-800 flex justify-end">
                 <span className="font-heading text-xs px-2.5 py-0.5 border border-purple-300 dark:border-purple-800 text-purple-700 dark:text-purple-300 rounded uppercase font-bold">
                   Verified Role
                 </span>

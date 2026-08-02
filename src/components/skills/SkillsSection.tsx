@@ -24,7 +24,7 @@ export default function SkillsSection() {
   return (
     <section id="skills" className="py-20 px-4 sm:px-6 relative max-w-6xl mx-auto">
       {/* Notebook Sheet Container */}
-      <div className="bg-[#FFFDF8] dark:bg-[#1A1A1C] border-2 border-stone-300 dark:border-stone-700/80 rounded-lg p-6 sm:p-12 notebook-shadow paper-lines relative">
+      <div className="bg-[#FFFDF8] dark:bg-[#161618] border-2 border-stone-300 dark:border-stone-700/80 rounded-lg p-6 sm:p-12 notebook-shadow paper-lines relative text-stone-900 dark:text-stone-100">
         
         {/* Header */}
         <div className="flex items-center justify-between mb-8 border-b-2 border-stone-300 dark:border-stone-800 pb-4">
@@ -33,7 +33,7 @@ export default function SkillsSection() {
               <CheckSquare className="w-5 h-5" />
             </span>
             <div>
-              <h2 className="font-heading text-3xl sm:text-4xl text-stone-900 dark:text-stone-100">
+              <h2 className="font-heading text-3xl sm:text-4xl text-stone-900 dark:text-stone-50 font-bold">
                 Page #03 — Technical Skillset
               </h2>
               <p className="font-handwritten text-stone-600 dark:text-stone-300 text-sm">
@@ -53,15 +53,15 @@ export default function SkillsSection() {
           {RESUME_DATA.skills.map((cat, catIdx) => (
             <div
               key={cat.category}
-              className="bg-stone-100/80 dark:bg-stone-900/80 border border-stone-200 dark:border-stone-800 rounded-lg p-6 relative shadow-sm"
+              className="bg-white dark:bg-[#202024] border border-stone-200 dark:border-stone-700 rounded-lg p-6 relative shadow-xs"
             >
               {/* Category Stamp */}
-              <div className="flex items-center justify-between mb-4 pb-3 border-b border-stone-300/80 dark:border-stone-800">
-                <h3 className="font-heading text-2xl text-stone-900 dark:text-stone-100 flex items-center gap-2">
+              <div className="flex items-center justify-between mb-4 pb-3 border-b border-stone-200 dark:border-stone-800">
+                <h3 className="font-heading text-2xl text-stone-900 dark:text-stone-50 font-bold flex items-center gap-2">
                   {getCategoryIcon(catIdx)}
                   <span>{cat.category}</span>
                 </h3>
-                <span className="font-handwritten text-xs px-2.5 py-1 bg-stone-200 dark:bg-stone-800 rounded text-stone-700 dark:text-stone-300 font-bold">
+                <span className="font-handwritten text-xs px-2.5 py-1 bg-stone-100 dark:bg-stone-800 rounded text-stone-800 dark:text-stone-200 font-bold border border-stone-200 dark:border-stone-700">
                   {cat.skills.length} Items
                 </span>
               </div>
@@ -71,7 +71,7 @@ export default function SkillsSection() {
                 {cat.skills.map((skill) => (
                   <div
                     key={skill.name}
-                    className="flex items-center gap-2 bg-[#FFFDF8] dark:bg-[#1C1C1E] px-3.5 py-2 rounded border border-stone-300 dark:border-stone-700 hover:border-blue-500 transition-all hover:scale-[1.02] shadow-xs group"
+                    className="flex items-center gap-2 bg-[#FFFDF8] dark:bg-[#161618] px-3.5 py-2.5 rounded-lg border border-stone-200 dark:border-stone-700 hover:border-blue-500 dark:hover:border-blue-400 transition-all hover:scale-[1.02] shadow-2xs group"
                   >
                     {/* Animated Checkbox SVG */}
                     <div className="relative w-5 h-5 flex items-center justify-center shrink-0">
@@ -93,7 +93,7 @@ export default function SkillsSection() {
                           strokeWidth="2"
                           strokeLinecap="round"
                           strokeLinejoin="round"
-                          className="opacity-70"
+                          className="opacity-80"
                         />
                         <path
                           d="M7 12.5L10.5 16L17.5 8.5"
@@ -105,7 +105,7 @@ export default function SkillsSection() {
                       </svg>
                     </div>
 
-                    <span className="text-stone-900 dark:text-stone-100 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                    <span className="text-stone-900 dark:text-stone-100 font-medium group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
                       {skill.name}
                     </span>
                   </div>
@@ -117,7 +117,7 @@ export default function SkillsSection() {
 
         {/* Note footer */}
         <div className="mt-8 pt-4 border-t border-dashed border-stone-300 dark:border-stone-800 font-handwritten text-sm text-stone-600 dark:text-stone-300 flex items-center justify-between">
-          <span className="flex items-center gap-1">
+          <span className="flex items-center gap-1 font-medium">
             <CheckCircle2 className="w-4 h-4 text-emerald-600 dark:text-emerald-400" /> All skills actively applied in client projects & full-stack applications.
           </span>
           <span className="text-red-600 dark:text-red-400 font-bold">100% Verified</span>

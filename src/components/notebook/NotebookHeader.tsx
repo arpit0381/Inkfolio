@@ -67,7 +67,7 @@ export default function NotebookHeader({
     <header
       className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
         scrolled
-          ? "bg-[#FDFBF7]/95 dark:bg-[#141415]/95 backdrop-blur-md border-b border-stone-300/80 dark:border-stone-800 shadow-sm py-2"
+          ? "bg-[#FFFDF8]/95 dark:bg-[#161618]/95 backdrop-blur-md border-b border-stone-300 dark:border-stone-800 shadow-xs py-2.5"
           : "bg-transparent py-4"
       }`}
     >
@@ -75,14 +75,14 @@ export default function NotebookHeader({
         {/* Notebook Title Stamp */}
         <a
           href="#hero"
-          className="flex items-center gap-2 group font-heading font-bold text-xl md:text-2xl text-stone-900 dark:text-stone-100 tracking-wide"
+          className="flex items-center gap-2 group font-heading font-bold text-xl md:text-2xl text-stone-900 dark:text-stone-50 tracking-wide"
         >
           <span className="w-9 h-9 rounded-full bg-blue-600/10 dark:bg-blue-500/20 text-blue-600 dark:text-blue-400 flex items-center justify-center border border-blue-500/30 group-hover:rotate-12 transition-transform">
             <PenTool className="w-5 h-5" />
           </span>
           <span className="relative">
             Inkfolio{" "}
-            <span className="text-xs font-handwritten text-red-600 dark:text-red-400 ml-1">
+            <span className="text-xs font-handwritten text-red-600 dark:text-red-400 ml-1 font-bold">
               v1.0
             </span>
             <span className="absolute -bottom-1 left-0 w-full h-[2px] bg-blue-600 scale-x-0 group-hover:scale-x-100 transition-transform origin-left" />
@@ -90,12 +90,12 @@ export default function NotebookHeader({
         </a>
 
         {/* Ribbon Navigation Bar */}
-        <nav className="hidden lg:flex items-center gap-1 bg-stone-200/60 dark:bg-stone-900/80 px-4 py-1.5 rounded-full border border-stone-300/80 dark:border-stone-700 font-handwritten text-base">
+        <nav className="hidden lg:flex items-center gap-1 bg-white/90 dark:bg-[#202024]/90 px-4 py-1.5 rounded-full border border-stone-300 dark:border-stone-700 font-handwritten text-base shadow-2xs">
           {navLinks.map((link) => (
             <a
               key={link.label}
               href={link.href}
-              className="px-3 py-1 text-stone-800 dark:text-stone-200 hover:text-blue-600 dark:hover:text-blue-400 rounded-md transition-colors relative group"
+              className="px-3 py-1 text-stone-900 dark:text-stone-100 hover:text-blue-600 dark:hover:text-blue-400 rounded-md transition-colors relative group font-bold"
             >
               {link.label}
               <span className="absolute bottom-0 left-3 right-3 h-[2px] bg-blue-600 scale-x-0 group-hover:scale-x-100 transition-transform origin-left" />
@@ -109,7 +109,7 @@ export default function NotebookHeader({
           <div className="relative">
             <button
               onClick={() => setShowPenMenu((prev) => !prev)}
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-stone-300 dark:border-stone-700 bg-stone-100 dark:bg-stone-900 text-stone-800 dark:text-stone-200 hover:border-blue-500 font-handwritten text-sm transition-all"
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-stone-300 dark:border-stone-700 bg-white dark:bg-[#202024] text-stone-900 dark:text-stone-100 hover:border-blue-500 font-handwritten text-sm font-bold transition-all shadow-2xs"
               title="Change Active Pen Color"
             >
               <span
@@ -117,13 +117,13 @@ export default function NotebookHeader({
                 style={{ backgroundColor: penColor }}
               />
               <span className="hidden sm:inline capitalize">{penType} Pen</span>
-              <Palette className="w-4 h-4 text-stone-500" />
+              <Palette className="w-4 h-4 text-stone-500 dark:text-stone-400" />
             </button>
 
             {/* Pen Options Popup */}
             {showPenMenu && (
-              <div className="absolute top-full right-0 mt-2 w-44 bg-[#FFFDF8] dark:bg-[#1A1A1A] border-2 border-stone-300 dark:border-stone-700 rounded-lg p-2 shadow-xl z-50 font-handwritten text-sm animate-in fade-in zoom-in-95 duration-150">
-                <div className="text-xs text-stone-400 px-2 py-1 uppercase font-bold border-b border-stone-200 dark:border-stone-800 mb-1">
+              <div className="absolute top-full right-0 mt-2 w-44 bg-white dark:bg-[#202024] border-2 border-stone-300 dark:border-stone-700 rounded-lg p-2 shadow-xl z-50 font-handwritten text-sm animate-in fade-in zoom-in-95 duration-150">
+                <div className="text-xs text-stone-500 dark:text-stone-400 px-2 py-1 uppercase font-bold border-b border-stone-200 dark:border-stone-800 mb-1">
                   Select Ink Pen:
                 </div>
                 {penOptions.map((opt) => (
@@ -133,7 +133,7 @@ export default function NotebookHeader({
                       setPenType(opt.type);
                       setShowPenMenu(false);
                     }}
-                    className="w-full flex items-center justify-between px-2.5 py-1.5 rounded hover:bg-stone-200 dark:hover:bg-stone-800 text-stone-800 dark:text-stone-200 transition-colors"
+                    className="w-full flex items-center justify-between px-2.5 py-1.5 rounded hover:bg-stone-100 dark:hover:bg-stone-800 text-stone-900 dark:text-stone-100 font-bold transition-colors"
                   >
                     <div className="flex items-center gap-2">
                       <span
@@ -156,7 +156,7 @@ export default function NotebookHeader({
             <button
               onClick={onToggleCoffee}
               title="Toggle Coffee Steam"
-              className="p-2 rounded-full hover:bg-stone-200 dark:hover:bg-stone-800 text-amber-700 dark:text-amber-400 transition-colors"
+              className="p-2 rounded-full hover:bg-stone-200 dark:hover:bg-stone-800 text-amber-800 dark:text-amber-400 transition-colors"
             >
               <Coffee className="w-5 h-5" />
             </button>
@@ -165,7 +165,7 @@ export default function NotebookHeader({
           {/* Theme Switcher */}
           <button
             onClick={toggleTheme}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-stone-300 dark:border-stone-700 bg-stone-100 dark:bg-stone-900 text-stone-800 dark:text-stone-200 hover:border-blue-500 font-handwritten text-sm transition-all"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-stone-300 dark:border-stone-700 bg-white dark:bg-[#202024] text-stone-900 dark:text-stone-100 hover:border-blue-500 font-handwritten text-sm font-bold transition-all shadow-2xs"
           >
             {isDark ? (
               <>

@@ -8,7 +8,7 @@ export default function CertificationsSection() {
   return (
     <section id="certifications" className="py-20 px-4 sm:px-6 relative max-w-6xl mx-auto">
       {/* Notebook Sheet */}
-      <div className="bg-[#FFFDF8] dark:bg-[#1A1A1C] border-2 border-stone-300 dark:border-stone-700/80 rounded-lg p-6 sm:p-12 notebook-shadow paper-lines relative">
+      <div className="bg-[#FFFDF8] dark:bg-[#161618] border-2 border-stone-300 dark:border-stone-700/80 rounded-lg p-6 sm:p-12 notebook-shadow paper-lines relative text-stone-900 dark:text-stone-100">
         
         {/* Header */}
         <div className="flex items-center justify-between mb-8 border-b-2 border-stone-300 dark:border-stone-800 pb-4">
@@ -17,7 +17,7 @@ export default function CertificationsSection() {
               <Award className="w-5 h-5" />
             </span>
             <div>
-              <h2 className="font-heading text-3xl sm:text-4xl text-stone-900 dark:text-stone-100">
+              <h2 className="font-heading text-3xl sm:text-4xl text-stone-900 dark:text-stone-50 font-bold">
                 Page #08 — Certifications & Verification
               </h2>
               <p className="font-handwritten text-stone-600 dark:text-stone-300 text-sm">
@@ -37,7 +37,7 @@ export default function CertificationsSection() {
           {RESUME_DATA.certifications.map((cert, idx) => (
             <div
               key={cert.title}
-              className="bg-stone-100/90 dark:bg-stone-900/90 border-2 border-stone-300/80 dark:border-stone-800 rounded-lg p-5 relative shadow-sm hover:border-blue-500 transition-all hover:scale-[1.02] group"
+              className="bg-white dark:bg-[#202024] border-2 border-stone-200 dark:border-stone-700 rounded-lg p-5 relative shadow-xs hover:border-blue-500 transition-all hover:scale-[1.02] group"
             >
               {/* Paper Clip Icon top left */}
               <div className="absolute -top-4 left-6 text-stone-400 dark:text-stone-500 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
@@ -45,11 +45,11 @@ export default function CertificationsSection() {
               </div>
 
               <div className="pt-2">
-                <span className="font-handwritten text-xs px-2 py-0.5 bg-blue-100 dark:bg-blue-950 text-blue-900 dark:text-blue-300 rounded font-bold">
+                <span className="font-handwritten text-xs px-2 py-0.5 bg-blue-100 dark:bg-blue-950 text-blue-900 dark:text-blue-300 rounded font-bold border border-blue-200 dark:border-blue-800">
                   {cert.issuer}
                 </span>
 
-                <h3 className="font-heading text-xl font-bold text-stone-900 dark:text-stone-100 mt-2 leading-tight">
+                <h3 className="font-heading text-xl font-bold text-stone-900 dark:text-stone-50 mt-2 leading-tight">
                   {cert.title}
                 </h3>
 

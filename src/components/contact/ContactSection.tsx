@@ -21,7 +21,7 @@ export default function ContactSection() {
   return (
     <section id="contact" className="py-20 px-4 sm:px-6 relative max-w-6xl mx-auto">
       {/* Final Notebook Page Container */}
-      <div className="bg-[#FFFDF8] dark:bg-[#1A1A1C] border-2 border-stone-300 dark:border-stone-700/80 rounded-lg p-6 sm:p-12 notebook-shadow paper-lines relative">
+      <div className="bg-[#FFFDF8] dark:bg-[#161618] border-2 border-stone-300 dark:border-stone-700/80 rounded-lg p-6 sm:p-12 notebook-shadow paper-lines relative text-stone-900 dark:text-stone-100">
         
         {/* Header */}
         <div className="flex items-center justify-between mb-8 border-b-2 border-stone-300 dark:border-stone-800 pb-4">
@@ -30,7 +30,7 @@ export default function ContactSection() {
               <Mail className="w-5 h-5" />
             </span>
             <div>
-              <h2 className="font-heading text-3xl sm:text-4xl text-stone-900 dark:text-stone-100">
+              <h2 className="font-heading text-3xl sm:text-4xl text-stone-900 dark:text-stone-50 font-bold">
                 Final Page — Get In Touch
               </h2>
               <p className="font-handwritten text-stone-600 dark:text-stone-300 text-sm">
@@ -47,10 +47,10 @@ export default function ContactSection() {
 
         {/* Handwritten Callout */}
         <div className="text-center mb-10">
-          <h3 className="font-heading text-4xl sm:text-5xl lg:text-6xl text-stone-900 dark:text-stone-100 mb-2">
+          <h3 className="font-heading text-4xl sm:text-5xl lg:text-6xl text-stone-900 dark:text-stone-50 font-bold mb-2">
             Let's Build Something Amazing.
           </h3>
-          <p className="font-handwritten text-xl text-stone-700 dark:text-stone-300">
+          <p className="font-handwritten text-xl text-stone-700 dark:text-stone-300 font-medium">
             Leave a note in my engineering notebook or connect directly!
           </p>
         </div>
@@ -59,17 +59,17 @@ export default function ContactSection() {
           
           {/* Left Column: Direct Contact Info Cards */}
           <div className="lg:col-span-5 space-y-4">
-            <div className="p-5 bg-stone-100/90 dark:bg-stone-900/90 border border-stone-300/80 dark:border-stone-800 rounded-lg space-y-4 font-handwritten text-lg">
+            <div className="p-5 bg-white dark:bg-[#202024] border border-stone-200 dark:border-stone-700 rounded-lg space-y-4 font-handwritten text-lg shadow-xs">
               <a
                 href={`mailto:${RESUME_DATA.personal.email}`}
-                className="flex items-center gap-3 p-3 bg-[#FFFDF8] dark:bg-[#1C1C1E] border border-stone-200 dark:border-stone-700 rounded hover:border-blue-500 transition-colors group"
+                className="flex items-center gap-3 p-3 bg-[#FFFDF8] dark:bg-[#161618] border border-stone-200 dark:border-stone-700 rounded-lg hover:border-blue-500 transition-colors group"
               >
                 <div className="p-2.5 bg-blue-100 dark:bg-blue-950 text-blue-600 dark:text-blue-400 rounded-full shrink-0">
                   <Mail className="w-5 h-5" />
                 </div>
                 <div>
                   <span className="text-xs text-stone-500 dark:text-stone-400 block font-bold">Email Address</span>
-                  <span className="font-heading text-lg text-stone-900 dark:text-stone-100 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                  <span className="font-heading text-lg text-stone-900 dark:text-stone-100 font-bold group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
                     {RESUME_DATA.personal.email}
                   </span>
                 </div>
@@ -77,26 +77,26 @@ export default function ContactSection() {
 
               <a
                 href={`tel:${RESUME_DATA.personal.phone}`}
-                className="flex items-center gap-3 p-3 bg-[#FFFDF8] dark:bg-[#1C1C1E] border border-stone-200 dark:border-stone-700 rounded hover:border-emerald-500 transition-colors group"
+                className="flex items-center gap-3 p-3 bg-[#FFFDF8] dark:bg-[#161618] border border-stone-200 dark:border-stone-700 rounded-lg hover:border-emerald-500 transition-colors group"
               >
                 <div className="p-2.5 bg-emerald-100 dark:bg-emerald-950 text-emerald-600 dark:text-emerald-400 rounded-full shrink-0">
                   <Phone className="w-5 h-5" />
                 </div>
                 <div>
                   <span className="text-xs text-stone-500 dark:text-stone-400 block font-bold">Phone / WhatsApp</span>
-                  <span className="font-heading text-lg text-stone-900 dark:text-stone-100 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">
+                  <span className="font-heading text-lg text-stone-900 dark:text-stone-100 font-bold group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">
                     {RESUME_DATA.personal.phone}
                   </span>
                 </div>
               </a>
 
-              <div className="flex items-center gap-3 p-3 bg-[#FFFDF8] dark:bg-[#1C1C1E] border border-stone-200 dark:border-stone-700 rounded">
+              <div className="flex items-center gap-3 p-3 bg-[#FFFDF8] dark:bg-[#161618] border border-stone-200 dark:border-stone-700 rounded-lg">
                 <div className="p-2.5 bg-red-100 dark:bg-red-950 text-red-600 dark:text-red-400 rounded-full shrink-0">
                   <MapPin className="w-5 h-5" />
                 </div>
                 <div>
                   <span className="text-xs text-stone-500 dark:text-stone-400 block font-bold">Location</span>
-                  <span className="font-heading text-lg text-stone-900 dark:text-stone-100">
+                  <span className="font-heading text-lg text-stone-900 dark:text-stone-100 font-bold">
                     {RESUME_DATA.personal.location}
                   </span>
                 </div>
@@ -104,11 +104,11 @@ export default function ContactSection() {
             </div>
 
             {/* Resume Download Box */}
-            <div className="p-5 bg-amber-100/80 dark:bg-amber-950/60 border border-amber-300 dark:border-amber-800 rounded-lg text-amber-950 dark:text-amber-100 font-handwritten text-center space-y-3">
+            <div className="p-5 bg-amber-100/90 dark:bg-amber-950/70 border border-amber-300 dark:border-amber-800 rounded-lg text-amber-950 dark:text-amber-100 font-handwritten text-center space-y-3 shadow-xs">
               <span className="font-heading text-xl font-bold flex items-center justify-center gap-2">
                 <FileText className="w-5 h-5 text-amber-800 dark:text-amber-300" /> Official Resume PDF
               </span>
-              <p className="text-sm">
+              <p className="text-sm font-medium">
                 Need a copy for ATS review? Download Arpit's verified resume.
               </p>
               <a
@@ -124,7 +124,7 @@ export default function ContactSection() {
 
           {/* Right Column: Handwritten Contact Form */}
           <div className="lg:col-span-7">
-            <div className="bg-stone-100/90 dark:bg-stone-900/90 border-2 border-stone-300 dark:border-stone-800 rounded-lg p-6 sm:p-8 relative">
+            <div className="bg-white dark:bg-[#202024] border-2 border-stone-200 dark:border-stone-700 rounded-lg p-6 sm:p-8 relative shadow-xs">
               <span className="font-heading text-xs px-2.5 py-1 bg-blue-600 text-white rounded font-bold uppercase tracking-wider absolute -top-3 left-6 flex items-center gap-1">
                 <PenTool className="w-3.5 h-3.5" /> Write in Notebook
               </span>
@@ -134,15 +134,15 @@ export default function ContactSection() {
                   <div className="w-16 h-16 bg-emerald-100 dark:bg-emerald-950 text-emerald-600 dark:text-emerald-400 rounded-full flex items-center justify-center mx-auto border-2 border-emerald-500">
                     <CheckCircle2 className="w-10 h-10" />
                   </div>
-                  <h4 className="font-heading text-3xl font-bold text-stone-900 dark:text-stone-100">
+                  <h4 className="font-heading text-3xl font-bold text-stone-900 dark:text-stone-50">
                     Note Received!
                   </h4>
-                  <p className="font-handwritten text-xl text-stone-700 dark:text-stone-300">
+                  <p className="font-handwritten text-xl text-stone-700 dark:text-stone-300 font-medium">
                     Thank you for leaving a note. Arpit will respond to your message promptly!
                   </p>
                   <button
                     onClick={() => setSubmitted(false)}
-                    className="font-handwritten px-4 py-2 bg-stone-200 dark:bg-stone-800 rounded text-stone-800 dark:text-stone-200 hover:bg-blue-600 hover:text-white transition-colors text-base font-bold"
+                    className="font-handwritten px-4 py-2 bg-stone-100 dark:bg-stone-800 border border-stone-300 dark:border-stone-700 rounded text-stone-800 dark:text-stone-200 hover:bg-blue-600 hover:text-white transition-colors text-base font-bold"
                   >
                     Send Another Note
                   </button>
@@ -150,7 +150,7 @@ export default function ContactSection() {
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-4 font-handwritten text-lg">
                   <div>
-                    <label className="block text-stone-800 dark:text-stone-200 mb-1 font-heading text-lg">
+                    <label className="block text-stone-900 dark:text-stone-100 mb-1 font-heading text-lg font-bold">
                       Your Name:
                     </label>
                     <input
@@ -159,12 +159,12 @@ export default function ContactSection() {
                       placeholder="e.g. Alex Rivera"
                       value={formState.name}
                       onChange={(e) => setFormState({ ...formState, name: e.target.value })}
-                      className="w-full px-4 py-2.5 bg-[#FFFDF8] dark:bg-[#1C1C1E] border-2 border-stone-300 dark:border-stone-700 rounded focus:border-blue-600 dark:focus:border-blue-400 outline-none transition-colors text-stone-900 dark:text-stone-100"
+                      className="w-full px-4 py-2.5 bg-[#FFFDF8] dark:bg-[#161618] border-2 border-stone-300 dark:border-stone-700 rounded-lg focus:border-blue-600 dark:focus:border-blue-400 outline-none transition-colors text-stone-900 dark:text-stone-100 font-medium"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-stone-800 dark:text-stone-200 mb-1 font-heading text-lg">
+                    <label className="block text-stone-900 dark:text-stone-100 mb-1 font-heading text-lg font-bold">
                       Your Email:
                     </label>
                     <input
@@ -173,12 +173,12 @@ export default function ContactSection() {
                       placeholder="e.g. alex@company.com"
                       value={formState.email}
                       onChange={(e) => setFormState({ ...formState, email: e.target.value })}
-                      className="w-full px-4 py-2.5 bg-[#FFFDF8] dark:bg-[#1C1C1E] border-2 border-stone-300 dark:border-stone-700 rounded focus:border-blue-600 dark:focus:border-blue-400 outline-none transition-colors text-stone-900 dark:text-stone-100"
+                      className="w-full px-4 py-2.5 bg-[#FFFDF8] dark:bg-[#161618] border-2 border-stone-300 dark:border-stone-700 rounded-lg focus:border-blue-600 dark:focus:border-blue-400 outline-none transition-colors text-stone-900 dark:text-stone-100 font-medium"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-stone-800 dark:text-stone-200 mb-1 font-heading text-lg">
+                    <label className="block text-stone-900 dark:text-stone-100 mb-1 font-heading text-lg font-bold">
                       Your Note / Project Brief:
                     </label>
                     <textarea
@@ -187,13 +187,13 @@ export default function ContactSection() {
                       placeholder="Write your note here..."
                       value={formState.message}
                       onChange={(e) => setFormState({ ...formState, message: e.target.value })}
-                      className="w-full px-4 py-2.5 bg-[#FFFDF8] dark:bg-[#1C1C1E] border-2 border-stone-300 dark:border-stone-700 rounded focus:border-blue-600 dark:focus:border-blue-400 outline-none transition-colors text-stone-900 dark:text-stone-100 resize-none"
+                      className="w-full px-4 py-2.5 bg-[#FFFDF8] dark:bg-[#161618] border-2 border-stone-300 dark:border-stone-700 rounded-lg focus:border-blue-600 dark:focus:border-blue-400 outline-none transition-colors text-stone-900 dark:text-stone-100 font-medium resize-none"
                     />
                   </div>
 
                   <button
                     type="submit"
-                    className="w-full py-3 bg-blue-600 hover:bg-blue-700 text-white font-heading font-bold text-xl rounded shadow-lg transition-all flex items-center justify-center gap-2 group"
+                    className="w-full py-3 bg-blue-600 hover:bg-blue-700 text-white font-heading font-bold text-xl rounded-lg shadow-lg transition-all flex items-center justify-center gap-2 group"
                   >
                     <span>Send Handwritten Note</span>
                     <Send className="w-5 h-5 group-hover:translate-x-1 transition-transform" />

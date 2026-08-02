@@ -10,7 +10,7 @@ export default function EducationSection() {
   return (
     <section id="education" className="py-20 px-4 sm:px-6 relative max-w-6xl mx-auto">
       {/* Report Card Container */}
-      <div className="bg-[#FFFDF8] dark:bg-[#1A1A1C] border-2 border-stone-300 dark:border-stone-700/80 rounded-lg p-6 sm:p-12 notebook-shadow paper-lines relative">
+      <div className="bg-[#FFFDF8] dark:bg-[#161618] border-2 border-stone-300 dark:border-stone-700/80 rounded-lg p-6 sm:p-12 notebook-shadow paper-lines relative text-stone-900 dark:text-stone-100">
         
         {/* Header */}
         <div className="flex items-center justify-between mb-8 border-b-2 border-stone-300 dark:border-stone-800 pb-4">
@@ -19,7 +19,7 @@ export default function EducationSection() {
               <GraduationCap className="w-5 h-5" />
             </span>
             <div>
-              <h2 className="font-heading text-3xl sm:text-4xl text-stone-900 dark:text-stone-100">
+              <h2 className="font-heading text-3xl sm:text-4xl text-stone-900 dark:text-stone-50 font-bold">
                 Page #07 — Academic Report Card
               </h2>
               <p className="font-handwritten text-stone-600 dark:text-stone-300 text-sm">
@@ -35,10 +35,10 @@ export default function EducationSection() {
         </div>
 
         {/* Report Card Design Sheet */}
-        <div className="bg-stone-100/90 dark:bg-stone-900/90 border-2 border-stone-300 dark:border-stone-800 rounded-lg p-6 sm:p-8 relative">
+        <div className="bg-white dark:bg-[#202024] border-2 border-stone-200 dark:border-stone-700 rounded-lg p-6 sm:p-8 relative shadow-xs">
           
           {/* Stamped Seal */}
-          <div className="absolute top-6 right-6 w-24 h-24 rounded-full border-4 border-red-600/60 dark:border-red-500/70 flex flex-col items-center justify-center text-center rotate-12 opacity-90 pointer-events-none select-none font-heading text-red-600 dark:text-red-400 text-xs font-bold leading-tight">
+          <div className="absolute top-6 right-6 w-24 h-24 rounded-full border-4 border-red-600/70 dark:border-red-500/70 flex flex-col items-center justify-center text-center rotate-12 opacity-90 pointer-events-none select-none font-heading text-red-600 dark:text-red-400 text-xs font-bold leading-tight">
             <span>OFFICIAL</span>
             <span>REPORT</span>
             <span>★ PASSED ★</span>
@@ -50,13 +50,13 @@ export default function EducationSection() {
             </div>
 
             <div>
-              <span className="font-handwritten text-sm text-emerald-600 dark:text-emerald-400 font-bold uppercase">
+              <span className="font-handwritten text-sm text-emerald-700 dark:text-emerald-400 font-bold uppercase">
                 DEGREE PROGRAM:
               </span>
-              <h3 className="font-heading text-3xl font-bold text-stone-900 dark:text-stone-100">
+              <h3 className="font-heading text-3xl font-bold text-stone-900 dark:text-stone-50">
                 {edu.degree}
               </h3>
-              <p className="font-handwritten text-lg text-stone-700 dark:text-stone-300">
+              <p className="font-handwritten text-lg text-stone-700 dark:text-stone-300 font-medium">
                 {edu.institution} — {edu.location}
               </p>
             </div>
@@ -64,21 +64,21 @@ export default function EducationSection() {
 
           {/* Academic Stats Table */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 font-handwritten text-lg mb-6">
-            <div className="p-4 bg-[#FFFDF8] dark:bg-[#1C1C1E] border border-stone-300 dark:border-stone-700 rounded">
+            <div className="p-4 bg-[#FFFDF8] dark:bg-[#161618] border border-stone-200 dark:border-stone-700 rounded-lg">
               <span className="text-xs text-stone-500 dark:text-stone-400 block uppercase font-bold">Duration</span>
-              <span className="font-heading text-xl text-stone-900 dark:text-stone-100 font-bold">
+              <span className="font-heading text-xl text-stone-900 dark:text-stone-50 font-bold">
                 {edu.period}
               </span>
             </div>
 
-            <div className="p-4 bg-[#FFFDF8] dark:bg-[#1C1C1E] border border-stone-300 dark:border-stone-700 rounded">
+            <div className="p-4 bg-[#FFFDF8] dark:bg-[#161618] border border-stone-200 dark:border-stone-700 rounded-lg">
               <span className="text-xs text-stone-500 dark:text-stone-400 block uppercase font-bold">Academic Status / CGPA</span>
               <span className="font-heading text-xl text-blue-600 dark:text-blue-400 font-bold">
                 {edu.cgpa}
               </span>
             </div>
 
-            <div className="p-4 bg-[#FFFDF8] dark:bg-[#1C1C1E] border border-stone-300 dark:border-stone-700 rounded">
+            <div className="p-4 bg-[#FFFDF8] dark:bg-[#161618] border border-stone-200 dark:border-stone-700 rounded-lg">
               <span className="text-xs text-stone-500 dark:text-stone-400 block uppercase font-bold">Specialization</span>
               <span className="font-heading text-xl text-emerald-600 dark:text-emerald-400 font-bold">
                 Computer Applications
@@ -87,11 +87,11 @@ export default function EducationSection() {
           </div>
 
           {/* Handwritten Examiner Notes */}
-          <div className="p-4 bg-amber-50 dark:bg-amber-950/60 rounded border border-amber-200 dark:border-amber-900/60 font-handwritten text-lg text-amber-950 dark:text-amber-100">
-            <strong className="font-heading text-xl flex items-center gap-1.5 mb-1">
+          <div className="p-4 bg-amber-50 dark:bg-amber-950/70 rounded-lg border border-amber-200 dark:border-amber-900 font-handwritten text-lg text-amber-950 dark:text-amber-100">
+            <strong className="font-heading text-xl flex items-center gap-1.5 mb-1 font-bold">
               <PenTool className="w-4 h-4 text-amber-700 dark:text-amber-300" /> Faculty Note:
             </strong>
-            {edu.handwrittenNotes}
+            <p className="font-medium">{edu.handwrittenNotes}</p>
           </div>
         </div>
       </div>
