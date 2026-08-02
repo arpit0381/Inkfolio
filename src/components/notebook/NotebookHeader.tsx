@@ -5,13 +5,10 @@ import { usePen, PenType } from "@/context/PenContext";
 import {
   Moon,
   Sun,
-  BookOpen,
   PenTool,
   Coffee,
   Palette,
   Check,
-  Download,
-  Flame,
 } from "lucide-react";
 
 interface HeaderProps {
@@ -23,7 +20,7 @@ export default function NotebookHeader({
   onToggleCoffee,
   onSharpenPencil,
 }: HeaderProps) {
-  const { penType, setPenType, penColor, currentPage, setCurrentPage } = usePen();
+  const { penType, setPenType, penColor, setCurrentPage } = usePen();
   const [isDark, setIsDark] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [showPenMenu, setShowPenMenu] = useState(false);
@@ -46,18 +43,6 @@ export default function NotebookHeader({
     }
   };
 
-  const navLinks = [
-    { label: "Intro", page: 1 },
-    { label: "About", page: 2 },
-    { label: "Skills", page: 3 },
-    { label: "Experience", page: 4 },
-    { label: "Projects", page: 5 },
-    { label: "Leadership", page: 6 },
-    { label: "Education", page: 7 },
-    { label: "Certifications", page: 8 },
-    { label: "Contact", page: 9 },
-  ];
-
   const penOptions: { type: PenType; label: string; color: string }[] = [
     { type: "blue", label: "Blue Pen", color: "#2563EB" },
     { type: "red", label: "Red Pen", color: "#DC2626" },
@@ -74,7 +59,7 @@ export default function NotebookHeader({
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
-        {/* Notebook Title Stamp */}
+        {/* Notebook Brand Stamp */}
         <button
           onClick={() => setCurrentPage(1)}
           className="flex items-center gap-2 group font-heading font-bold text-xl md:text-2xl text-stone-900 dark:text-stone-50 tracking-wide text-left"
@@ -90,23 +75,6 @@ export default function NotebookHeader({
             <span className="absolute -bottom-1 left-0 w-full h-[2px] bg-blue-600 scale-x-0 group-hover:scale-x-100 transition-transform origin-left" />
           </span>
         </button>
-
-        {/* Ribbon Navigation Bar for Instant 3D Page Flip Jumps */}
-        <nav className="hidden lg:flex items-center gap-1 bg-white/90 dark:bg-[#202024]/90 px-3 py-1.5 rounded-full border border-stone-300 dark:border-stone-700 font-handwritten text-sm shadow-2xs">
-          {navLinks.map((link) => (
-            <button
-              key={link.label}
-              onClick={() => setCurrentPage(link.page)}
-              className={`px-2.5 py-1 rounded-md transition-all font-bold relative group ${
-                currentPage === link.page
-                  ? "bg-blue-600 text-white shadow-xs"
-                  : "text-stone-900 dark:text-stone-100 hover:text-blue-600 dark:hover:text-blue-400"
-              }`}
-            >
-              {link.label}
-            </button>
-          ))}
-        </nav>
 
         {/* Actions & Pen Selector */}
         <div className="flex items-center gap-2">
