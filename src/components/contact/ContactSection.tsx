@@ -20,27 +20,22 @@ export default function ContactSection() {
 
   return (
     <section id="contact" className="w-full h-full">
-      {/* Final Notebook Page Container - Equal Size */}
-      <div className="w-full h-full bg-[#FFFDF8] dark:bg-[#161618] border-2 border-stone-300 dark:border-stone-700/80 rounded-lg p-4 sm:p-8 notebook-shadow paper-lines relative text-stone-900 dark:text-stone-100 flex flex-col justify-between overflow-hidden">
+      {/* Final Notebook Page Container - 100% Fixed Equal Size */}
+      <div className="w-full h-full bg-[#FFFDF8] dark:bg-[#161618] border-2 border-stone-300 dark:border-stone-700/80 rounded-lg p-4 sm:p-7 notebook-shadow paper-lines relative text-stone-900 dark:text-stone-100 flex flex-col justify-between overflow-hidden">
         
-        {/* Top Paper Tape */}
-        <div className="absolute -top-3.5 left-10 w-36 h-7 bg-amber-200 dark:bg-amber-900/80 border border-amber-300 dark:border-amber-700 rotate-[-1deg] shadow-sm flex items-center justify-center font-handwritten text-xs text-amber-950 dark:text-amber-100 font-bold">
-          Page #09 — Contact Page
-        </div>
-
-        {/* Header */}
+        {/* Header with Integrated Uncropped Page Tape */}
         <div className="flex items-center justify-between border-b-2 border-stone-300 dark:border-stone-800 pb-2.5 shrink-0">
-          <div className="flex items-center gap-2.5">
+          <div className="flex items-center gap-3">
             <span className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-red-600/10 dark:bg-red-500/20 text-red-600 dark:text-red-400 flex items-center justify-center font-bold text-base sm:text-lg border border-red-500/30 shrink-0">
               <Mail className="w-4 h-4" />
             </span>
             <div>
-              <h2 className="font-heading text-xl sm:text-3xl text-stone-900 dark:text-stone-50 font-bold">
+              <div className="inline-block px-2 py-0.5 mb-0.5 bg-amber-200 dark:bg-amber-900/80 border border-amber-300 dark:border-amber-700 font-handwritten text-[11px] sm:text-xs text-amber-950 dark:text-amber-100 font-bold rounded shadow-xs rotate-[-1deg]">
+                Page #09 — Contact Page
+              </div>
+              <h2 className="font-heading text-xl sm:text-2xl lg:text-3xl text-stone-900 dark:text-stone-50 font-bold leading-tight">
                 Get In Touch
               </h2>
-              <p className="font-handwritten text-stone-600 dark:text-stone-300 text-[11px] sm:text-xs">
-                Discuss full-stack opportunities & collaborations
-              </p>
             </div>
           </div>
         </div>

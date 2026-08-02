@@ -31,27 +31,22 @@ export default function SkillsSection() {
 
   return (
     <section id="skills" className="w-full h-full">
-      {/* Notebook Sheet Container - 100% Equal Fixed Size */}
-      <div className="w-full h-full bg-[#FFFDF8] dark:bg-[#161618] border-2 border-stone-300 dark:border-stone-700/80 rounded-lg p-4 sm:p-8 notebook-shadow paper-lines relative text-stone-900 dark:text-stone-100 flex flex-col justify-between overflow-hidden">
+      {/* Notebook Sheet Container - 100% Fixed Equal Size */}
+      <div className="w-full h-full bg-[#FFFDF8] dark:bg-[#161618] border-2 border-stone-300 dark:border-stone-700/80 rounded-lg p-4 sm:p-7 notebook-shadow paper-lines relative text-stone-900 dark:text-stone-100 flex flex-col justify-between overflow-hidden">
         
-        {/* Top Paper Tape */}
-        <div className="absolute -top-3.5 left-10 w-32 h-7 bg-amber-200 dark:bg-amber-900/80 border border-amber-300 dark:border-amber-700 rotate-[-1deg] shadow-sm flex items-center justify-center font-handwritten text-xs text-amber-950 dark:text-amber-100 font-bold">
-          Page #03 — Skill Matrix
-        </div>
-
-        {/* Header */}
+        {/* Header with Integrated Uncropped Page Tape */}
         <div className="flex items-center justify-between border-b-2 border-stone-300 dark:border-stone-800 pb-2.5 shrink-0">
-          <div className="flex items-center gap-2.5">
+          <div className="flex items-center gap-3">
             <span className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-blue-600/10 dark:bg-blue-500/20 text-blue-600 dark:text-blue-400 flex items-center justify-center font-bold text-base sm:text-lg border border-blue-500/30 shrink-0">
               <CheckSquare className="w-4 h-4" />
             </span>
             <div>
-              <h2 className="font-heading text-xl sm:text-3xl text-stone-900 dark:text-stone-50 font-bold">
-                Technical Skillset
+              <div className="inline-block px-2 py-0.5 mb-0.5 bg-amber-200 dark:bg-amber-900/80 border border-amber-300 dark:border-amber-700 font-handwritten text-[11px] sm:text-xs text-amber-950 dark:text-amber-100 font-bold rounded shadow-xs rotate-[-1deg]">
+                Page #03 — Technical Skillset
+              </div>
+              <h2 className="font-heading text-xl sm:text-2xl lg:text-3xl text-stone-900 dark:text-stone-50 font-bold leading-tight">
+                Skill Matrix & Checklist
               </h2>
-              <p className="font-handwritten text-stone-600 dark:text-stone-300 text-[11px] sm:text-xs">
-                Hand-drawn interactive skill checkboxes — Click any skill to toggle
-              </p>
             </div>
           </div>
         </div>
