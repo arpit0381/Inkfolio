@@ -23,6 +23,18 @@ export default function EasterEggs() {
   ];
   const [konamiIndex, setKonamiIndex] = useState(0);
 
+  // Disable background scrolling when Konami fire modal is active
+  useEffect(() => {
+    if (konamiActivated) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [konamiActivated]);
+
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key.toLowerCase() === konamiCode[konamiIndex].toLowerCase()) {
@@ -70,9 +82,9 @@ export default function EasterEggs() {
 
   return (
     <>
-      {/* Konami Burning Notebook Overlay */}
+      {/* Konami Burning Notebook Overlay - z-[90] to sit above header */}
       {konamiActivated && (
-        <div className="fixed inset-0 z-50 bg-red-950/80 backdrop-blur-md flex flex-col items-center justify-center p-6 text-white text-center animate-in fade-in duration-300">
+        <div className="fixed inset-0 z-[90] bg-red-950/85 backdrop-blur-md flex flex-col items-center justify-center p-6 text-white text-center animate-in fade-in duration-300">
           <div className="w-24 h-24 rounded-full bg-red-600 flex items-center justify-center animate-bounce mb-4 shadow-2xl">
             <Flame className="w-16 h-16 text-yellow-300 animate-pulse" />
           </div>
@@ -93,7 +105,7 @@ export default function EasterEggs() {
 
       {/* Secret "hello" banner */}
       {helloTriggered && (
-        <div className="fixed bottom-6 right-6 z-40 bg-stone-900 text-stone-100 dark:bg-stone-100 dark:text-stone-900 p-4 rounded-lg shadow-2xl border-2 border-blue-500 flex items-center gap-3 animate-in slide-in-from-bottom-5 duration-300 max-w-sm">
+        <div className="fixed bottom-6 right-6 z-[90] bg-stone-900 text-stone-100 dark:bg-stone-100 dark:text-stone-900 p-4 rounded-lg shadow-2xl border-2 border-blue-500 flex items-center gap-3 animate-in slide-in-from-bottom-5 duration-300 max-w-sm">
           <Sparkles className="w-6 h-6 text-yellow-400 shrink-0" />
           <div className="font-handwritten text-base">
             <strong className="font-heading text-lg flex items-center gap-1 text-blue-400 dark:text-blue-600">

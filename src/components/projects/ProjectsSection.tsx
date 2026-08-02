@@ -1,11 +1,23 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { RESUME_DATA, ProjectItem } from "@/lib/resumeData";
 import { ExternalLink, X, Layers, CheckCircle2, ArrowRight, Pin, AlertCircle } from "lucide-react";
 
 export default function ProjectsSection() {
   const [selectedProject, setSelectedProject] = useState<ProjectItem | null>(null);
+
+  // Disable background scrolling when modal is active
+  useEffect(() => {
+    if (selectedProject) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [selectedProject]);
 
   return (
     <section id="projects" className="py-20 px-4 sm:px-6 relative max-w-6xl mx-auto">
@@ -89,20 +101,21 @@ export default function ProjectsSection() {
         </div>
       </div>
 
-      {/* Project Notebook Detail Modal */}
+      {/* Project Notebook Detail Modal - z-[90] overlay to sit above header & disable background scroll */}
       {selectedProject && (
         <div
-          className="fixed inset-0 z-50 bg-black/75 backdrop-blur-xs flex items-center justify-center p-4"
+          className="fixed inset-0 z-[90] bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 sm:p-6"
           onClick={() => setSelectedProject(null)}
         >
           <div
             onClick={(e) => e.stopPropagation()}
-            className="bg-[#FFFDF8] dark:bg-[#161618] border-2 border-stone-300 dark:border-stone-700 rounded-lg p-6 sm:p-10 max-w-2xl w-full notebook-shadow paper-lines relative max-h-[90vh] overflow-y-auto animate-in fade-in zoom-in-95 duration-200 text-stone-900 dark:text-stone-100"
+            className="bg-[#FFFDF8] dark:bg-[#1A1A1E] border-2 border-stone-300 dark:border-stone-700 rounded-xl p-5 sm:p-8 max-w-2xl w-full notebook-shadow paper-lines relative max-h-[85vh] overflow-y-auto animate-in fade-in zoom-in-95 duration-200 text-stone-900 dark:text-stone-100 shadow-2xl"
           >
             {/* Close Button */}
             <button
               onClick={() => setSelectedProject(null)}
-              className="absolute top-4 right-4 p-2 rounded-full hover:bg-stone-200 dark:hover:bg-stone-800 text-stone-700 dark:text-stone-300 transition-colors"
+              className="absolute top-4 right-4 p-2 rounded-full hover:bg-stone-200 dark:hover:bg-stone-800 text-stone-700 dark:text-stone-300 transition-colors z-10"
+              title="Close Note"
             >
               <X className="w-6 h-6" />
             </button>
@@ -112,7 +125,7 @@ export default function ProjectsSection() {
               <Pin className="w-3.5 h-3.5" /> NOTEBOOK BREAKDOWN — {selectedProject.title}
             </div>
 
-            <h3 className="font-heading text-3xl sm:text-4xl text-stone-900 dark:text-stone-50 font-bold mb-2">
+            <h3 className="font-heading text-3xl sm:text-4xl text-stone-900 dark:text-stone-50 font-bold mb-1">
               {selectedProject.title}
             </h3>
             <p className="font-handwritten text-lg text-blue-600 dark:text-blue-400 font-bold mb-6">
@@ -125,14 +138,14 @@ export default function ProjectsSection() {
                 <strong className="text-red-700 dark:text-red-300 font-heading text-xl flex items-center gap-1.5 mb-1 font-bold">
                   <AlertCircle className="w-5 h-5" /> THE PROBLEM:
                 </strong>
-                <p className="font-medium">{selectedProject.problem}</p>
+                <p className="font-medium leading-relaxed">{selectedProject.problem}</p>
               </div>
 
               <div className="p-4 bg-emerald-50 dark:bg-emerald-950/60 rounded-lg border border-emerald-200 dark:border-emerald-900">
                 <strong className="text-emerald-700 dark:text-emerald-300 font-heading text-xl flex items-center gap-1.5 mb-1 font-bold">
                   <CheckCircle2 className="w-5 h-5" /> THE SOLUTION:
                 </strong>
-                <p className="font-medium">{selectedProject.solution}</p>
+                <p className="font-medium leading-relaxed">{selectedProject.solution}</p>
               </div>
             </div>
 
@@ -146,7 +159,7 @@ export default function ProjectsSection() {
                 {selectedProject.stack.map((st) => (
                   <span
                     key={st}
-                    className="px-3 py-1 bg-white dark:bg-[#202024] rounded-full border border-stone-300 dark:border-stone-700 text-stone-900 dark:text-stone-100 font-bold shadow-2xs"
+                    className="px-3 py-1 bg-white dark:bg-[#242429] rounded-full border border-stone-300 dark:border-stone-700 text-stone-900 dark:text-stone-100 font-bold shadow-2xs"
                   >
                     {st}
                   </span>
@@ -176,7 +189,7 @@ export default function ProjectsSection() {
                   href={selectedProject.liveUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-handwritten text-base rounded shadow-md transition-colors font-bold"
+                  className="flex items-center gap-2 px-5 py-2.5 bg-blue-600 hover:bg-blue-700 text-white font-handwritten text-base rounded-full shadow-md transition-colors font-bold"
                 >
                   <ExternalLink className="w-4 h-4" />
                   <span>Visit Live Demo ({selectedProject.domain || "Website"})</span>

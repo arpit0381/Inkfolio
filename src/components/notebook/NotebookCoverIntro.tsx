@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { usePen } from "@/context/PenContext";
 import { BookOpen, Feather, ChevronRight } from "lucide-react";
 
@@ -8,19 +8,32 @@ export default function NotebookCoverIntro() {
   const { isNotebookOpened, openNotebook } = usePen();
   const [isOpening, setIsOpening] = useState(false);
 
+  // Disable background scrolling while notebook cover intro is visible
+  useEffect(() => {
+    if (!isNotebookOpened) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isNotebookOpened]);
+
   if (isNotebookOpened) return null;
 
   const handleOpen = () => {
     setIsOpening(true);
     setTimeout(() => {
       openNotebook();
+      document.body.style.overflow = "";
     }, 900);
   };
 
   return (
     <div
       onClick={handleOpen}
-      className={`fixed inset-0 z-50 bg-[#0A0908] flex items-center justify-center p-4 overflow-hidden select-none cursor-pointer transition-opacity duration-700 ${
+      className={`fixed inset-0 z-[90] bg-[#0A0908] flex items-center justify-center p-4 overflow-hidden select-none cursor-pointer transition-opacity duration-700 ${
         isOpening ? "opacity-0 pointer-events-none" : "opacity-100"
       }`}
     >
