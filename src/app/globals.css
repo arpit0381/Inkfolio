@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @layer base {
   :root {
     --font-patrick: var(--font-patrick-hand), 'Patrick Hand', cursive;
@@ -30,9 +32,9 @@ html, body, a, button, input, textarea, select, [role="button"] {
   font-family: var(--font-jetbrains-mono), monospace;
 }
 
-/* Notebook Lined Paper Background - Optimized for High Contrast Light & Dark */
+/* Notebook Lined Paper Background */
 .paper-lines {
-  background-color: #FDFBF7;
+  background-color: #FFFDF8;
   background-image: 
     linear-gradient(90deg, rgba(220, 38, 38, 0.3) 1px, transparent 1px),
     linear-gradient(0deg, rgba(37, 99, 235, 0.09) 1px, transparent 1px);
@@ -41,7 +43,7 @@ html, body, a, button, input, textarea, select, [role="button"] {
 }
 
 .dark .paper-lines {
-  background-color: #141415;
+  background-color: #1A1A1E !important;
   background-image: 
     linear-gradient(90deg, rgba(239, 68, 68, 0.4) 1px, transparent 1px),
     linear-gradient(0deg, rgba(255, 255, 255, 0.08) 1px, transparent 1px);
@@ -51,7 +53,7 @@ html, body, a, button, input, textarea, select, [role="button"] {
 
 /* Grid Notebook Background */
 .paper-grid {
-  background-color: #FDFBF7;
+  background-color: #FFFDF8;
   background-image: 
     linear-gradient(rgba(37, 99, 235, 0.08) 1px, transparent 1px),
     linear-gradient(90deg, rgba(37, 99, 235, 0.08) 1px, transparent 1px);
@@ -59,7 +61,7 @@ html, body, a, button, input, textarea, select, [role="button"] {
 }
 
 .dark .paper-grid {
-  background-color: #141415;
+  background-color: #1A1A1E !important;
   background-image: 
     linear-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px),
     linear-gradient(90deg, rgba(255, 255, 255, 0.07) 1px, transparent 1px);
@@ -76,9 +78,9 @@ html, body, a, button, input, textarea, select, [role="button"] {
 
 .dark .notebook-shadow {
   box-shadow: 
-    0 10px 35px -5px rgba(0, 0, 0, 0.6),
-    0 20px 30px -5px rgba(0, 0, 0, 0.4),
-    -6px 0 14px -2px rgba(0, 0, 0, 0.5);
+    0 10px 35px -5px rgba(0, 0, 0, 0.7),
+    0 20px 30px -5px rgba(0, 0, 0, 0.5),
+    -6px 0 14px -2px rgba(0, 0, 0, 0.6);
 }
 
 .sticky-shadow {
@@ -91,7 +93,7 @@ html, body, a, button, input, textarea, select, [role="button"] {
 }
 
 ::-webkit-scrollbar-track {
-  background: #FDFBF7;
+  background: #FFFDF8;
 }
 
 .dark ::-webkit-scrollbar-track {
