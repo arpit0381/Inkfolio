@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { RESUME_DATA } from "@/lib/resumeData";
-import { Mail, Phone, MapPin, Send, CheckCircle2, FileText, Download, PenTool } from "lucide-react";
+import { Mail, Phone, MapPin, Send, CheckCircle2, FileText, Download, PenTool, ExternalLink, Sparkles } from "lucide-react";
 
 export default function ContactSection() {
   const [formState, setFormState] = useState({
@@ -55,7 +55,7 @@ export default function ContactSection() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start mb-12">
           
           {/* Left Column: Direct Contact Info Cards */}
           <div className="lg:col-span-5 space-y-4">
@@ -204,12 +204,78 @@ export default function ContactSection() {
           </div>
         </div>
 
-        {/* Notebook Footer Copyright */}
-        <div className="mt-12 pt-6 border-t-2 border-stone-300 dark:border-stone-800 text-center font-handwritten text-stone-600 dark:text-stone-400 text-base">
-          <p>© 2026 Arpit Bajpai. Built with Next.js 16, React 19, GSAP & Tailwind CSS v4.</p>
-          <p className="text-xs text-red-600 dark:text-red-400 mt-1 font-bold">
-            "Designed like a notebook, built for production excellence."
-          </p>
+        {/* REDESIGNED NOTEBOOK FOOTER - Theme Aligned & Elegant */}
+        <div className="pt-8 border-t-2 border-dashed border-stone-300 dark:border-stone-800">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-6 pb-6">
+            {/* Left: Wax Seal / Signature Stamp */}
+            <div className="flex items-center gap-3">
+              <div className="w-12 h-12 rounded-full bg-red-700 text-amber-200 border-2 border-amber-400/80 flex items-center justify-center font-heading font-bold text-lg shadow-md rotate-[-6deg]">
+                AB
+              </div>
+              <div>
+                <h4 className="font-heading text-xl font-bold text-stone-900 dark:text-stone-50">
+                  Arpit Bajpai
+                </h4>
+                <p className="font-handwritten text-xs text-stone-600 dark:text-stone-300 font-bold">
+                  Engineering Notebook & Official Portfolio
+                </p>
+              </div>
+            </div>
+
+            {/* Center: Quick Ribbon Navigation */}
+            <div className="flex flex-wrap items-center justify-center gap-2 font-handwritten text-sm">
+              <a href="#about" className="px-3 py-1 bg-stone-200/80 dark:bg-stone-800/80 rounded-full hover:bg-blue-600 hover:text-white transition-colors text-stone-800 dark:text-stone-200 font-bold">
+                About
+              </a>
+              <a href="#skills" className="px-3 py-1 bg-stone-200/80 dark:bg-stone-800/80 rounded-full hover:bg-blue-600 hover:text-white transition-colors text-stone-800 dark:text-stone-200 font-bold">
+                Skills
+              </a>
+              <a href="#experience" className="px-3 py-1 bg-stone-200/80 dark:bg-stone-800/80 rounded-full hover:bg-blue-600 hover:text-white transition-colors text-stone-800 dark:text-stone-200 font-bold">
+                Experience
+              </a>
+              <a href="#projects" className="px-3 py-1 bg-stone-200/80 dark:bg-stone-800/80 rounded-full hover:bg-blue-600 hover:text-white transition-colors text-stone-800 dark:text-stone-200 font-bold">
+                Projects
+              </a>
+              <a href="#leadership" className="px-3 py-1 bg-stone-200/80 dark:bg-stone-800/80 rounded-full hover:bg-blue-600 hover:text-white transition-colors text-stone-800 dark:text-stone-200 font-bold">
+                Leadership
+              </a>
+              <a href="#contact" className="px-3 py-1 bg-stone-200/80 dark:bg-stone-800/80 rounded-full hover:bg-blue-600 hover:text-white transition-colors text-stone-800 dark:text-stone-200 font-bold">
+                Contact
+              </a>
+            </div>
+
+            {/* Right: Quick Links */}
+            <div className="flex items-center gap-3">
+              <a
+                href={RESUME_DATA.personal.socials.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-2 rounded-full bg-stone-200 dark:bg-stone-800 hover:bg-blue-600 hover:text-white transition-colors text-stone-800 dark:text-stone-200 font-bold font-handwritten text-xs flex items-center gap-1"
+              >
+                <span>GitHub</span>
+                <ExternalLink className="w-3.5 h-3.5" />
+              </a>
+              <a
+                href={RESUME_DATA.personal.socials.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-2 rounded-full bg-stone-200 dark:bg-stone-800 hover:bg-blue-600 hover:text-white transition-colors text-stone-800 dark:text-stone-200 font-bold font-handwritten text-xs flex items-center gap-1"
+              >
+                <span>LinkedIn</span>
+                <ExternalLink className="w-3.5 h-3.5" />
+              </a>
+            </div>
+          </div>
+
+          {/* Quote Banner */}
+          <div className="text-center pt-4 border-t border-stone-200 dark:border-stone-800 font-handwritten text-stone-600 dark:text-stone-400 text-sm">
+            <p className="italic font-bold text-stone-800 dark:text-stone-200">
+              "Crafting clean web architectures & digital experiences from Kanpur to the world."
+            </p>
+            <p className="text-xs text-stone-500 mt-1">
+              © 2026 Arpit Bajpai. All rights reserved.
+            </p>
+          </div>
         </div>
       </div>
     </section>
