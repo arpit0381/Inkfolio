@@ -5,7 +5,7 @@ Create implementation-ready, token-driven UI guidance for Inkfolio · Arpit Bajp
 
 ## Brand
 - Product/brand: Inkfolio · Arpit Bajpai
-- URL: https://ink-folio-craft.base44.app/
+- URL: https://github.com/arpit0381/Inkfolio
 - Audience: developers and technical teams
 - Product surface: dashboard web app
 

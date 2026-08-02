@@ -149,7 +149,7 @@ npm run build
 📍 **Location:** Kanpur, UP, India  
 📧 **Email:** [arpitbajpai038@gmail.com](mailto:arpitbajpai038@gmail.com)  
 📱 **Phone:** +91 9235823255  
-🌐 **Portfolio:** [https://ink-folio-craft.base44.app/](https://ink-folio-craft.base44.app/)
+🌐 **Repository:** [https://github.com/arpit0381/Inkfolio](https://github.com/arpit0381/Inkfolio)
 
 ---
 
