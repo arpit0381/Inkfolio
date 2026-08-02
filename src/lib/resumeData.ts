@@ -49,9 +49,9 @@ export const RESUME_DATA = {
     summary:
       "Full Stack Web Developer experienced in building and deploying responsive web and mobile apps with React.js, Next.js, Node.js, Express.js, and PostgreSQL. Skilled in RESTful API development, UI/UX design, and SQL/NoSQL database management (PostgreSQL, MySQL, MongoDB), with additional experience in Python and Flutter. Strong track record of cross-functional collaboration, team leadership, and driving measurable results.",
     socials: {
-      github: "https://github.com",
-      linkedin: "https://linkedin.com",
-      portfolio: "https://ink-folio-craft.base44.app/",
+      github: "https://github.com/arpit0381",
+      linkedin: "https://linkedin.com/in/arpitbajpai",
+      portfolio: "https://github.com/arpit0381/Inkfolio",
     },
   },
 

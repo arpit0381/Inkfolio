@@ -46,7 +46,7 @@ export const metadata: Metadata = {
     title: "Arpit Bajpai — Handwritten Developer Notebook",
     description:
       "India's most unique handwritten developer portfolio experience.",
-    url: "https://ink-folio-craft.base44.app/",
+    url: "https://github.com/arpit0381/Inkfolio",
     siteName: "Inkfolio",
     type: "website",
   },

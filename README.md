@@ -10,7 +10,7 @@
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-v4.0-38BDF8?style=for-the-badge&logo=tailwind-css)](https://tailwindcss.com/)
 [![GSAP](https://img.shields.io/badge/GSAP-Animations-88CE02?style=for-the-badge&logo=greensock)](https://greensock.com/gsap/)
 
-[🌐 **Live Portfolio Demo**](https://ink-folio-craft.base44.app/) • [📄 **Download Resume PDF**](https://ink-folio-craft.base44.app/Arpit_Bajpai_Resume_ATS.pdf) • [📧 **Contact Arpit**](mailto:arpitbajpai038@gmail.com)
+[🌐 **GitHub Repository**](https://github.com/arpit0381/Inkfolio) • [📄 **Download Resume PDF**](/public/Arpit_Bajpai_Resume_ATS.pdf) • [📧 **Contact Arpit**](mailto:arpitbajpai038@gmail.com)
 
 ---
 
