@@ -3,19 +3,20 @@
 import React, { useState, useEffect } from "react";
 import { RESUME_DATA, ProjectItem } from "@/lib/resumeData";
 import { ExternalLink, X, Layers, CheckCircle2, ArrowRight, Pin, AlertCircle } from "lucide-react";
+import { lockScroll } from "@/components/notebook/LenisScrollProvider";
 
 export default function ProjectsSection() {
   const [selectedProject, setSelectedProject] = useState<ProjectItem | null>(null);
 
-  // Disable background scrolling when modal is active
+  // Strictly lock Lenis smooth scroll and body overflow when modal is active
   useEffect(() => {
     if (selectedProject) {
-      document.body.style.overflow = "hidden";
+      lockScroll(true);
     } else {
-      document.body.style.overflow = "";
+      lockScroll(false);
     }
     return () => {
-      document.body.style.overflow = "";
+      lockScroll(false);
     };
   }, [selectedProject]);
 
@@ -101,7 +102,7 @@ export default function ProjectsSection() {
         </div>
       </div>
 
-      {/* Project Notebook Detail Modal - z-[90] overlay to sit above header & disable background scroll */}
+      {/* Project Notebook Detail Modal - z-[90] overlay sitting above header */}
       {selectedProject && (
         <div
           className="fixed inset-0 z-[90] bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 sm:p-6"

@@ -3,20 +3,21 @@
 import React, { useState, useEffect } from "react";
 import { usePen } from "@/context/PenContext";
 import { BookOpen, Feather, ChevronRight } from "lucide-react";
+import { lockScroll } from "@/components/notebook/LenisScrollProvider";
 
 export default function NotebookCoverIntro() {
   const { isNotebookOpened, openNotebook } = usePen();
   const [isOpening, setIsOpening] = useState(false);
 
-  // Disable background scrolling while notebook cover intro is visible
+  // Strictly lock Lenis smooth scroll while notebook cover intro is visible
   useEffect(() => {
     if (!isNotebookOpened) {
-      document.body.style.overflow = "hidden";
+      lockScroll(true);
     } else {
-      document.body.style.overflow = "";
+      lockScroll(false);
     }
     return () => {
-      document.body.style.overflow = "";
+      lockScroll(false);
     };
   }, [isNotebookOpened]);
 
@@ -26,7 +27,7 @@ export default function NotebookCoverIntro() {
     setIsOpening(true);
     setTimeout(() => {
       openNotebook();
-      document.body.style.overflow = "";
+      lockScroll(false);
     }, 900);
   };
 

@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from "react";
 import confetti from "canvas-confetti";
 import { Flame, Sparkles, X, PenTool } from "lucide-react";
+import { lockScroll } from "@/components/notebook/LenisScrollProvider";
 
 export default function EasterEggs() {
   const [konamiActivated, setKonamiActivated] = useState(false);
@@ -23,15 +24,15 @@ export default function EasterEggs() {
   ];
   const [konamiIndex, setKonamiIndex] = useState(0);
 
-  // Disable background scrolling when Konami fire modal is active
+  // Strictly lock Lenis smooth scroll when Konami fire modal is active
   useEffect(() => {
     if (konamiActivated) {
-      document.body.style.overflow = "hidden";
+      lockScroll(true);
     } else {
-      document.body.style.overflow = "";
+      lockScroll(false);
     }
     return () => {
-      document.body.style.overflow = "";
+      lockScroll(false);
     };
   }, [konamiActivated]);
 

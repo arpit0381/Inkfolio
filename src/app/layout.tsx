@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Patrick_Hand, Caveat, Kalam, JetBrains_Mono } from "next/font/google";
+import { Patrick_Hand, Caveat, Kalam } from "next/font/google";
 import "./globals.css";
 
 const patrickHand = Patrick_Hand({
@@ -19,12 +19,6 @@ const kalam = Kalam({
   weight: ["400", "700"],
   subsets: ["latin"],
   variable: "--font-kalam",
-  display: "swap",
-});
-
-const jetbrainsMono = JetBrains_Mono({
-  subsets: ["latin"],
-  variable: "--font-jetbrains-mono",
   display: "swap",
 });
 
@@ -60,9 +54,9 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${patrickHand.variable} ${caveat.variable} ${kalam.variable} ${jetbrainsMono.variable} scroll-smooth`}
+      className={`${patrickHand.variable} ${caveat.variable} ${kalam.variable} scroll-smooth`}
     >
-      <body className="antialiased font-handwritten bg-[#FDFBF7] dark:bg-[#111111] text-[#111111] dark:text-[#F3F4F6] selection:bg-yellow-200 selection:text-black transition-colors duration-300">
+      <body className="antialiased font-handwritten bg-[#FFFDF8] dark:bg-[#121214] text-[#111111] dark:text-[#F3F4F6] selection:bg-yellow-200 selection:text-black transition-colors duration-300">
         {children}
       </body>
     </html>
