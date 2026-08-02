@@ -21,88 +21,96 @@ export default function ProjectsSection() {
   }, [selectedProject]);
 
   return (
-    <section id="projects" className="py-2 sm:py-4 px-2 sm:px-4 relative max-w-6xl mx-auto">
-      {/* Notebook Desk Container */}
-      <div className="bg-[#FFFDF8] dark:bg-[#161618] border-2 border-stone-300 dark:border-stone-700/80 rounded-lg p-6 sm:p-12 notebook-shadow paper-grid relative text-stone-900 dark:text-stone-100">
+    <section id="projects" className="w-full h-full">
+      {/* Notebook Desk Container - Equal Size */}
+      <div className="w-full h-full bg-[#FFFDF8] dark:bg-[#161618] border-2 border-stone-300 dark:border-stone-700/80 rounded-lg p-5 sm:p-8 notebook-shadow paper-grid relative text-stone-900 dark:text-stone-100 flex flex-col justify-between">
         
+        {/* Top Paper Tape */}
+        <div className="absolute -top-3.5 left-10 w-36 h-7 bg-amber-200 dark:bg-amber-900/80 border border-amber-300 dark:border-amber-700 rotate-[-1deg] shadow-sm flex items-center justify-center font-handwritten text-xs text-amber-950 dark:text-amber-100 font-bold">
+          Page #05 — Projects Desk
+        </div>
+
         {/* Header */}
-        <div className="flex items-center justify-between mb-8 border-b-2 border-stone-300 dark:border-stone-800 pb-4">
+        <div className="flex items-center justify-between border-b-2 border-stone-300 dark:border-stone-800 pb-3">
           <div className="flex items-center gap-3">
-            <span className="w-10 h-10 rounded-full bg-yellow-500/20 text-amber-700 dark:text-amber-300 flex items-center justify-center font-bold text-xl border border-amber-500/40">
-              <Pin className="w-5 h-5" />
+            <span className="w-9 h-9 rounded-full bg-yellow-500/20 text-amber-700 dark:text-amber-300 flex items-center justify-center font-bold text-lg border border-amber-500/40">
+              <Pin className="w-4 h-4" />
             </span>
             <div>
-              <h2 className="font-heading text-3xl sm:text-4xl text-stone-900 dark:text-stone-50 font-bold">
-                Page #05 — Featured Projects
+              <h2 className="font-heading text-2xl sm:text-3xl text-stone-900 dark:text-stone-50 font-bold">
+                Featured Projects Desk
               </h2>
-              <p className="font-handwritten text-stone-600 dark:text-stone-300 text-sm">
+              <p className="font-handwritten text-stone-600 dark:text-stone-300 text-xs">
                 Sticky Notes Desk — Click any note to unfold full engineering details
               </p>
             </div>
           </div>
-
-          <div className="hidden sm:block font-handwritten text-stone-500 dark:text-stone-400 text-right text-xs">
-            <p>6 PROJECTS LOGGED</p>
-            <p>CLICK STICKY TO OPEN</p>
-          </div>
         </div>
 
-        {/* Sticky Notes Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {/* Sticky Notes Grid - Fit to Page */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 my-auto">
           {RESUME_DATA.projects.map((proj, idx) => (
             <div
               key={proj.id}
               onClick={() => setSelectedProject(proj)}
-              className={`cursor-pointer p-6 rounded-sm border ${proj.stickyColor} sticky-shadow transform transition-all duration-300 hover:-translate-y-2 hover:rotate-1 hover:scale-105 relative group flex flex-col justify-between min-h-[220px]`}
+              className={`cursor-pointer p-4 rounded-sm border ${proj.stickyColor} sticky-shadow transform transition-all duration-300 hover:-translate-y-1 hover:rotate-1 hover:scale-102 relative group flex flex-col justify-between min-h-[140px] sm:min-h-[155px]`}
               style={{
-                transform: `rotate(${(idx % 3 === 0 ? -1.5 : idx % 2 === 0 ? 2 : -2)}deg)`,
+                transform: `rotate(${(idx % 3 === 0 ? -1.5 : idx % 2 === 0 ? 1.5 : -1)}deg)`,
               }}
             >
               {/* Pushpin at top center */}
-              <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-red-600 border border-red-800 shadow-md group-hover:scale-125 transition-transform" />
+              <div className="absolute -top-2.5 left-1/2 -translate-x-1/2 w-3.5 h-3.5 rounded-full bg-red-600 border border-red-800 shadow-md group-hover:scale-125 transition-transform" />
 
               <div>
-                <div className="flex items-center justify-between gap-2 mb-2">
-                  <span className="font-heading text-xs px-2 py-0.5 rounded bg-black/10 dark:bg-white/10 uppercase tracking-wider font-bold">
+                <div className="flex items-center justify-between gap-1 mb-1">
+                  <span className="font-heading text-[10px] px-1.5 py-0.5 rounded bg-black/10 dark:bg-white/10 uppercase tracking-wider font-bold">
                     Project #0{idx + 1}
                   </span>
                   {proj.domain && (
-                    <span className="font-handwritten text-xs font-bold underline">
+                    <span className="font-handwritten text-[11px] font-bold underline">
                       {proj.domain}
                     </span>
                   )}
                 </div>
 
-                <h3 className="font-heading text-2xl font-bold mb-1 leading-snug">
+                <h3 className="font-heading text-lg sm:text-xl font-bold mb-0.5 leading-tight">
                   {proj.title}
                 </h3>
-                <p className="font-handwritten text-sm font-medium line-clamp-2 mb-4">
+                <p className="font-handwritten text-xs font-medium line-clamp-2 mb-2">
                   {proj.subtitle}
                 </p>
               </div>
 
               {/* Bottom Tech Tags & Click prompt */}
-              <div className="pt-3 border-t border-black/10 dark:border-white/10 flex items-center justify-between">
+              <div className="pt-2 border-t border-black/10 dark:border-white/10 flex items-center justify-between">
                 <div className="flex flex-wrap gap-1">
-                  {proj.stack.slice(0, 3).map((t) => (
+                  {proj.stack.slice(0, 2).map((t) => (
                     <span
                       key={t}
-                      className="font-handwritten text-[11px] px-1.5 py-0.5 rounded bg-black/10 dark:bg-white/10 font-bold"
+                      className="font-handwritten text-[10px] px-1.5 py-0.5 rounded bg-black/10 dark:bg-white/10 font-bold"
                     >
                       {t}
                     </span>
                   ))}
                 </div>
-                <span className="font-handwritten text-xs font-bold flex items-center gap-1 group-hover:translate-x-1 transition-transform">
-                  View Note <ArrowRight className="w-3.5 h-3.5" />
+                <span className="font-handwritten text-[11px] font-bold flex items-center gap-0.5 group-hover:translate-x-0.5 transition-transform">
+                  Note <ArrowRight className="w-3 h-3" />
                 </span>
               </div>
             </div>
           ))}
         </div>
+
+        {/* Bottom Footer Note */}
+        <div className="pt-3 border-t border-dashed border-stone-300 dark:border-stone-800 flex items-center justify-between font-handwritten text-xs text-stone-500 dark:text-stone-400 font-bold">
+          <span>6 PROJECTS LOGGED</span>
+          <span className="text-blue-600 dark:text-blue-400">
+            Click any sticky note card for breakdown
+          </span>
+        </div>
       </div>
 
-      {/* Project Notebook Detail Modal - Positioned clearly below header with optimized compact font sizing */}
+      {/* Project Notebook Detail Modal - Positioned cleanly below header */}
       {selectedProject && (
         <div
           className="fixed inset-0 z-[90] bg-black/80 backdrop-blur-sm flex items-center justify-center pt-20 sm:pt-24 pb-6 px-4"

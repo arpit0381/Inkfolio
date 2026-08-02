@@ -2,66 +2,79 @@
 
 import React from "react";
 import { RESUME_DATA } from "@/lib/resumeData";
-import { Paperclip, Award, CheckCircle2 } from "lucide-react";
+import { Award, ShieldCheck, Paperclip } from "lucide-react";
 
 export default function CertificationsSection() {
+  const certs = RESUME_DATA.certifications;
+
   return (
-    <section id="certifications" className="py-2 sm:py-4 px-2 sm:px-4 relative max-w-6xl mx-auto">
-      {/* Notebook Sheet */}
-      <div className="bg-[#FFFDF8] dark:bg-[#161618] border-2 border-stone-300 dark:border-stone-700/80 rounded-lg p-6 sm:p-12 notebook-shadow paper-lines relative text-stone-900 dark:text-stone-100">
+    <section id="certifications" className="w-full h-full">
+      {/* Notebook Sheet - Equal Size */}
+      <div className="w-full h-full bg-[#FFFDF8] dark:bg-[#161618] border-2 border-stone-300 dark:border-stone-700/80 rounded-lg p-5 sm:p-8 notebook-shadow paper-lines relative text-stone-900 dark:text-stone-100 flex flex-col justify-between">
         
+        {/* Top Paper Tape */}
+        <div className="absolute -top-3.5 left-10 w-36 h-7 bg-amber-200 dark:bg-amber-900/80 border border-amber-300 dark:border-amber-700 rotate-[1.5deg] shadow-sm flex items-center justify-center font-handwritten text-xs text-amber-950 dark:text-amber-100 font-bold">
+          Page #08 — Credentials
+        </div>
+
         {/* Header */}
-        <div className="flex items-center justify-between mb-8 border-b-2 border-stone-300 dark:border-stone-800 pb-4">
+        <div className="flex items-center justify-between border-b-2 border-stone-300 dark:border-stone-800 pb-3">
           <div className="flex items-center gap-3">
-            <span className="w-10 h-10 rounded-full bg-blue-600/10 dark:bg-blue-500/20 text-blue-600 dark:text-blue-400 flex items-center justify-center font-bold text-xl border border-blue-500/30">
-              <Award className="w-5 h-5" />
+            <span className="w-9 h-9 rounded-full bg-amber-500/20 text-amber-700 dark:text-amber-300 flex items-center justify-center font-bold text-lg border border-amber-500/40">
+              <Award className="w-4 h-4" />
             </span>
             <div>
-              <h2 className="font-heading text-3xl sm:text-4xl text-stone-900 dark:text-stone-50 font-bold">
-                Page #08 — Certifications & Verification
+              <h2 className="font-heading text-2xl sm:text-3xl text-stone-900 dark:text-stone-50 font-bold">
+                Certifications & Achievements
               </h2>
-              <p className="font-handwritten text-stone-600 dark:text-stone-300 text-sm">
-                Paper-Clipped Credentials — Infosys, Udemy, Deloitte
+              <p className="font-handwritten text-stone-600 dark:text-stone-300 text-xs">
+                Verified industry credentials — Infosys Springboard, Udemy & Deloitte
               </p>
             </div>
           </div>
-
-          <div className="hidden sm:block font-handwritten text-stone-500 dark:text-stone-400 text-right text-xs">
-            <p>6 CREDENTIALS VERIFIED</p>
-            <p>PASTED IN NOTEBOOK</p>
-          </div>
         </div>
 
-        {/* Paper-Clipped Certificate Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {RESUME_DATA.certifications.map((cert, idx) => (
+        {/* Credentials Grid - Fit to Page */}
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5 my-auto font-handwritten">
+          {certs.map((cert, idx) => (
             <div
               key={cert.title}
-              className="bg-white dark:bg-[#202024] border-2 border-stone-200 dark:border-stone-700 rounded-lg p-5 relative shadow-xs hover:border-blue-500 transition-all hover:scale-[1.02] group"
+              className="bg-white dark:bg-[#202024] p-3.5 rounded-lg border-2 border-stone-300 dark:border-stone-700 shadow-xs relative flex flex-col justify-between min-h-[140px]"
             >
-              {/* Paper Clip Icon top left */}
-              <div className="absolute -top-4 left-6 text-stone-400 dark:text-stone-500 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
-                <Paperclip className="w-6 h-6 rotate-45" />
+              {/* Paperclip top corner */}
+              <div className="absolute -top-3 left-4 text-stone-400 dark:text-stone-500 transform -rotate-12">
+                <Paperclip className="w-5 h-5" />
               </div>
 
-              <div className="pt-2">
-                <span className="font-handwritten text-xs px-2 py-0.5 bg-blue-100 dark:bg-blue-950 text-blue-900 dark:text-blue-300 rounded font-bold border border-blue-200 dark:border-blue-800">
+              <div>
+                <span className="text-[10px] px-2 py-0.5 bg-stone-100 dark:bg-[#161618] border border-stone-300 dark:border-stone-700 rounded font-bold uppercase block w-fit mb-1.5">
                   {cert.issuer}
                 </span>
 
-                <h3 className="font-heading text-xl font-bold text-stone-900 dark:text-stone-50 mt-2 leading-tight">
+                <h3 className="font-heading text-base font-bold text-stone-900 dark:text-stone-50 mb-1 leading-snug">
                   {cert.title}
                 </h3>
 
-                <div className="mt-4 pt-3 border-t border-stone-200 dark:border-stone-800 flex items-center justify-between font-handwritten text-xs text-stone-600 dark:text-stone-400">
-                  <span className="flex items-center gap-1 text-emerald-600 dark:text-emerald-400 font-bold">
-                    <CheckCircle2 className="w-3.5 h-3.5" /> Certified
-                  </span>
-                  <span>Credential #0{idx + 1}</span>
-                </div>
+                <p className="text-xs text-stone-600 dark:text-stone-400 font-medium">
+                  Issued: {cert.date}
+                </p>
+              </div>
+
+              <div className="pt-2 border-t border-stone-200 dark:border-stone-800 flex items-center justify-between text-[11px] font-bold text-emerald-600 dark:text-emerald-400 mt-2">
+                <span className="flex items-center gap-1">
+                  <ShieldCheck className="w-3.5 h-3.5" /> Verified Credential
+                </span>
               </div>
             </div>
           ))}
+        </div>
+
+        {/* Footer Note */}
+        <div className="pt-3 border-t border-dashed border-stone-300 dark:border-stone-800 flex items-center justify-between font-handwritten text-xs text-stone-500 dark:text-stone-400 font-bold">
+          <span>CREDENTIALS ATTACHED</span>
+          <span className="text-amber-600 dark:text-amber-400">
+            Continuous skill upgrading & certifications
+          </span>
         </div>
       </div>
     </section>
