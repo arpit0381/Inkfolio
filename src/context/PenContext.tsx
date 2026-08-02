@@ -4,12 +4,30 @@ import React, { createContext, useContext, useState } from "react";
 
 export type PenType = "blue" | "red" | "black" | "yellow";
 
+export const TOTAL_PAGES = 9;
+
+export const PAGE_TITLES: { [key: number]: string } = {
+  1: "Hero & Introduction",
+  2: "About Me & Journey",
+  3: "Technical Skillset",
+  4: "Professional Experience",
+  5: "Featured Projects Desk",
+  6: "Leadership & Activities",
+  7: "Academic Report Card",
+  8: "Certifications & Credentials",
+  9: "Contact & Closing Note",
+};
+
 interface PenContextType {
   penType: PenType;
   setPenType: (pen: PenType) => void;
   penColor: string;
   isNotebookOpened: boolean;
   openNotebook: () => void;
+  currentPage: number;
+  setCurrentPage: (page: number) => void;
+  nextPage: () => void;
+  prevPage: () => void;
 }
 
 const PenContext = createContext<PenContextType | undefined>(undefined);
@@ -17,6 +35,7 @@ const PenContext = createContext<PenContextType | undefined>(undefined);
 export function PenProvider({ children }: { children: React.ReactNode }) {
   const [penType, setPenType] = useState<PenType>("blue");
   const [isNotebookOpened, setIsNotebookOpened] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
 
   const getPenColor = (type: PenType) => {
     switch (type) {
@@ -35,6 +54,25 @@ export function PenProvider({ children }: { children: React.ReactNode }) {
 
   const openNotebook = () => {
     setIsNotebookOpened(true);
+    setCurrentPage(1);
+  };
+
+  const setPage = (page: number) => {
+    if (page >= 1 && page <= TOTAL_PAGES) {
+      setCurrentPage(page);
+    }
+  };
+
+  const nextPage = () => {
+    if (currentPage < TOTAL_PAGES) {
+      setCurrentPage((prev) => prev + 1);
+    }
+  };
+
+  const prevPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage((prev) => prev - 1);
+    }
   };
 
   return (
@@ -45,6 +83,10 @@ export function PenProvider({ children }: { children: React.ReactNode }) {
         penColor: getPenColor(penType),
         isNotebookOpened,
         openNotebook,
+        currentPage,
+        setCurrentPage: setPage,
+        nextPage,
+        prevPage,
       }}
     >
       {children}

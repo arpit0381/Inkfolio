@@ -48,7 +48,7 @@ export default function HeroSection({
   return (
     <section
       id="hero"
-      className="min-h-screen pt-32 sm:pt-36 pb-16 flex flex-col justify-center items-center relative px-4 sm:px-6 overflow-hidden"
+      className="py-2 sm:py-4 flex flex-col justify-center items-center relative px-2 sm:px-4 overflow-hidden"
     >
       {/* Notebook Sheet Perspective */}
       <div

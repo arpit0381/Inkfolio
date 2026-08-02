@@ -7,6 +7,7 @@ import CustomInkCursor from "@/components/notebook/CustomInkCursor";
 import PaperTextureOverlay from "@/components/notebook/PaperTextureOverlay";
 import NotebookHeader from "@/components/notebook/NotebookHeader";
 import NotebookCoverIntro from "@/components/notebook/NotebookCoverIntro";
+import FlipBookContainer from "@/components/notebook/FlipBookContainer";
 import HeroSection from "@/components/hero/HeroSection";
 import AboutSection from "@/components/about/AboutSection";
 import SkillsSection from "@/components/skills/SkillsSection";
@@ -51,22 +52,24 @@ export default function Home() {
           onSharpenPencil={handleSharpenPencil}
         />
 
-        {/* Notebook Pages Content */}
-        <main className="relative z-10 space-y-12">
-          <HeroSection
-            coffeeSteamActive={coffeeSteamActive}
-            onToggleCoffee={handleToggleCoffee}
-            pencilSharpening={pencilSharpening}
-            onSharpenPencil={handleSharpenPencil}
-          />
-          <AboutSection />
-          <SkillsSection />
-          <ExperienceSection />
-          <ProjectsSection />
-          <LeadershipSection />
-          <EducationSection />
-          <CertificationsSection />
-          <ContactSection />
+        {/* 3D Interactive Flip Book Engine */}
+        <main className="relative z-10">
+          <FlipBookContainer>
+            <HeroSection
+              coffeeSteamActive={coffeeSteamActive}
+              onToggleCoffee={handleToggleCoffee}
+              pencilSharpening={pencilSharpening}
+              onSharpenPencil={handleSharpenPencil}
+            />
+            <AboutSection />
+            <SkillsSection />
+            <ExperienceSection />
+            <ProjectsSection />
+            <LeadershipSection />
+            <EducationSection />
+            <CertificationsSection />
+            <ContactSection />
+          </FlipBookContainer>
         </main>
 
         {/* Easter Egg Event Listener */}

@@ -22,7 +22,7 @@ export default function SkillsSection() {
   };
 
   return (
-    <section id="skills" className="py-20 px-4 sm:px-6 relative max-w-6xl mx-auto">
+    <section id="skills" className="py-2 sm:py-4 px-2 sm:px-4 relative max-w-6xl mx-auto">
       {/* Notebook Sheet Container */}
       <div className="bg-[#FFFDF8] dark:bg-[#161618] border-2 border-stone-300 dark:border-stone-700/80 rounded-lg p-6 sm:p-12 notebook-shadow paper-lines relative text-stone-900 dark:text-stone-100">
         

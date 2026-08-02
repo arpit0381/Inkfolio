@@ -23,7 +23,7 @@ export default function NotebookHeader({
   onToggleCoffee,
   onSharpenPencil,
 }: HeaderProps) {
-  const { penType, setPenType, penColor } = usePen();
+  const { penType, setPenType, penColor, currentPage, setCurrentPage } = usePen();
   const [isDark, setIsDark] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [showPenMenu, setShowPenMenu] = useState(false);
@@ -47,13 +47,15 @@ export default function NotebookHeader({
   };
 
   const navLinks = [
-    { label: "About", href: "#about" },
-    { label: "Skills", href: "#skills" },
-    { label: "Experience", href: "#experience" },
-    { label: "Projects", href: "#projects" },
-    { label: "Leadership", href: "#leadership" },
-    { label: "Education", href: "#education" },
-    { label: "Contact", href: "#contact" },
+    { label: "Intro", page: 1 },
+    { label: "About", page: 2 },
+    { label: "Skills", page: 3 },
+    { label: "Experience", page: 4 },
+    { label: "Projects", page: 5 },
+    { label: "Leadership", page: 6 },
+    { label: "Education", page: 7 },
+    { label: "Certifications", page: 8 },
+    { label: "Contact", page: 9 },
   ];
 
   const penOptions: { type: PenType; label: string; color: string }[] = [
@@ -68,14 +70,14 @@ export default function NotebookHeader({
       className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
         scrolled
           ? "bg-[#FFFDF8]/95 dark:bg-[#161618]/95 backdrop-blur-md border-b border-stone-300 dark:border-stone-800 shadow-xs py-2.5"
-          : "bg-transparent py-4"
+          : "bg-transparent py-3"
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
         {/* Notebook Title Stamp */}
-        <a
-          href="#hero"
-          className="flex items-center gap-2 group font-heading font-bold text-xl md:text-2xl text-stone-900 dark:text-stone-50 tracking-wide"
+        <button
+          onClick={() => setCurrentPage(1)}
+          className="flex items-center gap-2 group font-heading font-bold text-xl md:text-2xl text-stone-900 dark:text-stone-50 tracking-wide text-left"
         >
           <span className="w-9 h-9 rounded-full bg-blue-600/10 dark:bg-blue-500/20 text-blue-600 dark:text-blue-400 flex items-center justify-center border border-blue-500/30 group-hover:rotate-12 transition-transform">
             <PenTool className="w-5 h-5" />
@@ -87,19 +89,22 @@ export default function NotebookHeader({
             </span>
             <span className="absolute -bottom-1 left-0 w-full h-[2px] bg-blue-600 scale-x-0 group-hover:scale-x-100 transition-transform origin-left" />
           </span>
-        </a>
+        </button>
 
-        {/* Ribbon Navigation Bar */}
-        <nav className="hidden lg:flex items-center gap-1 bg-white/90 dark:bg-[#202024]/90 px-4 py-1.5 rounded-full border border-stone-300 dark:border-stone-700 font-handwritten text-base shadow-2xs">
+        {/* Ribbon Navigation Bar for Instant 3D Page Flip Jumps */}
+        <nav className="hidden lg:flex items-center gap-1 bg-white/90 dark:bg-[#202024]/90 px-3 py-1.5 rounded-full border border-stone-300 dark:border-stone-700 font-handwritten text-sm shadow-2xs">
           {navLinks.map((link) => (
-            <a
+            <button
               key={link.label}
-              href={link.href}
-              className="px-3 py-1 text-stone-900 dark:text-stone-100 hover:text-blue-600 dark:hover:text-blue-400 rounded-md transition-colors relative group font-bold"
+              onClick={() => setCurrentPage(link.page)}
+              className={`px-2.5 py-1 rounded-md transition-all font-bold relative group ${
+                currentPage === link.page
+                  ? "bg-blue-600 text-white shadow-xs"
+                  : "text-stone-900 dark:text-stone-100 hover:text-blue-600 dark:hover:text-blue-400"
+              }`}
             >
               {link.label}
-              <span className="absolute bottom-0 left-3 right-3 h-[2px] bg-blue-600 scale-x-0 group-hover:scale-x-100 transition-transform origin-left" />
-            </a>
+            </button>
           ))}
         </nav>
 
