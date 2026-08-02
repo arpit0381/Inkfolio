@@ -27,29 +27,23 @@ export default function HeroSection({
   pencilSharpening,
   onSharpenPencil,
 }: HeroProps) {
-  const { penColor } = usePen();
+  const { penColor, isNotebookOpened } = usePen();
   const [textIndex, setTextIndex] = useState(0);
   const fullText = RESUME_DATA.personal.headline;
   const [displayedText, setDisplayedText] = useState("");
-  const [notebookOpen, setNotebookOpen] = useState(false);
 
+  // ONLY start live typewriter handwriting after notebook cover is opened by user
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setNotebookOpen(true);
-    }, 200);
-    return () => clearTimeout(timer);
-  }, []);
+    if (!isNotebookOpened) return;
 
-  useEffect(() => {
-    if (!notebookOpen) return;
     if (textIndex < fullText.length) {
       const timeout = setTimeout(() => {
         setDisplayedText((prev) => prev + fullText[textIndex]);
         setTextIndex((prev) => prev + 1);
-      }, 45);
+      }, 40);
       return () => clearTimeout(timeout);
     }
-  }, [textIndex, notebookOpen, fullText]);
+  }, [textIndex, isNotebookOpened, fullText]);
 
   return (
     <section
@@ -59,7 +53,7 @@ export default function HeroSection({
       {/* Notebook Sheet Perspective */}
       <div
         className={`w-full max-w-4xl mx-auto transition-all duration-1000 transform ${
-          notebookOpen
+          isNotebookOpened
             ? "rotate-0 scale-100 opacity-100"
             : "-rotate-6 scale-95 opacity-0"
         }`}
@@ -89,7 +83,7 @@ export default function HeroSection({
             CONFIDENTIAL • ARPIT'S NOTEBOOK • 2026
           </div>
 
-          {/* Main Handwritten Title */}
+          {/* Main Handwritten Title - Typewriter triggers post-open */}
           <div className="min-h-[140px] sm:min-h-[160px] mb-8">
             <h1 className="font-heading text-3xl sm:text-5xl lg:text-6xl text-stone-900 dark:text-stone-50 font-bold leading-tight">
               {displayedText}

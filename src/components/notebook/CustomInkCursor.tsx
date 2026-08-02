@@ -131,15 +131,15 @@ export default function CustomInkCursor() {
 
   return (
     <>
-      {/* Ink Particles Canvas */}
+      {/* Ink Particles Canvas - z-[100] to stay above cover intro */}
       <canvas
         ref={canvasRef}
-        className="fixed inset-0 pointer-events-none z-50"
+        className="fixed inset-0 pointer-events-none z-[100]"
       />
 
-      {/* Floating Ink Nib / Custom Pen Cursor - ALWAYS VISIBLE */}
+      {/* Floating Ink Nib / Custom Pen Cursor - z-[100] ALWAYS VISIBLE */}
       <div
-        className="fixed pointer-events-none z-50 transition-transform duration-75 ease-out"
+        className="fixed pointer-events-none z-[100] transition-transform duration-75 ease-out"
         style={{
           left: `${pos.x}px`,
           top: `${pos.y}px`,
@@ -147,12 +147,12 @@ export default function CustomInkCursor() {
         }}
       >
         <svg
-          width="36"
-          height="36"
+          width="38"
+          height="38"
           viewBox="0 0 24 24"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
-          className="drop-shadow-lg"
+          className="drop-shadow-2xl"
         >
           {/* Nib Top / Cap in active pen color */}
           <path
