@@ -36,6 +36,10 @@ export const metadata: Metadata = {
     "Kanpur Developer",
   ],
   authors: [{ name: "Arpit Bajpai" }],
+  icons: {
+    icon: "/icon.svg",
+    apple: "/icon.svg",
+  },
   openGraph: {
     title: "Arpit Bajpai — Handwritten Developer Notebook",
     description:
