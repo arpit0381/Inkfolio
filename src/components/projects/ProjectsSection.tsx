@@ -102,65 +102,67 @@ export default function ProjectsSection() {
         </div>
       </div>
 
-      {/* Project Notebook Detail Modal - z-[90] overlay sitting above header */}
+      {/* Project Notebook Detail Modal - Positioned clearly below header with optimized compact font sizing */}
       {selectedProject && (
         <div
-          className="fixed inset-0 z-[90] bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 sm:p-6"
+          className="fixed inset-0 z-[90] bg-black/80 backdrop-blur-sm flex items-center justify-center pt-20 sm:pt-24 pb-6 px-4"
           onClick={() => setSelectedProject(null)}
         >
           <div
             onClick={(e) => e.stopPropagation()}
-            className="bg-[#FFFDF8] dark:bg-[#1A1A1E] border-2 border-stone-300 dark:border-stone-700 rounded-xl p-5 sm:p-8 max-w-2xl w-full notebook-shadow paper-lines relative max-h-[85vh] overflow-y-auto animate-in fade-in zoom-in-95 duration-200 text-stone-900 dark:text-stone-100 shadow-2xl"
+            className="bg-[#FFFDF8] dark:bg-[#1A1A1E] border-2 border-stone-300 dark:border-stone-700 rounded-xl p-4 sm:p-6 max-w-xl w-full notebook-shadow paper-lines relative max-h-[82vh] overflow-y-auto animate-in fade-in zoom-in-95 duration-200 text-stone-900 dark:text-stone-100 shadow-2xl space-y-3"
           >
             {/* Close Button */}
             <button
               onClick={() => setSelectedProject(null)}
-              className="absolute top-4 right-4 p-2 rounded-full hover:bg-stone-200 dark:hover:bg-stone-800 text-stone-700 dark:text-stone-300 transition-colors z-10"
+              className="absolute top-3 right-3 p-1.5 rounded-full hover:bg-stone-200 dark:hover:bg-stone-800 text-stone-700 dark:text-stone-300 transition-colors z-10"
               title="Close Note"
             >
-              <X className="w-6 h-6" />
+              <X className="w-5 h-5" />
             </button>
 
             {/* Header Tag */}
-            <div className="inline-flex items-center gap-1 mb-4 px-3 py-1 bg-amber-200 dark:bg-amber-950 text-amber-950 dark:text-amber-100 font-handwritten text-xs rounded border border-amber-300 font-bold">
-              <Pin className="w-3.5 h-3.5" /> NOTEBOOK BREAKDOWN — {selectedProject.title}
+            <div className="inline-flex items-center gap-1 px-2.5 py-0.5 bg-amber-200 dark:bg-amber-950 text-amber-950 dark:text-amber-100 font-handwritten text-xs rounded border border-amber-300 font-bold">
+              <Pin className="w-3 h-3" /> NOTEBOOK BREAKDOWN — {selectedProject.title}
             </div>
 
-            <h3 className="font-heading text-3xl sm:text-4xl text-stone-900 dark:text-stone-50 font-bold mb-1">
-              {selectedProject.title}
-            </h3>
-            <p className="font-handwritten text-lg text-blue-600 dark:text-blue-400 font-bold mb-6">
-              {selectedProject.subtitle}
-            </p>
+            <div>
+              <h3 className="font-heading text-2xl sm:text-3xl text-stone-900 dark:text-stone-50 font-bold leading-tight">
+                {selectedProject.title}
+              </h3>
+              <p className="font-handwritten text-base text-blue-600 dark:text-blue-400 font-bold">
+                {selectedProject.subtitle}
+              </p>
+            </div>
 
             {/* Problem & Solution */}
-            <div className="space-y-4 font-handwritten text-lg sm:text-xl text-stone-900 dark:text-stone-100">
-              <div className="p-4 bg-red-50 dark:bg-red-950/60 rounded-lg border border-red-200 dark:border-red-900">
-                <strong className="text-red-700 dark:text-red-300 font-heading text-xl flex items-center gap-1.5 mb-1 font-bold">
-                  <AlertCircle className="w-5 h-5" /> THE PROBLEM:
+            <div className="grid grid-cols-1 gap-2.5 font-handwritten text-sm text-stone-900 dark:text-stone-100">
+              <div className="p-3 bg-red-50 dark:bg-red-950/60 rounded-lg border border-red-200 dark:border-red-900">
+                <strong className="text-red-700 dark:text-red-300 font-heading text-base flex items-center gap-1 font-bold">
+                  <AlertCircle className="w-4 h-4" /> THE PROBLEM:
                 </strong>
-                <p className="font-medium leading-relaxed">{selectedProject.problem}</p>
+                <p className="font-medium text-xs sm:text-sm leading-relaxed">{selectedProject.problem}</p>
               </div>
 
-              <div className="p-4 bg-emerald-50 dark:bg-emerald-950/60 rounded-lg border border-emerald-200 dark:border-emerald-900">
-                <strong className="text-emerald-700 dark:text-emerald-300 font-heading text-xl flex items-center gap-1.5 mb-1 font-bold">
-                  <CheckCircle2 className="w-5 h-5" /> THE SOLUTION:
+              <div className="p-3 bg-emerald-50 dark:bg-emerald-950/60 rounded-lg border border-emerald-200 dark:border-emerald-900">
+                <strong className="text-emerald-700 dark:text-emerald-300 font-heading text-base flex items-center gap-1 font-bold">
+                  <CheckCircle2 className="w-4 h-4" /> THE SOLUTION:
                 </strong>
-                <p className="font-medium leading-relaxed">{selectedProject.solution}</p>
+                <p className="font-medium text-xs sm:text-sm leading-relaxed">{selectedProject.solution}</p>
               </div>
             </div>
 
             {/* Tech Stack */}
-            <div className="my-6 pt-4 border-t border-stone-300 dark:border-stone-800">
-              <h4 className="font-heading text-xl text-stone-900 dark:text-stone-50 font-bold mb-3 flex items-center gap-2">
-                <Layers className="w-5 h-5 text-blue-600 dark:text-blue-400" />
+            <div className="pt-2 border-t border-stone-200 dark:border-stone-800">
+              <h4 className="font-heading text-base text-stone-900 dark:text-stone-50 font-bold mb-1.5 flex items-center gap-1.5">
+                <Layers className="w-4 h-4 text-blue-600 dark:text-blue-400" />
                 <span>Tech Stack Used:</span>
               </h4>
-              <div className="flex flex-wrap gap-2 font-handwritten text-sm">
+              <div className="flex flex-wrap gap-1.5 font-handwritten text-xs">
                 {selectedProject.stack.map((st) => (
                   <span
                     key={st}
-                    className="px-3 py-1 bg-white dark:bg-[#242429] rounded-full border border-stone-300 dark:border-stone-700 text-stone-900 dark:text-stone-100 font-bold shadow-2xs"
+                    className="px-2.5 py-0.5 bg-white dark:bg-[#242429] rounded-full border border-stone-300 dark:border-stone-700 text-stone-900 dark:text-stone-100 font-bold shadow-2xs"
                   >
                     {st}
                   </span>
@@ -169,14 +171,14 @@ export default function ProjectsSection() {
             </div>
 
             {/* Outcomes */}
-            <div className="mb-6">
-              <h4 className="font-heading text-xl text-stone-900 dark:text-stone-50 font-bold mb-3">
+            <div>
+              <h4 className="font-heading text-base text-stone-900 dark:text-stone-50 font-bold mb-1.5">
                 Key Outcomes & Deliverables:
               </h4>
-              <ul className="space-y-2 font-handwritten text-lg text-stone-900 dark:text-stone-100 font-medium">
+              <ul className="space-y-1 font-handwritten text-xs sm:text-sm text-stone-900 dark:text-stone-100 font-medium">
                 {selectedProject.outcomes.map((oc, i) => (
-                  <li key={i} className="flex items-center gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0" />
+                  <li key={i} className="flex items-center gap-1.5">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400 shrink-0" />
                     <span>{oc}</span>
                   </li>
                 ))}
@@ -184,19 +186,19 @@ export default function ProjectsSection() {
             </div>
 
             {/* Links */}
-            <div className="pt-4 border-t border-stone-300 dark:border-stone-800 flex flex-wrap items-center gap-4">
-              {selectedProject.liveUrl && (
+            {selectedProject.liveUrl && (
+              <div className="pt-2 border-t border-stone-200 dark:border-stone-800 flex justify-end">
                 <a
                   href={selectedProject.liveUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 px-5 py-2.5 bg-blue-600 hover:bg-blue-700 text-white font-handwritten text-base rounded-full shadow-md transition-colors font-bold"
+                  className="inline-flex items-center gap-1.5 px-4 py-1.5 bg-blue-600 hover:bg-blue-700 text-white font-handwritten text-sm rounded-full shadow-md transition-colors font-bold"
                 >
-                  <ExternalLink className="w-4 h-4" />
+                  <ExternalLink className="w-3.5 h-3.5" />
                   <span>Visit Live Demo ({selectedProject.domain || "Website"})</span>
                 </a>
-              )}
-            </div>
+              </div>
+            )}
           </div>
         </div>
       )}

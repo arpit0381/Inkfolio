@@ -48,7 +48,7 @@ export default function HeroSection({
   return (
     <section
       id="hero"
-      className="min-h-screen pt-24 pb-16 flex flex-col justify-center items-center relative px-4 sm:px-6 overflow-hidden"
+      className="min-h-screen pt-32 sm:pt-36 pb-16 flex flex-col justify-center items-center relative px-4 sm:px-6 overflow-hidden"
     >
       {/* Notebook Sheet Perspective */}
       <div
@@ -61,8 +61,8 @@ export default function HeroSection({
         {/* Main Notebook Sheet */}
         <div className="relative bg-[#FFFDF8] dark:bg-[#1A1A1E] border-2 border-stone-300 dark:border-stone-700/80 rounded-lg p-6 sm:p-12 notebook-shadow paper-lines relative text-stone-900 dark:text-stone-50">
           
-          {/* Top Paper Tape */}
-          <div className="absolute -top-3 left-12 w-32 h-7 bg-amber-200 dark:bg-amber-900/80 border border-amber-300 dark:border-amber-700 rotate-[-2deg] shadow-sm flex items-center justify-center font-handwritten text-xs text-amber-950 dark:text-amber-100 font-bold">
+          {/* Top Paper Tape - Clearly separated from header bar */}
+          <div className="absolute -top-3.5 left-12 w-32 h-7 bg-amber-200 dark:bg-amber-900/80 border border-amber-300 dark:border-amber-700 rotate-[-2deg] shadow-sm flex items-center justify-center font-handwritten text-xs text-amber-950 dark:text-amber-100 font-bold">
             Page #01 — Intro Log
           </div>
           
@@ -83,7 +83,7 @@ export default function HeroSection({
             CONFIDENTIAL • ARPIT'S NOTEBOOK • 2026
           </div>
 
-          {/* Main Handwritten Title - Typewriter triggers post-open */}
+          {/* Main Handwritten Title */}
           <div className="min-h-[140px] sm:min-h-[160px] mb-8">
             <h1 className="font-heading text-3xl sm:text-5xl lg:text-6xl text-stone-900 dark:text-stone-50 font-bold leading-tight">
               {displayedText}
