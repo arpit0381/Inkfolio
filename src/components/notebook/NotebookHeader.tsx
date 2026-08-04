@@ -9,6 +9,9 @@ import {
   Coffee,
   Palette,
   Check,
+  Pencil,
+  Eraser,
+  Undo2,
 } from "lucide-react";
 
 interface HeaderProps {
@@ -20,7 +23,18 @@ export default function NotebookHeader({
   onToggleCoffee,
   onSharpenPencil,
 }: HeaderProps) {
-  const { penType, setPenType, penColor, setCurrentPage } = usePen();
+  const {
+    penType,
+    setPenType,
+    penColor,
+    setCurrentPage,
+    isDrawingMode,
+    setIsDrawingMode,
+    strokes,
+    clearDrawings,
+    undoLastStroke,
+  } = usePen();
+
   const [isDark, setIsDark] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [showPenMenu, setShowPenMenu] = useState(false);
@@ -78,6 +92,27 @@ export default function NotebookHeader({
 
         {/* Actions & Pen Selector */}
         <div className="flex items-center gap-2">
+          {/* Write Mode Toggle Button */}
+          <button
+            onClick={() => setIsDrawingMode((prev) => !prev)}
+            className={`flex items-center gap-2 px-3 py-1.5 rounded-full border text-xs sm:text-sm font-handwritten font-bold transition-all shadow-2xs ${
+              isDrawingMode
+                ? "bg-blue-600 text-white border-blue-700 dark:bg-blue-600 dark:border-blue-500 shadow-sm"
+                : "bg-white dark:bg-[#202024] border-stone-300 dark:border-stone-700 text-stone-700 dark:text-stone-300 hover:border-blue-500"
+            }`}
+            title="Toggle Notebook Hand-Writing / Drawing"
+          >
+            <Pencil className={`w-3.5 h-3.5 ${isDrawingMode ? "text-white" : "text-stone-500"}`} />
+            <span className="hidden sm:inline">
+              {isDrawingMode ? "Write Mode" : "Read Mode"}
+            </span>
+            <span
+              className={`w-2 h-2 rounded-full ${
+                isDrawingMode ? "bg-emerald-400 animate-pulse" : "bg-stone-400/50"
+              }`}
+            />
+          </button>
+
           {/* Pen Color Selector Dropdown */}
           <div className="relative">
             <button
@@ -95,7 +130,7 @@ export default function NotebookHeader({
 
             {/* Pen Options Popup */}
             {showPenMenu && (
-              <div className="absolute top-full right-0 mt-2 w-44 bg-white dark:bg-[#202024] border-2 border-stone-300 dark:border-stone-700 rounded-lg p-2 shadow-xl z-50 font-handwritten text-sm animate-in fade-in zoom-in-95 duration-150">
+              <div className="absolute top-full right-0 mt-2 w-48 bg-white dark:bg-[#202024] border-2 border-stone-300 dark:border-stone-700 rounded-lg p-2 shadow-xl z-50 font-handwritten text-sm animate-in fade-in zoom-in-95 duration-150">
                 <div className="text-xs text-stone-500 dark:text-stone-400 px-2 py-1 uppercase font-bold border-b border-stone-200 dark:border-stone-800 mb-1">
                   Select Ink Pen:
                 </div>
@@ -104,6 +139,7 @@ export default function NotebookHeader({
                     key={opt.type}
                     onClick={() => {
                       setPenType(opt.type);
+                      setIsDrawingMode(true);
                       setShowPenMenu(false);
                     }}
                     className="w-full flex items-center justify-between px-2.5 py-1.5 rounded hover:bg-stone-100 dark:hover:bg-stone-800 text-stone-900 dark:text-stone-100 font-bold transition-colors"
@@ -123,6 +159,26 @@ export default function NotebookHeader({
               </div>
             )}
           </div>
+
+          {/* Undo & Eraser Buttons (Visible when ink strokes exist) */}
+          {strokes.length > 0 && (
+            <div className="flex items-center gap-1">
+              <button
+                onClick={undoLastStroke}
+                className="p-2 rounded-full border border-stone-300 dark:border-stone-700 bg-white dark:bg-[#202024] text-stone-700 dark:text-stone-300 hover:text-blue-600 transition-colors"
+                title="Undo Last Stroke"
+              >
+                <Undo2 className="w-4 h-4" />
+              </button>
+              <button
+                onClick={clearDrawings}
+                className="p-2 rounded-full border border-stone-300 dark:border-stone-700 bg-white dark:bg-[#202024] text-stone-700 dark:text-stone-300 hover:text-red-600 transition-colors"
+                title="Clear All Ink Drawings"
+              >
+                <Eraser className="w-4 h-4" />
+              </button>
+            </div>
+          )}
 
           {/* Coffee Mug Quick Trigger */}
           {onToggleCoffee && (

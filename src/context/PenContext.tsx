@@ -1,6 +1,6 @@
 "use client";
 
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useState, useEffect } from "react";
 
 export type PenType = "blue" | "red" | "black" | "yellow";
 
@@ -20,16 +20,38 @@ export const PAGE_TITLES: { [key: number]: string } = {
   10: "Back Cover",
 };
 
+export interface DrawnPoint {
+  x: number;
+  y: number;
+}
+
+export interface DrawnStroke {
+  id: string;
+  points: DrawnPoint[];
+  color: string;
+  width: number;
+  alpha: number;
+  page: number;
+}
+
 interface PenContextType {
   penType: PenType;
   setPenType: (pen: PenType) => void;
   penColor: string;
+  penWidth: number;
+  penAlpha: number;
   isNotebookOpened: boolean;
   openNotebook: () => void;
   currentPage: number;
   setCurrentPage: (page: number) => void;
   nextPage: () => void;
   prevPage: () => void;
+  isDrawingMode: boolean;
+  setIsDrawingMode: React.Dispatch<React.SetStateAction<boolean>>;
+  strokes: DrawnStroke[];
+  addStroke: (stroke: DrawnStroke) => void;
+  clearDrawings: () => void;
+  undoLastStroke: () => void;
 }
 
 const PenContext = createContext<PenContextType | undefined>(undefined);
@@ -37,20 +59,41 @@ const PenContext = createContext<PenContextType | undefined>(undefined);
 export function PenProvider({ children }: { children: React.ReactNode }) {
   const [penType, setPenType] = useState<PenType>("blue");
   const [currentPage, setCurrentPage] = useState(0); // Starts at Cover Page 0
+  const [isDrawingMode, setIsDrawingMode] = useState<boolean>(true);
+  const [strokes, setStrokes] = useState<DrawnStroke[]>([]);
+  const [isDark, setIsDark] = useState<boolean>(false);
 
-  const getPenColor = (type: PenType) => {
+  useEffect(() => {
+    const checkDark = () => {
+      setIsDark(document.documentElement.classList.contains("dark"));
+    };
+    checkDark();
+    const observer = new MutationObserver(checkDark);
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ["class"] });
+    return () => observer.disconnect();
+  }, []);
+
+  const getPenColor = (type: PenType, dark: boolean) => {
     switch (type) {
       case "blue":
-        return "#2563EB";
+        return dark ? "#60A5FA" : "#2563EB";
       case "red":
-        return "#DC2626";
+        return dark ? "#F87171" : "#DC2626";
       case "black":
-        return "#111111";
+        return dark ? "#F3F4F6" : "#111111";
       case "yellow":
         return "#EAB308";
       default:
-        return "#2563EB";
+        return dark ? "#60A5FA" : "#2563EB";
     }
+  };
+
+  const getPenWidth = (type: PenType) => {
+    return type === "yellow" ? 14 : 3.5;
+  };
+
+  const getPenAlpha = (type: PenType) => {
+    return type === "yellow" ? 0.45 : 0.95;
   };
 
   const openNotebook = () => {
@@ -75,18 +118,38 @@ export function PenProvider({ children }: { children: React.ReactNode }) {
     }
   };
 
+  const addStroke = (stroke: DrawnStroke) => {
+    setStrokes((prev) => [...prev, stroke]);
+  };
+
+  const clearDrawings = () => {
+    setStrokes([]);
+  };
+
+  const undoLastStroke = () => {
+    setStrokes((prev) => prev.slice(0, -1));
+  };
+
   return (
     <PenContext.Provider
       value={{
         penType,
         setPenType,
-        penColor: getPenColor(penType),
+        penColor: getPenColor(penType, isDark),
+        penWidth: getPenWidth(penType),
+        penAlpha: getPenAlpha(penType),
         isNotebookOpened: currentPage > 0,
         openNotebook,
         currentPage,
         setCurrentPage: setPage,
         nextPage,
         prevPage,
+        isDrawingMode,
+        setIsDrawingMode,
+        strokes,
+        addStroke,
+        clearDrawings,
+        undoLastStroke,
       }}
     >
       {children}
