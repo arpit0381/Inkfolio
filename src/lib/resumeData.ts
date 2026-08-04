@@ -25,6 +25,10 @@ export interface LeadershipItem {
   role: string;
   organization: string;
   description: string;
+  badge?: string;
+  badgeColor?: string;
+  pinColor?: string;
+  isPresident?: boolean;
 }
 
 export interface CertificationItem {
@@ -200,24 +204,45 @@ export const RESUME_DATA = {
 
   leadership: [
     {
+      role: "President",
+      organization: "Logic Club, PSIT-CHE",
+      description: "Spearheading overall strategic vision, technical hackathons, competitive programming, and empowering student developers across campus.",
+      badge: "PRESIDENTIAL ROLE",
+      badgeColor: "bg-amber-100 dark:bg-amber-950/90 border-amber-400 text-amber-950 dark:text-amber-200",
+      pinColor: "bg-amber-500 border-amber-700 shadow-amber-500/50",
+      isPresident: true,
+    },
+    {
       role: "Founder & CEO",
       organization: "Catalyst Crew",
       description: "Led a student-run team, driving strategic direction, innovation initiatives, and overall team management.",
+      badge: "FOUNDER ROLE",
+      badgeColor: "bg-purple-100 dark:bg-purple-950 border-purple-300 text-purple-900 dark:text-purple-200",
+      pinColor: "bg-purple-600 border-purple-800",
     },
     {
       role: "Technical Head",
       organization: "Logix Club, PSIT-CHE",
       description: "Directed technical projects, organized coding bootcamps, and mentored club members on modern web development.",
+      badge: "TECH LEAD",
+      badgeColor: "bg-blue-100 dark:bg-blue-950 border-blue-300 text-blue-900 dark:text-blue-200",
+      pinColor: "bg-blue-600 border-blue-800",
     },
     {
       role: "Secretary",
       organization: "Energy Club, PSIT-CHE",
       description: "Coordinated club operations, inter-departmental workshops, sustainability events, and member engagement.",
+      badge: "EXECUTIVE ROLE",
+      badgeColor: "bg-emerald-100 dark:bg-emerald-950 border-emerald-300 text-emerald-900 dark:text-emerald-200",
+      pinColor: "bg-emerald-600 border-emerald-800",
     },
     {
       role: "Joint Website Head",
       organization: "Ignitia, PSIT",
       description: "Managed end-to-end development, deployment, and real-time maintenance of the official college festival web app.",
+      badge: "FEST TECH LEAD",
+      badgeColor: "bg-rose-100 dark:bg-rose-950 border-rose-300 text-rose-900 dark:text-rose-200",
+      pinColor: "bg-red-600 border-red-800",
     },
   ] as LeadershipItem[],
 
