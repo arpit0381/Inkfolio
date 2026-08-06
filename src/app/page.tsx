@@ -19,6 +19,8 @@ import EducationSection from "@/components/education/EducationSection";
 import CertificationsSection from "@/components/certifications/CertificationsSection";
 import ContactSection from "@/components/contact/ContactSection";
 import EasterEggs from "@/components/notebook/EasterEggs";
+import CoffeeSpillOverlay from "@/components/notebook/CoffeeSpillOverlay";
+import WoodenDeskBackground from "@/components/notebook/WoodenDeskBackground";
 
 export default function Home() {
   const [coffeeSteamActive, setCoffeeSteamActive] = useState(true);
@@ -38,11 +40,17 @@ export default function Home() {
   return (
     <PenProvider>
       <LenisScrollProvider>
+        {/* 3D Wooden Desk Table Surface Background */}
+        <WoodenDeskBackground />
+
         {/* Custom Pen Cursor Systemwide */}
         <CustomInkCursor />
 
         {/* Paper texture, grid lines, margin rules */}
         <PaperTextureOverlay />
+
+        {/* Interactive Coffee Spill & Stain Layer */}
+        <CoffeeSpillOverlay />
 
         {/* Brand & Pen Toolbar Header */}
         <NotebookHeader

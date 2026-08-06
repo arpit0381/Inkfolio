@@ -59,7 +59,7 @@ const PenContext = createContext<PenContextType | undefined>(undefined);
 export function PenProvider({ children }: { children: React.ReactNode }) {
   const [penType, setPenType] = useState<PenType>("blue");
   const [currentPage, setCurrentPage] = useState(0); // Starts at Cover Page 0
-  const [isDrawingMode, setIsDrawingMode] = useState<boolean>(true);
+  const [isDrawingMode, setIsDrawingMode] = useState<boolean>(false);
   const [strokes, setStrokes] = useState<DrawnStroke[]>([]);
   const [isDark, setIsDark] = useState<boolean>(false);
 

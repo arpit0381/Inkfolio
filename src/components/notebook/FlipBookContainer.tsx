@@ -5,6 +5,8 @@ import { motion, AnimatePresence, Variants } from "framer-motion";
 import { usePen, TOTAL_PAGES, PAGE_TITLES } from "@/context/PenContext";
 import { ChevronLeft, ChevronRight, BookOpen } from "lucide-react";
 
+import ThreeDOrbitController from "@/components/notebook/ThreeDOrbitController";
+
 interface FlipBookProps {
   children: React.ReactNode[];
 }
@@ -71,19 +73,31 @@ export default function FlipBookContainer({ children }: FlipBookProps) {
 
   const activeChild = children[currentPage];
 
-  // 3D Page Flip Motion Variants
+  // 3D Page Flip & Desk Entrance Motion Variants
   const pageVariants: Variants = {
-    enter: (dir: "next" | "prev") => ({
-      rotateY: dir === "next" ? 50 : -50,
-      opacity: 0,
-      scale: 0.98,
-    }),
+    enter: (dir: "next" | "prev") =>
+      currentPage === 0
+        ? {
+            rotateX: 20,
+            rotateY: -12,
+            scale: 0.9,
+            opacity: 0,
+            y: 40,
+          }
+        : {
+            rotateY: dir === "next" ? 50 : -50,
+            opacity: 0,
+            scale: 0.98,
+          },
     center: {
+      rotateX: 0,
       rotateY: 0,
       opacity: 1,
       scale: 1,
+      y: 0,
       transition: {
-        duration: 0.4,
+        duration: currentPage === 0 ? 0.75 : 0.4,
+        ease: [0.16, 1, 0.3, 1],
       },
     },
     exit: (dir: "next" | "prev") => ({
@@ -102,23 +116,26 @@ export default function FlipBookContainer({ children }: FlipBookProps) {
       onTouchEnd={handleTouchEnd}
       className="min-h-[calc(100vh-70px)] pt-16 sm:pt-20 pb-6 px-1.5 sm:px-6 flex flex-col justify-between items-center select-none"
     >
-      {/* 3D Fixed Uniform Equal-Sized Notebook Container */}
-      <div className="w-full max-w-4xl mx-auto my-auto h-[530px] sm:h-[640px] relative [perspective:1400px] flex items-center justify-center">
-        <AnimatePresence mode="wait" custom={direction}>
-          <motion.div
-            key={currentPage}
-            custom={direction}
-            variants={pageVariants}
-            initial="enter"
-            animate="center"
-            exit="exit"
-            style={{ transformOrigin: direction === "next" ? "left center" : "right center" }}
-            className="w-full h-full shadow-2xl flex flex-col"
-          >
-            {activeChild}
-          </motion.div>
-        </AnimatePresence>
-      </div>
+      {/* 3D Fixed Uniform Equal-Sized Notebook Container with 360° Free Orbit & Scale Controller */}
+      <ThreeDOrbitController>
+        <div className="w-full max-w-4xl mx-auto my-auto h-[530px] sm:h-[640px] relative [perspective:1400px] flex items-center justify-center">
+          <AnimatePresence mode="wait" custom={direction}>
+            <motion.div
+              id="active-notebook-sheet"
+              key={currentPage}
+              custom={direction}
+              variants={pageVariants}
+              initial="enter"
+              animate="center"
+              exit="exit"
+              style={{ transformOrigin: direction === "next" ? "left center" : "right center" }}
+              className="w-full h-full shadow-2xl flex flex-col relative rounded-lg"
+            >
+              {activeChild}
+            </motion.div>
+          </AnimatePresence>
+        </div>
+      </ThreeDOrbitController>
 
       {/* Clean Mobile-Responsive Page Turner Bar */}
       <div className="mt-3 w-full max-w-4xl mx-auto bg-[#FFFDF8] dark:bg-[#1A1A1E] border-2 border-stone-300 dark:border-stone-700/80 rounded-full px-3 sm:px-4 py-2 shadow-lg flex items-center justify-between font-handwritten shrink-0">

@@ -1,25 +1,48 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { usePen } from "@/context/PenContext";
-import { BookOpen, Feather, ChevronRight, PenTool } from "lucide-react";
+import { BookOpen, Feather, ChevronRight, PenTool, Sparkles } from "lucide-react";
 
 export default function NotebookCoverIntro() {
   const { nextPage } = usePen();
+  const [rotate, setRotate] = useState({ x: 0, y: 0 });
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = e.clientX - rect.left - rect.width / 2;
+    const y = e.clientY - rect.top - rect.height / 2;
+    setRotate({
+      x: (-y / rect.height) * 12,
+      y: (x / rect.width) * 12,
+    });
+  };
+
+  const handleMouseLeave = () => {
+    setRotate({ x: 0, y: 0 });
+  };
 
   return (
     <div
       onClick={nextPage}
-      className="w-full h-full cursor-pointer select-none"
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      className="w-full h-full cursor-pointer select-none [perspective:1000px]"
     >
-      {/* 3D Leather Cover Book Card - 100% Equal Size Mobile Container */}
+      {/* 3D Leather Cover Book Card - Resting on 3D Wooden Desk */}
       <div
-        className="w-full h-full relative rounded-r-xl sm:rounded-r-2xl rounded-l-md notebook-cover-bg p-4 sm:p-10 shadow-2xl border-y-4 border-r-6 sm:border-r-8 border-stone-900 flex flex-col justify-between transition-all duration-300 transform hover:scale-[1.005]"
+        className="w-full h-full relative rounded-r-xl sm:rounded-r-2xl rounded-l-md notebook-cover-bg p-4 sm:p-10 book-table-shadow border-y-4 border-r-6 sm:border-r-8 border-stone-950 flex flex-col justify-between transition-transform duration-200 ease-out"
         style={{
-          boxShadow:
-            "-15px 15px 40px rgba(0,0,0,0.85), 0 0 80px rgba(212, 175, 55, 0.2)",
+          transform: `rotateX(${rotate.x}deg) rotateY(${rotate.y}deg)`,
+          transformStyle: "preserve-3d",
         }}
       >
+        {/* Top 3D Table Callout Badge */}
+        <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 z-40 bg-gradient-to-r from-amber-500 via-yellow-400 to-amber-500 text-stone-950 px-3.5 py-1 rounded-full text-[11px] sm:text-xs font-handwritten font-bold shadow-lg border border-yellow-200 flex items-center gap-1.5 animate-bounce">
+          <Sparkles className="w-3.5 h-3.5 text-amber-900" />
+          <span>Resting on Wooden Desk • Tap Cover to Open 📖</span>
+        </div>
+
         {/* Attached Fountain Pen on Right Side Loop */}
         <div className="absolute -right-3.5 sm:-right-8 top-1/2 -translate-y-1/2 z-30 transform rotate-6 scale-60 sm:scale-100 drop-shadow-2xl hover:scale-105 transition-transform duration-300">
           <svg width="46" height="260" viewBox="0 0 40 220" fill="none">
@@ -68,7 +91,6 @@ export default function NotebookCoverIntro() {
 
         {/* Main Embossed Cover Content */}
         <div className="h-full flex flex-col justify-between pl-4 sm:pl-10 pr-6 sm:pr-14 relative z-10 text-stone-200">
-          
           {/* Top Stamp */}
           <div className="flex items-center justify-between border-b border-amber-800/40 pb-2 sm:pb-3">
             <div className="flex items-center gap-1.5 sm:gap-2">

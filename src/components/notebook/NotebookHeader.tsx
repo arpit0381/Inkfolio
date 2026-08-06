@@ -13,6 +13,7 @@ import {
   Eraser,
   Undo2,
 } from "lucide-react";
+import { triggerCoffeeSpill } from "@/components/notebook/CoffeeSpillOverlay";
 
 interface HeaderProps {
   onToggleCoffee?: () => void;
@@ -181,15 +182,16 @@ export default function NotebookHeader({
           )}
 
           {/* Coffee Mug Quick Trigger */}
-          {onToggleCoffee && (
-            <button
-              onClick={onToggleCoffee}
-              title="Toggle Coffee Steam"
-              className="p-2 rounded-full hover:bg-stone-200 dark:hover:bg-stone-800 text-amber-800 dark:text-amber-400 transition-colors"
-            >
-              <Coffee className="w-5 h-5" />
-            </button>
-          )}
+          <button
+            onClick={(e) => {
+              if (onToggleCoffee) onToggleCoffee();
+              triggerCoffeeSpill(e.clientX, e.clientY);
+            }}
+            title="Spill Coffee onto Notebook!"
+            className="p-2 rounded-full hover:bg-amber-100 dark:hover:bg-amber-950 text-amber-800 dark:text-amber-400 hover:scale-110 transition-all active:scale-95"
+          >
+            <Coffee className="w-5 h-5 animate-pulse" />
+          </button>
 
           {/* Theme Switcher */}
           <button

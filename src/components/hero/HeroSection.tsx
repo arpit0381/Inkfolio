@@ -10,6 +10,7 @@ import {
 } from "lucide-react";
 import { RESUME_DATA } from "@/lib/resumeData";
 import { usePen } from "@/context/PenContext";
+import { triggerCoffeeSpill } from "@/components/notebook/CoffeeSpillOverlay";
 
 interface HeroProps {
   coffeeSteamActive: boolean;
@@ -109,11 +110,14 @@ export default function HeroSection({
         <div className="pt-3 flex flex-wrap items-center justify-between gap-2 border-t border-dashed border-stone-300 dark:border-stone-800 shrink-0">
           {/* Interactive Coffee Mug */}
           <div
-            onClick={onToggleCoffee}
-            className="cursor-pointer group flex items-center gap-1.5 bg-white dark:bg-[#242429] px-2.5 py-1 rounded-full border border-stone-300 dark:border-stone-700 hover:border-amber-500 transition-all shadow-xs"
+            onClick={(e) => {
+              if (onToggleCoffee) onToggleCoffee();
+              triggerCoffeeSpill(e.clientX, e.clientY);
+            }}
+            className="cursor-pointer group flex items-center gap-1.5 bg-amber-50 dark:bg-[#2A2420] px-2.5 py-1 rounded-full border border-amber-300 dark:border-amber-700 hover:border-amber-500 hover:scale-105 active:scale-95 transition-all shadow-xs"
           >
             <div className="relative">
-              <Coffee className="w-3.5 h-3.5 text-amber-800 dark:text-amber-400 group-hover:scale-110 transition-transform" />
+              <Coffee className="w-3.5 h-3.5 text-amber-800 dark:text-amber-400 group-hover:scale-110 transition-transform animate-pulse" />
               {coffeeSteamActive && (
                 <div className="absolute -top-2 left-1/2 -translate-x-1/2 flex gap-0.5">
                   <span className="w-0.5 h-1.5 bg-amber-400/80 rounded-full animate-bounce delay-75" />
@@ -122,8 +126,8 @@ export default function HeroSection({
                 </div>
               )}
             </div>
-            <span className="font-handwritten text-[11px] sm:text-xs text-stone-900 dark:text-stone-100 font-bold">
-              {coffeeSteamActive ? "Coffee Hot" : "Click Coffee"}
+            <span className="font-handwritten text-[11px] sm:text-xs text-amber-950 dark:text-amber-200 font-bold">
+              Spill Coffee ☕
             </span>
           </div>
 
