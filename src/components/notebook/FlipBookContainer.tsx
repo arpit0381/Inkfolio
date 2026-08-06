@@ -74,21 +74,21 @@ export default function FlipBookContainer({ children }: FlipBookProps) {
 
   const activeChild = children[currentPage];
 
-  // 3D Page Flip & Desk Entrance Motion Variants
+  // Real 3D Book Page Flip Motion Variants
   const pageVariants: Variants = {
     enter: (dir: "next" | "prev") =>
       currentPage === 0
         ? {
-            rotateX: 20,
-            rotateY: -12,
-            scale: 0.9,
+            rotateX: 18,
+            rotateY: -10,
+            scale: 0.92,
             opacity: 0,
-            y: 40,
+            y: 35,
           }
         : {
-            rotateY: dir === "next" ? 50 : -50,
+            rotateY: dir === "next" ? 85 : -85,
             opacity: 0,
-            scale: 0.98,
+            scale: 0.96,
           },
     center: {
       rotateX: 0,
@@ -97,16 +97,17 @@ export default function FlipBookContainer({ children }: FlipBookProps) {
       scale: 1,
       y: 0,
       transition: {
-        duration: currentPage === 0 ? 0.75 : 0.4,
-        ease: [0.16, 1, 0.3, 1],
+        duration: currentPage === 0 ? 0.75 : 0.48,
+        ease: [0.22, 1, 0.36, 1],
       },
     },
     exit: (dir: "next" | "prev") => ({
-      rotateY: dir === "next" ? -50 : 50,
+      rotateY: dir === "next" ? -85 : 85,
       opacity: 0,
-      scale: 0.98,
+      scale: 0.96,
       transition: {
-        duration: 0.3,
+        duration: 0.4,
+        ease: [0.22, 1, 0.36, 1],
       },
     }),
   };
@@ -129,7 +130,7 @@ export default function FlipBookContainer({ children }: FlipBookProps) {
               initial="enter"
               animate="center"
               exit="exit"
-              style={{ transformOrigin: direction === "next" ? "left center" : "right center" }}
+              style={{ transformOrigin: "left center" }}
               className="w-full h-full shadow-2xl flex flex-col relative rounded-lg"
             >
               {currentPage === 0 ? (

@@ -43,6 +43,10 @@ export default function NotebookHeader({
     strokes,
     clearDrawings,
     undoLastStroke,
+    scale,
+    zoomIn,
+    zoomOut,
+    resetZoom,
   } = usePen();
 
   const [isDark, setIsDark] = useState(false);
@@ -51,7 +55,14 @@ export default function NotebookHeader({
   const [show3DBar, setShow3DBar] = useState(false);
   const [isOrbitActive, setIsOrbitActive] = useState(false);
   const [isAutoSpinning, setIsAutoSpinning] = useState(false);
-  const [scale, setScale] = useState(1);
+
+  useEffect(() => {
+    if (currentPage > 0) {
+      setShow3DBar(false);
+      setIsOrbitActive(false);
+      setIsAutoSpinning(false);
+    }
+  }, [currentPage]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -206,19 +217,46 @@ export default function NotebookHeader({
             <Coffee className="w-5 h-5 animate-pulse" />
           </button>
 
-          {/* 3D Desk Studio Toggle Button */}
-          <button
-            onClick={() => setShow3DBar((prev) => !prev)}
-            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full border font-handwritten text-sm font-bold transition-all shadow-2xs ${
-              show3DBar || isOrbitActive
-                ? "bg-amber-600 text-white border-amber-700 shadow-sm"
-                : "bg-white dark:bg-[#202024] border-stone-300 dark:border-stone-700 text-stone-900 dark:text-stone-100 hover:border-amber-500"
-            }`}
-            title="Toggle 3D Desk View Controls"
-          >
-            <Box className="w-4 h-4 text-amber-500" />
-            <span className="hidden sm:inline">3D Studio</span>
-          </button>
+          {/* 3D Desk Studio Toggle Button (Visible only on Cover Page 0) */}
+          {currentPage === 0 && (
+            <button
+              onClick={() => setShow3DBar((prev) => !prev)}
+              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full border font-handwritten text-sm font-bold transition-all shadow-2xs ${
+                show3DBar || isOrbitActive
+                  ? "bg-amber-600 text-white border-amber-700 shadow-sm"
+                  : "bg-white dark:bg-[#202024] border-stone-300 dark:border-stone-700 text-stone-900 dark:text-stone-100 hover:border-amber-500"
+              }`}
+              title="Toggle 3D Desk View Controls"
+            >
+              <Box className="w-4 h-4 text-amber-500" />
+              <span className="hidden sm:inline">3D Studio</span>
+            </button>
+          )}
+
+          {/* Persistent Notebook Zoom Controller (Visible on ALL pages) */}
+          <div className="flex items-center gap-1 border border-stone-300 dark:border-stone-700 bg-white dark:bg-[#202024] rounded-full px-2 py-1 shadow-2xs font-handwritten text-xs font-bold text-stone-800 dark:text-stone-100">
+            <button
+              onClick={zoomOut}
+              className="p-1 rounded-full hover:bg-stone-100 dark:hover:bg-stone-800 text-stone-600 dark:text-stone-400 hover:text-blue-600 transition-colors"
+              title="Zoom Out (Chota)"
+            >
+              <ZoomOut className="w-3.5 h-3.5" />
+            </button>
+            <span
+              onClick={resetZoom}
+              className="px-1 text-[11px] font-mono text-amber-700 dark:text-amber-400 cursor-pointer hover:underline"
+              title="Click to Reset Zoom (100%)"
+            >
+              {Math.round(scale * 100)}%
+            </span>
+            <button
+              onClick={zoomIn}
+              className="p-1 rounded-full hover:bg-stone-100 dark:hover:bg-stone-800 text-stone-600 dark:text-stone-400 hover:text-blue-600 transition-colors"
+              title="Zoom In (Bada)"
+            >
+              <ZoomIn className="w-3.5 h-3.5" />
+            </button>
+          </div>
 
           {/* Theme Switcher */}
           <button
@@ -280,11 +318,7 @@ export default function NotebookHeader({
           </button>
 
           <button
-            onClick={() => {
-              const newScale = Math.max(0.55, scale - 0.15);
-              setScale(newScale);
-              set3DOrbitState({ scale: newScale });
-            }}
+            onClick={zoomOut}
             className="p-1.5 rounded-full bg-stone-100 dark:bg-stone-800 hover:bg-stone-200 text-stone-700 dark:text-stone-300 transition-colors border border-stone-300 dark:border-stone-700"
             title="Zoom Out (Chota)"
           >
@@ -296,11 +330,7 @@ export default function NotebookHeader({
           </span>
 
           <button
-            onClick={() => {
-              const newScale = Math.min(1.6, scale + 0.15);
-              setScale(newScale);
-              set3DOrbitState({ scale: newScale });
-            }}
+            onClick={zoomIn}
             className="p-1.5 rounded-full bg-stone-100 dark:bg-stone-800 hover:bg-stone-200 text-stone-700 dark:text-stone-300 transition-colors border border-stone-300 dark:border-stone-700"
             title="Zoom In (Bada)"
           >
@@ -311,7 +341,7 @@ export default function NotebookHeader({
             onClick={() => {
               setIsOrbitActive(false);
               setIsAutoSpinning(false);
-              setScale(1);
+              resetZoom();
               set3DOrbitState({
                 isOrbitActive: false,
                 isAutoSpinning: false,

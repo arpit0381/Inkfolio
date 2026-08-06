@@ -140,15 +140,17 @@ export default function CoffeeSpillOverlay() {
       let targetY: number;
 
       if (isInsideSheet) {
-        // Clicked directly on the paper sheet: spill at click location (with margin clamping)
-        const marginX = Math.min(60, rect.width * 0.15);
-        const marginY = Math.min(60, rect.height * 0.15);
+        // Clicked directly on the paper sheet: spill near click location with center bias
+        const marginX = Math.min(80, rect.width * 0.2);
+        const marginY = Math.min(80, rect.height * 0.2);
         targetX = Math.max(rect.left + marginX, Math.min(rect.right - marginX, clickX));
         targetY = Math.max(rect.top + marginY, Math.min(rect.bottom - marginY, clickY));
       } else {
-        // Clicked outside (e.g. Navbar icon): Target center-upper area of the book page!
-        targetX = rect.left + rect.width * (0.35 + Math.random() * 0.3);
-        targetY = rect.top + rect.height * (0.25 + Math.random() * 0.4);
+        // Clicked Header Coffee Icon: Target EXACT CENTER of the notebook page!
+        const jitterX = (Math.random() - 0.5) * 40;
+        const jitterY = (Math.random() - 0.5) * 40;
+        targetX = rect.left + rect.width * 0.5 + jitterX;
+        targetY = rect.top + rect.height * 0.45 + jitterY;
       }
 
       // Calculate relative % inside the notebook sheet container

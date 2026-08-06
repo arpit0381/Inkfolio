@@ -26,10 +26,9 @@ export function set3DOrbitState(options: {
 }
 
 export default function ThreeDOrbitController({ children }: ThreeDOrbitControllerProps) {
-  const { currentPage } = usePen();
+  const { currentPage, scale, setScale } = usePen();
   const [rotX, setRotX] = useState<number>(0);
   const [rotY, setRotY] = useState<number>(0);
-  const [scale, setScale] = useState<number>(1);
   const [isOrbitActive, setIsOrbitActive] = useState<boolean>(false);
   const [isAutoSpinning, setIsAutoSpinning] = useState<boolean>(false);
   const [isDragging, setIsDragging] = useState<boolean>(false);
@@ -43,14 +42,13 @@ export default function ThreeDOrbitController({ children }: ThreeDOrbitControlle
 
   const autoSpinRef = useRef<number | null>(null);
 
-  // AUTO-DISABLE 3D ORBIT WHEN BOOK OPENS (currentPage > 0)
+  // AUTO-DISABLE 3D ORBIT WHEN BOOK OPENS (currentPage > 0) - PERSIST SCALE
   useEffect(() => {
     if (currentPage > 0) {
       setIsOrbitActive(false);
       setIsAutoSpinning(false);
       setRotX(0);
       setRotY(0);
-      setScale(1);
     }
   }, [currentPage]);
 
@@ -97,16 +95,16 @@ export default function ThreeDOrbitController({ children }: ThreeDOrbitControlle
     };
   }, [isAutoSpinning, currentPage]);
 
-  // Wheel Zoom Control
+  // Wheel Zoom Control (Works across all pages)
   const handleWheel = useCallback(
     (e: WheelEvent) => {
-      if ((e.ctrlKey || e.altKey || isOrbitActive) && currentPage === 0) {
+      if (e.ctrlKey || e.altKey || isOrbitActive) {
         e.preventDefault();
         const delta = e.deltaY * -0.0015;
         setScale((prev) => Math.min(1.6, Math.max(0.55, prev + delta)));
       }
     },
-    [isOrbitActive, currentPage]
+    [isOrbitActive]
   );
 
   useEffect(() => {
@@ -178,7 +176,7 @@ export default function ThreeDOrbitController({ children }: ThreeDOrbitControlle
             transform:
               currentPage === 0
                 ? `rotateX(${rotX}deg) rotateY(${rotY}deg) scale(${scale})`
-                : "none",
+                : `scale(${scale})`,
             transformStyle: "preserve-3d",
             willChange: "transform",
             transition:

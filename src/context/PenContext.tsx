@@ -52,6 +52,11 @@ interface PenContextType {
   addStroke: (stroke: DrawnStroke) => void;
   clearDrawings: () => void;
   undoLastStroke: () => void;
+  scale: number;
+  setScale: React.Dispatch<React.SetStateAction<number>>;
+  zoomIn: () => void;
+  zoomOut: () => void;
+  resetZoom: () => void;
 }
 
 const PenContext = createContext<PenContextType | undefined>(undefined);
@@ -62,6 +67,11 @@ export function PenProvider({ children }: { children: React.ReactNode }) {
   const [isDrawingMode, setIsDrawingMode] = useState<boolean>(false);
   const [strokes, setStrokes] = useState<DrawnStroke[]>([]);
   const [isDark, setIsDark] = useState<boolean>(false);
+  const [scale, setScale] = useState<number>(1);
+
+  const zoomIn = () => setScale((prev) => Math.min(1.65, Math.round((prev + 0.15) * 100) / 100));
+  const zoomOut = () => setScale((prev) => Math.max(0.55, Math.round((prev - 0.15) * 100) / 100));
+  const resetZoom = () => setScale(1);
 
   useEffect(() => {
     const checkDark = () => {
@@ -150,6 +160,11 @@ export function PenProvider({ children }: { children: React.ReactNode }) {
         addStroke,
         clearDrawings,
         undoLastStroke,
+        scale,
+        setScale,
+        zoomIn,
+        zoomOut,
+        resetZoom,
       }}
     >
       {children}

@@ -6,37 +6,14 @@ import { BookOpen, Feather, ChevronRight, PenTool, Sparkles } from "lucide-react
 
 export default function NotebookCoverIntro() {
   const { nextPage } = usePen();
-  const [rotate, setRotate] = useState({ x: 0, y: 0 });
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    const x = e.clientX - rect.left - rect.width / 2;
-    const y = e.clientY - rect.top - rect.height / 2;
-    setRotate({
-      x: (-y / rect.height) * 12,
-      y: (x / rect.width) * 12,
-    });
-  };
-
-  const handleMouseLeave = () => {
-    setRotate({ x: 0, y: 0 });
-  };
 
   return (
     <div
       onClick={nextPage}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      className="w-full h-full cursor-pointer select-none [perspective:1000px]"
+      className="w-full h-full cursor-pointer select-none"
     >
-      {/* 3D Leather Cover Book Card - Resting on 3D Wooden Desk */}
-      <div
-        className="w-full h-full relative rounded-r-xl sm:rounded-r-2xl rounded-l-md notebook-cover-bg p-4 sm:p-10 book-table-shadow border-y-4 border-r-6 sm:border-r-8 border-stone-950 flex flex-col justify-between transition-transform duration-200 ease-out"
-        style={{
-          transform: `rotateX(${rotate.x}deg) rotateY(${rotate.y}deg)`,
-          transformStyle: "preserve-3d",
-        }}
-      >
+      {/* 3D Leather Cover Book Card Face */}
+      <div className="w-full h-full relative rounded-r-xl sm:rounded-r-2xl rounded-l-md notebook-cover-bg p-4 sm:p-10 book-table-shadow border-y-4 border-r-6 sm:border-r-8 border-stone-950 flex flex-col justify-between">
 
         {/* Attached Fountain Pen on Right Side Loop */}
         <div className="absolute -right-3.5 sm:-right-8 top-1/2 -translate-y-1/2 z-30 transform rotate-6 scale-60 sm:scale-100 drop-shadow-2xl hover:scale-105 transition-transform duration-300">
