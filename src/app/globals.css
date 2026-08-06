@@ -126,28 +126,29 @@ html, body, a, button, input, textarea, select, [role="button"] {
   text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.6);
 }
 
-/* 3D Wooden Desk Table Surface */
+/* 3D Light Natural Oak Desk Table Surface */
 .wooden-table-surface {
-  background-color: #24140E;
+  background-color: #E6D5C3;
   background-image: 
-    radial-gradient(ellipse at 50% 30%, rgba(255, 200, 120, 0.15) 0%, rgba(0, 0, 0, 0.7) 100%),
-    linear-gradient(90deg, rgba(0, 0, 0, 0.2) 0%, transparent 20%, transparent 80%, rgba(0, 0, 0, 0.3) 100%),
-    repeating-linear-gradient(0deg, rgba(60, 30, 15, 0.4) 0px, rgba(30, 15, 8, 0.6) 3px, rgba(45, 22, 11, 0.3) 7px, rgba(20, 10, 5, 0.5) 12px);
-  box-shadow: inset 0 0 120px rgba(0, 0, 0, 0.85);
+    radial-gradient(ellipse at 50% 30%, rgba(255, 255, 255, 0.45) 0%, rgba(180, 140, 100, 0.3) 100%),
+    linear-gradient(90deg, rgba(160, 120, 80, 0.12) 0%, transparent 20%, transparent 80%, rgba(160, 120, 80, 0.18) 100%),
+    repeating-linear-gradient(0deg, rgba(200, 160, 120, 0.25) 0px, rgba(175, 135, 95, 0.35) 4px, rgba(210, 170, 130, 0.2) 8px, rgba(165, 125, 85, 0.3) 14px);
+  box-shadow: inset 0 0 90px rgba(120, 80, 40, 0.25);
 }
 
 .dark .wooden-table-surface {
-  background-color: #120906;
+  background-color: #2C221A;
   background-image: 
-    radial-gradient(ellipse at 50% 30%, rgba(212, 175, 55, 0.12) 0%, rgba(0, 0, 0, 0.85) 100%),
-    repeating-linear-gradient(0deg, rgba(40, 20, 10, 0.3) 0px, rgba(15, 7, 3, 0.7) 4px, rgba(30, 15, 7, 0.2) 8px);
+    radial-gradient(ellipse at 50% 30%, rgba(220, 180, 130, 0.2) 0%, rgba(15, 10, 8, 0.7) 100%),
+    repeating-linear-gradient(0deg, rgba(80, 60, 45, 0.3) 0px, rgba(40, 30, 20, 0.5) 4px, rgba(70, 50, 35, 0.2) 8px);
+  box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.7);
 }
 
 /* 3D Desk Cast Shadow */
 .book-table-shadow {
   box-shadow: 
-    0 25px 50px -12px rgba(0, 0, 0, 0.75),
-    0 35px 80px -15px rgba(0, 0, 0, 0.85),
-    -15px 20px 45px rgba(0, 0, 0, 0.6);
+    0 25px 45px -10px rgba(70, 45, 25, 0.4),
+    0 35px 70px -15px rgba(50, 30, 15, 0.45),
+    -12px 18px 35px rgba(60, 35, 20, 0.35);
 }
 

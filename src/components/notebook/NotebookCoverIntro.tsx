@@ -37,11 +37,6 @@ export default function NotebookCoverIntro() {
           transformStyle: "preserve-3d",
         }}
       >
-        {/* Top 3D Table Callout Badge */}
-        <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 z-40 bg-gradient-to-r from-amber-500 via-yellow-400 to-amber-500 text-stone-950 px-3.5 py-1 rounded-full text-[11px] sm:text-xs font-handwritten font-bold shadow-lg border border-yellow-200 flex items-center gap-1.5 animate-bounce">
-          <Sparkles className="w-3.5 h-3.5 text-amber-900" />
-          <span>Resting on Wooden Desk • Tap Cover to Open 📖</span>
-        </div>
 
         {/* Attached Fountain Pen on Right Side Loop */}
         <div className="absolute -right-3.5 sm:-right-8 top-1/2 -translate-y-1/2 z-30 transform rotate-6 scale-60 sm:scale-100 drop-shadow-2xl hover:scale-105 transition-transform duration-300">

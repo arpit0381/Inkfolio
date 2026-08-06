@@ -6,6 +6,7 @@ import { usePen, TOTAL_PAGES, PAGE_TITLES } from "@/context/PenContext";
 import { ChevronLeft, ChevronRight, BookOpen } from "lucide-react";
 
 import ThreeDOrbitController from "@/components/notebook/ThreeDOrbitController";
+import NotebookBackCover from "@/components/notebook/NotebookBackCover";
 
 interface FlipBookProps {
   children: React.ReactNode[];
@@ -131,7 +132,80 @@ export default function FlipBookContainer({ children }: FlipBookProps) {
               style={{ transformOrigin: direction === "next" ? "left center" : "right center" }}
               className="w-full h-full shadow-2xl flex flex-col relative rounded-lg"
             >
-              {activeChild}
+              {currentPage === 0 ? (
+                <div className="w-full h-full relative [transform-style:preserve-3d]">
+                  {/* Front Cover Face */}
+                  <div
+                    style={{ transform: "translateZ(14px)", backfaceVisibility: "hidden" }}
+                    className="w-full h-full absolute inset-0"
+                  >
+                    {activeChild}
+                  </div>
+
+                  {/* Back Cover Face (Visible when orbiting 180deg) */}
+                  <div
+                    style={{ transform: "rotateY(180deg) translateZ(14px)", backfaceVisibility: "hidden" }}
+                    className="w-full h-full absolute inset-0"
+                  >
+                    <NotebookBackCover />
+                  </div>
+
+                  {/* Right Edge: Stacked Paper Pages */}
+                  <div
+                    style={{
+                      transform: "rotateY(90deg) translateZ(calc(100% - 14px))",
+                      width: "28px",
+                      backfaceVisibility: "hidden",
+                    }}
+                    className="absolute top-0 bottom-0 right-0 bg-[#F5EEDC] border-y-2 border-r-2 border-stone-800 shadow-inner flex flex-col justify-between py-4 px-1"
+                  >
+                    <div className="w-full h-full bg-[linear-gradient(0deg,rgba(180,140,90,0.35)_1px,transparent_1px)] bg-[size:100%_4px]" />
+                    <div className="absolute bottom-6 right-1 w-3 h-8 bg-amber-600 rounded-b shadow-md border border-amber-800" />
+                  </div>
+
+                  {/* Left Edge: Thick Leather Spine */}
+                  <div
+                    style={{
+                      transform: "rotateY(-90deg) translateZ(14px)",
+                      width: "28px",
+                      backfaceVisibility: "hidden",
+                    }}
+                    className="absolute top-0 bottom-0 left-0 bg-stone-950 border-y-2 border-l-2 border-amber-900 flex flex-col justify-between py-6 items-center shadow-2xl"
+                  >
+                    <div className="w-full h-1 bg-amber-500/60" />
+                    <span className="font-heading text-[9px] text-amber-400 font-bold tracking-widest rotate-90 whitespace-nowrap">
+                      ARPIT BAJPAI • LOG 2026
+                    </span>
+                    <div className="w-full h-1 bg-amber-500/60" />
+                  </div>
+
+                  {/* Top Edge: Paper Stack */}
+                  <div
+                    style={{
+                      transform: "rotateX(90deg) translateZ(14px)",
+                      height: "28px",
+                      backfaceVisibility: "hidden",
+                    }}
+                    className="absolute top-0 left-0 right-0 bg-[#F5EEDC] border-x-2 border-t-2 border-stone-800 shadow-inner"
+                  >
+                    <div className="w-full h-full bg-[linear-gradient(90deg,rgba(180,140,90,0.35)_1px,transparent_1px)] bg-[size:4px_100%]" />
+                  </div>
+
+                  {/* Bottom Edge: Paper Stack */}
+                  <div
+                    style={{
+                      transform: "rotateX(-90deg) translateZ(calc(100% - 14px))",
+                      height: "28px",
+                      backfaceVisibility: "hidden",
+                    }}
+                    className="absolute bottom-0 left-0 right-0 bg-[#F5EEDC] border-x-2 border-b-2 border-stone-800 shadow-inner"
+                  >
+                    <div className="w-full h-full bg-[linear-gradient(90deg,rgba(180,140,90,0.35)_1px,transparent_1px)] bg-[size:4px_100%]" />
+                  </div>
+                </div>
+              ) : (
+                activeChild
+              )}
             </motion.div>
           </AnimatePresence>
         </div>

@@ -12,8 +12,16 @@ import {
   Pencil,
   Eraser,
   Undo2,
+  Box,
+  Rotate3d,
+  ZoomIn,
+  ZoomOut,
+  RotateCcw,
+  Play,
+  Pause,
 } from "lucide-react";
 import { triggerCoffeeSpill } from "@/components/notebook/CoffeeSpillOverlay";
+import { set3DOrbitState } from "@/components/notebook/ThreeDOrbitController";
 
 interface HeaderProps {
   onToggleCoffee?: () => void;
@@ -28,6 +36,7 @@ export default function NotebookHeader({
     penType,
     setPenType,
     penColor,
+    currentPage,
     setCurrentPage,
     isDrawingMode,
     setIsDrawingMode,
@@ -39,6 +48,10 @@ export default function NotebookHeader({
   const [isDark, setIsDark] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [showPenMenu, setShowPenMenu] = useState(false);
+  const [show3DBar, setShow3DBar] = useState(false);
+  const [isOrbitActive, setIsOrbitActive] = useState(false);
+  const [isAutoSpinning, setIsAutoSpinning] = useState(false);
+  const [scale, setScale] = useState(1);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -193,6 +206,20 @@ export default function NotebookHeader({
             <Coffee className="w-5 h-5 animate-pulse" />
           </button>
 
+          {/* 3D Desk Studio Toggle Button */}
+          <button
+            onClick={() => setShow3DBar((prev) => !prev)}
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full border font-handwritten text-sm font-bold transition-all shadow-2xs ${
+              show3DBar || isOrbitActive
+                ? "bg-amber-600 text-white border-amber-700 shadow-sm"
+                : "bg-white dark:bg-[#202024] border-stone-300 dark:border-stone-700 text-stone-900 dark:text-stone-100 hover:border-amber-500"
+            }`}
+            title="Toggle 3D Desk View Controls"
+          >
+            <Box className="w-4 h-4 text-amber-500" />
+            <span className="hidden sm:inline">3D Studio</span>
+          </button>
+
           {/* Theme Switcher */}
           <button
             onClick={toggleTheme}
@@ -212,6 +239,95 @@ export default function NotebookHeader({
           </button>
         </div>
       </div>
+
+      {/* Clean Bottom-Right Floating 3D Controls Bar (Only shows when 3D Studio button is clicked) */}
+      {show3DBar && (
+        <div className="fixed bottom-6 right-6 z-40 flex items-center gap-1.5 bg-white/95 dark:bg-[#202024]/95 backdrop-blur-md border-2 border-stone-300 dark:border-stone-700/80 p-1.5 rounded-full shadow-2xl font-handwritten text-xs sm:text-sm font-bold text-stone-800 dark:text-stone-100 animate-in fade-in slide-in-from-bottom-4 duration-200">
+          <button
+            onClick={() => {
+              const next = !isOrbitActive;
+              setIsOrbitActive(next);
+              if (isAutoSpinning) setIsAutoSpinning(false);
+              set3DOrbitState({ isOrbitActive: next, isAutoSpinning: false });
+            }}
+            className={`flex items-center gap-1 px-2.5 py-1.5 rounded-full transition-all border ${
+              isOrbitActive
+                ? "bg-amber-600 text-white border-amber-700 shadow-md"
+                : "bg-stone-100 dark:bg-stone-800 text-stone-700 dark:text-stone-300 border-stone-300 dark:border-stone-700 hover:border-amber-500"
+            }`}
+            title="Toggle 360° Drag Rotation"
+          >
+            <Rotate3d className="w-4 h-4" />
+            <span>{isOrbitActive ? "360° Orbit ON" : "3D Drag Orbit"}</span>
+          </button>
+
+          <button
+            onClick={() => {
+              const next = !isAutoSpinning;
+              setIsAutoSpinning(next);
+              if (!isOrbitActive) setIsOrbitActive(true);
+              set3DOrbitState({ isAutoSpinning: next, isOrbitActive: true });
+            }}
+            className={`flex items-center gap-1 px-2 py-1.5 rounded-full transition-all border ${
+              isAutoSpinning
+                ? "bg-blue-600 text-white border-blue-700"
+                : "bg-stone-100 dark:bg-stone-800 text-stone-700 dark:text-stone-300 border-stone-300 dark:border-stone-700 hover:border-blue-500"
+            }`}
+            title="Auto 360° Showcase Spin"
+          >
+            {isAutoSpinning ? <Pause className="w-3.5 h-3.5" /> : <Play className="w-3.5 h-3.5 text-blue-600" />}
+            <span>Auto 360°</span>
+          </button>
+
+          <button
+            onClick={() => {
+              const newScale = Math.max(0.55, scale - 0.15);
+              setScale(newScale);
+              set3DOrbitState({ scale: newScale });
+            }}
+            className="p-1.5 rounded-full bg-stone-100 dark:bg-stone-800 hover:bg-stone-200 text-stone-700 dark:text-stone-300 transition-colors border border-stone-300 dark:border-stone-700"
+            title="Zoom Out (Chota)"
+          >
+            <ZoomOut className="w-4 h-4" />
+          </button>
+
+          <span className="text-[11px] font-mono font-bold px-1 text-amber-700 dark:text-amber-400">
+            {Math.round(scale * 100)}%
+          </span>
+
+          <button
+            onClick={() => {
+              const newScale = Math.min(1.6, scale + 0.15);
+              setScale(newScale);
+              set3DOrbitState({ scale: newScale });
+            }}
+            className="p-1.5 rounded-full bg-stone-100 dark:bg-stone-800 hover:bg-stone-200 text-stone-700 dark:text-stone-300 transition-colors border border-stone-300 dark:border-stone-700"
+            title="Zoom In (Bada)"
+          >
+            <ZoomIn className="w-4 h-4" />
+          </button>
+
+          <button
+            onClick={() => {
+              setIsOrbitActive(false);
+              setIsAutoSpinning(false);
+              setScale(1);
+              set3DOrbitState({
+                isOrbitActive: false,
+                isAutoSpinning: false,
+                rotX: 0,
+                rotY: 0,
+                scale: 1,
+              });
+            }}
+            className="flex items-center gap-1 px-2.5 py-1.5 rounded-full bg-red-600 hover:bg-red-700 text-white transition-all shadow-xs"
+            title="Reset View"
+          >
+            <RotateCcw className="w-3.5 h-3.5" />
+            <span>Reset</span>
+          </button>
+        </div>
+      )}
     </header>
   );
 }
