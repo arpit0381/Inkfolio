@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { usePen, PenType } from "@/context/PenContext";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   Moon,
   Sun,
@@ -19,6 +20,8 @@ import {
   RotateCcw,
   Play,
   Pause,
+  SlidersHorizontal,
+  X,
 } from "lucide-react";
 import { triggerCoffeeSpill } from "@/components/notebook/CoffeeSpillOverlay";
 import { set3DOrbitState } from "@/components/notebook/ThreeDOrbitController";
@@ -30,7 +33,6 @@ interface HeaderProps {
 
 export default function NotebookHeader({
   onToggleCoffee,
-  onSharpenPencil,
 }: HeaderProps) {
   const {
     penType,
@@ -55,6 +57,7 @@ export default function NotebookHeader({
   const [show3DBar, setShow3DBar] = useState(false);
   const [isOrbitActive, setIsOrbitActive] = useState(false);
   const [isAutoSpinning, setIsAutoSpinning] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     if (currentPage > 0) {
@@ -93,30 +96,29 @@ export default function NotebookHeader({
     <header
       className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
         scrolled
-          ? "bg-[#FFFDF8]/95 dark:bg-[#161618]/95 backdrop-blur-md border-b border-stone-300 dark:border-stone-800 shadow-xs py-2.5"
-          : "bg-transparent py-3"
+          ? "bg-[#FFFDF8]/95 dark:bg-[#161618]/95 backdrop-blur-md border-b border-stone-300 dark:border-stone-800 shadow-xs py-2"
+          : "bg-transparent py-2.5"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 flex items-center justify-between">
         {/* Notebook Brand Stamp */}
         <button
           onClick={() => setCurrentPage(1)}
-          className="flex items-center gap-2 group font-heading font-bold text-xl md:text-2xl text-stone-900 dark:text-stone-50 tracking-wide text-left"
+          className="flex items-center gap-1.5 sm:gap-2 group font-heading font-bold text-lg sm:text-xl md:text-2xl text-stone-900 dark:text-stone-50 tracking-wide text-left shrink-0"
         >
-          <span className="w-9 h-9 rounded-full bg-blue-600/10 dark:bg-blue-500/20 text-blue-600 dark:text-blue-400 flex items-center justify-center border border-blue-500/30 group-hover:rotate-12 transition-transform">
-            <PenTool className="w-5 h-5" />
+          <span className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-blue-600/10 dark:bg-blue-500/20 text-blue-600 dark:text-blue-400 flex items-center justify-center border border-blue-500/30 group-hover:rotate-12 transition-transform">
+            <PenTool className="w-4 h-4 sm:w-5 sm:h-5" />
           </span>
           <span className="relative">
             Inkfolio{" "}
-            <span className="text-xs font-handwritten text-red-600 dark:text-red-400 ml-1 font-bold">
+            <span className="text-[10px] sm:text-xs font-handwritten text-red-600 dark:text-red-400 ml-0.5 font-bold">
               v1.0
             </span>
-            <span className="absolute -bottom-1 left-0 w-full h-[2px] bg-blue-600 scale-x-0 group-hover:scale-x-100 transition-transform origin-left" />
           </span>
         </button>
 
-        {/* Actions & Pen Selector */}
-        <div className="flex items-center gap-2">
+        {/* DESKTOP TOOLBAR (md and above) */}
+        <div className="hidden md:flex items-center gap-2">
           {/* Write Mode Toggle Button */}
           <button
             onClick={() => setIsDrawingMode((prev) => !prev)}
@@ -128,9 +130,7 @@ export default function NotebookHeader({
             title="Toggle Notebook Hand-Writing / Drawing"
           >
             <Pencil className={`w-3.5 h-3.5 ${isDrawingMode ? "text-white" : "text-stone-500"}`} />
-            <span className="hidden sm:inline">
-              {isDrawingMode ? "Write Mode" : "Read Mode"}
-            </span>
+            <span>{isDrawingMode ? "Write Mode" : "Read Mode"}</span>
             <span
               className={`w-2 h-2 rounded-full ${
                 isDrawingMode ? "bg-emerald-400 animate-pulse" : "bg-stone-400/50"
@@ -149,7 +149,7 @@ export default function NotebookHeader({
                 className="w-3.5 h-3.5 rounded-full border border-white/50"
                 style={{ backgroundColor: penColor }}
               />
-              <span className="hidden sm:inline capitalize">{penType} Pen</span>
+              <span className="capitalize">{penType} Pen</span>
               <Palette className="w-4 h-4 text-stone-500 dark:text-stone-400" />
             </button>
 
@@ -212,9 +212,9 @@ export default function NotebookHeader({
               triggerCoffeeSpill(e.clientX, e.clientY);
             }}
             title="Spill Coffee onto Notebook!"
-            className="p-2 rounded-full hover:bg-amber-100 dark:hover:bg-amber-950 text-amber-800 dark:text-amber-400 hover:scale-110 transition-all active:scale-95"
+            className="p-2 rounded-full hover:bg-amber-100 dark:hover:bg-amber-950 text-amber-800 dark:text-amber-400 hover:scale-110 transition-all active:scale-95 border border-amber-300 dark:border-amber-700/60 bg-white dark:bg-[#202024]"
           >
-            <Coffee className="w-5 h-5 animate-pulse" />
+            <Coffee className="w-4 h-4 animate-pulse" />
           </button>
 
           {/* 3D Desk Studio Toggle Button (Visible only on Cover Page 0) */}
@@ -229,7 +229,7 @@ export default function NotebookHeader({
               title="Toggle 3D Desk View Controls"
             >
               <Box className="w-4 h-4 text-amber-500" />
-              <span className="hidden sm:inline">3D Studio</span>
+              <span>3D Studio</span>
             </button>
           )}
 
@@ -266,17 +266,211 @@ export default function NotebookHeader({
             {isDark ? (
               <>
                 <Sun className="w-4 h-4 text-amber-400" />
-                <span className="hidden sm:inline">Paper Light</span>
+                <span>Paper Light</span>
               </>
             ) : (
               <>
                 <Moon className="w-4 h-4 text-blue-600" />
-                <span className="hidden sm:inline">Dark Notebook</span>
+                <span>Dark Notebook</span>
               </>
             )}
           </button>
         </div>
+
+        {/* MOBILE COMPACT HEADER CONTROLS (< md screens) */}
+        <div className="flex md:hidden items-center gap-1.5">
+          {/* Quick Coffee Spill Icon */}
+          <button
+            onClick={(e) => {
+              if (onToggleCoffee) onToggleCoffee();
+              triggerCoffeeSpill(e.clientX, e.clientY);
+            }}
+            className="p-1.5 rounded-full border border-amber-300 dark:border-amber-700 bg-amber-50 dark:bg-amber-950/60 text-amber-800 dark:text-amber-300"
+            title="Spill Coffee"
+          >
+            <Coffee className="w-4 h-4" />
+          </button>
+
+          {/* Quick Zoom Controller Pill */}
+          <div className="flex items-center gap-0.5 border border-stone-300 dark:border-stone-700 bg-white dark:bg-[#202024] rounded-full px-1.5 py-0.5 font-handwritten text-[11px] font-bold text-stone-800 dark:text-stone-100">
+            <button onClick={zoomOut} className="p-0.5 text-stone-600 dark:text-stone-400">
+              <ZoomOut className="w-3 h-3" />
+            </button>
+            <span onClick={resetZoom} className="px-0.5 font-mono text-[10px] text-amber-700 dark:text-amber-400">
+              {Math.round(scale * 100)}%
+            </span>
+            <button onClick={zoomIn} className="p-0.5 text-stone-600 dark:text-stone-400">
+              <ZoomIn className="w-3 h-3" />
+            </button>
+          </div>
+
+          {/* Quick Theme Toggle */}
+          <button
+            onClick={toggleTheme}
+            className="p-1.5 rounded-full border border-stone-300 dark:border-stone-700 bg-white dark:bg-[#202024] text-stone-800 dark:text-stone-100"
+          >
+            {isDark ? <Sun className="w-4 h-4 text-amber-400" /> : <Moon className="w-4 h-4 text-blue-600" />}
+          </button>
+
+          {/* Mobile All Controls Drawer Button */}
+          <button
+            onClick={() => setIsMobileMenuOpen((prev) => !prev)}
+            className={`p-1.5 rounded-full border transition-all ${
+              isMobileMenuOpen
+                ? "bg-blue-600 text-white border-blue-700"
+                : "bg-white dark:bg-[#202024] border-stone-300 dark:border-stone-700 text-stone-800 dark:text-stone-100"
+            }`}
+            title="All Mobile Controls"
+          >
+            {isMobileMenuOpen ? <X className="w-4 h-4" /> : <SlidersHorizontal className="w-4 h-4 text-blue-600 dark:text-blue-400" />}
+          </button>
+        </div>
       </div>
+
+      {/* MOBILE ALL CONTROLS POPUP DRAWER (< md screens) */}
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -15, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -15, scale: 0.95 }}
+            transition={{ duration: 0.2 }}
+            className="md:hidden max-w-md mx-auto mt-2 px-3 font-handwritten"
+          >
+            <div className="bg-white/95 dark:bg-[#1E1E22]/95 backdrop-blur-xl border-2 border-stone-300 dark:border-stone-700 rounded-2xl p-3.5 shadow-2xl space-y-3 font-bold text-xs text-stone-900 dark:text-stone-100">
+              
+              {/* Section 1: Notebook Mode */}
+              <div className="flex items-center justify-between border-b border-stone-200 dark:border-stone-800 pb-2">
+                <span className="text-stone-500 dark:text-stone-400 uppercase text-[10px] tracking-wider">
+                  Notebook Mode:
+                </span>
+                <button
+                  onClick={() => setIsDrawingMode((prev) => !prev)}
+                  className={`flex items-center gap-1.5 px-3 py-1 rounded-full border ${
+                    isDrawingMode
+                      ? "bg-blue-600 text-white border-blue-700"
+                      : "bg-stone-100 dark:bg-stone-800 border-stone-300 dark:border-stone-700 text-stone-800 dark:text-stone-200"
+                  }`}
+                >
+                  <Pencil className="w-3.5 h-3.5" />
+                  <span>{isDrawingMode ? "Write Mode Active" : "Read Mode Active"}</span>
+                </button>
+              </div>
+
+              {/* Section 2: Pen Colors */}
+              <div className="space-y-1.5 border-b border-stone-200 dark:border-stone-800 pb-2">
+                <span className="text-stone-500 dark:text-stone-400 uppercase text-[10px] tracking-wider block">
+                  Select Ink Pen Color:
+                </span>
+                <div className="grid grid-cols-2 gap-1.5">
+                  {penOptions.map((opt) => (
+                    <button
+                      key={opt.type}
+                      onClick={() => {
+                        setPenType(opt.type);
+                        setIsDrawingMode(true);
+                      }}
+                      className={`flex items-center gap-2 p-1.5 rounded-lg border transition-all ${
+                        penType === opt.type
+                          ? "bg-blue-50 dark:bg-blue-950/60 border-blue-500 text-blue-700 dark:text-blue-300"
+                          : "bg-stone-50 dark:bg-stone-800/60 border-stone-200 dark:border-stone-700"
+                      }`}
+                    >
+                      <span
+                        className="w-3.5 h-3.5 rounded-full border border-stone-400 shrink-0"
+                        style={{ backgroundColor: opt.color }}
+                      />
+                      <span className="truncate">{opt.label}</span>
+                      {penType === opt.type && <Check className="w-3.5 h-3.5 ml-auto text-blue-600" />}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Section 3: Interactive Features */}
+              <div className="flex flex-wrap items-center justify-between gap-1.5 border-b border-stone-200 dark:border-stone-800 pb-2">
+                {/* Coffee Spill */}
+                <button
+                  onClick={(e) => {
+                    if (onToggleCoffee) onToggleCoffee();
+                    triggerCoffeeSpill(e.clientX, e.clientY);
+                    setIsMobileMenuOpen(false);
+                  }}
+                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-amber-100 dark:bg-amber-950 text-amber-900 dark:text-amber-200 border border-amber-300 dark:border-amber-700"
+                >
+                  <Coffee className="w-3.5 h-3.5 text-amber-700" />
+                  <span>Spill Coffee ☕</span>
+                </button>
+
+                {/* 3D Studio (Cover Page 0) */}
+                {currentPage === 0 && (
+                  <button
+                    onClick={() => {
+                      setShow3DBar((prev) => !prev);
+                      setIsMobileMenuOpen(false);
+                    }}
+                    className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-amber-600 text-white border border-amber-700"
+                  >
+                    <Box className="w-3.5 h-3.5" />
+                    <span>3D Studio 📦</span>
+                  </button>
+                )}
+
+                {/* Eraser / Undo */}
+                {strokes.length > 0 && (
+                  <div className="flex items-center gap-1">
+                    <button
+                      onClick={undoLastStroke}
+                      className="p-1.5 rounded-full border border-stone-300 dark:border-stone-700 bg-stone-100 dark:bg-stone-800"
+                      title="Undo"
+                    >
+                      <Undo2 className="w-3.5 h-3.5" />
+                    </button>
+                    <button
+                      onClick={clearDrawings}
+                      className="p-1.5 rounded-full border border-stone-300 dark:border-stone-700 bg-red-100 text-red-700 dark:bg-red-950 dark:text-red-300"
+                      title="Clear"
+                    >
+                      <Eraser className="w-3.5 h-3.5" />
+                    </button>
+                  </div>
+                )}
+              </div>
+
+              {/* Section 4: Zoom Controls */}
+              <div className="flex items-center justify-between">
+                <span className="text-stone-500 dark:text-stone-400 uppercase text-[10px] tracking-wider">
+                  Notebook Zoom:
+                </span>
+                <div className="flex items-center gap-2">
+                  <button
+                    onClick={zoomOut}
+                    className="px-2 py-1 rounded bg-stone-100 dark:bg-stone-800 border border-stone-300 dark:border-stone-700"
+                  >
+                    <ZoomOut className="w-3.5 h-3.5" />
+                  </button>
+                  <span onClick={resetZoom} className="font-mono text-amber-700 dark:text-amber-400">
+                    {Math.round(scale * 100)}%
+                  </span>
+                  <button
+                    onClick={zoomIn}
+                    className="px-2 py-1 rounded bg-stone-100 dark:bg-stone-800 border border-stone-300 dark:border-stone-700"
+                  >
+                    <ZoomIn className="w-3.5 h-3.5" />
+                  </button>
+                  <button
+                    onClick={resetZoom}
+                    className="px-2 py-1 rounded bg-stone-200 dark:bg-stone-700 text-[10px]"
+                  >
+                    Reset
+                  </button>
+                </div>
+              </div>
+
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Clean Bottom-Right Floating 3D Controls Bar (Only shows when 3D Studio button is clicked) */}
       {show3DBar && (
