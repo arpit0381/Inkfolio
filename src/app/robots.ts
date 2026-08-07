@@ -17,7 +17,7 @@ export default function robots(): MetadataRoute.Robots {
         allow: "/",
       },
     ],
-    sitemap: "https://arpitbajpai.in/sitemap.xml",
-    host: "https://arpitbajpai.in",
+    sitemap: "https://inkfolio.arpitbajpai.in/sitemap.xml",
+    host: "https://inkfolio.arpitbajpai.in",
   };
 }

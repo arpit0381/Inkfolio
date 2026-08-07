@@ -4,7 +4,7 @@ export default function JsonLd() {
   const personSchema = {
     "@context": "https://schema.org",
     "@type": "Person",
-    "@id": "https://arpitbajpai.in/#person",
+    "@id": "https://inkfolio.arpitbajpai.in/#person",
     name: "Arpit Bajpai",
     alternateName: [
       "Arpit Bajpai",
@@ -15,8 +15,8 @@ export default function JsonLd() {
       "Arpit's Notebook",
       "Arpit Bajpai PSIT"
     ],
-    url: "https://arpitbajpai.in",
-    image: "https://arpitbajpai.in/profile.jpg",
+    url: "https://inkfolio.arpitbajpai.in",
+    image: "https://inkfolio.arpitbajpai.in/profile.jpg",
     jobTitle: "Full Stack Web Developer & Software Engineer",
     worksFor: {
       "@type": "Organization",
@@ -37,6 +37,7 @@ export default function JsonLd() {
     email: "arpitbajpai038@gmail.com",
     telephone: "+919235823255",
     sameAs: [
+      "https://arpitbajpai.in",
       "https://github.com/arpit0381",
       "https://linkedin.com/in/arpitbajpai",
       "https://formstuff.in",
@@ -63,8 +64,8 @@ export default function JsonLd() {
   const websiteSchema = {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    "@id": "https://arpitbajpai.in/#website",
-    url: "https://arpitbajpai.in",
+    "@id": "https://inkfolio.arpitbajpai.in/#website",
+    url: "https://inkfolio.arpitbajpai.in",
     name: "Inkfolio by Arpit Bajpai",
     alternateName: [
       "Inkfolio",
@@ -73,10 +74,16 @@ export default function JsonLd() {
       "inkfolio by arpit bajpai",
       "Arpit's Diary",
       "Arpit Bajpai Portfolio",
+      "inkfolio.arpitbajpai.in",
       "arpitbajpai.in"
     ],
     publisher: {
-      "@id": "https://arpitbajpai.in/#person"
+      "@id": "https://inkfolio.arpitbajpai.in/#person"
+    },
+    isPartOf: {
+      "@type": "WebSite",
+      name: "Arpit Bajpai",
+      url: "https://arpitbajpai.in"
     },
     description:
       "Official interactive handwritten engineering notebook, developer portfolio, and personal diary of Arpit Bajpai (Inkfolio / Arpit's Diary)."
@@ -85,11 +92,11 @@ export default function JsonLd() {
   const profilePageSchema = {
     "@context": "https://schema.org",
     "@type": "ProfilePage",
-    "@id": "https://arpitbajpai.in/#profilepage",
-    url: "https://arpitbajpai.in",
+    "@id": "https://inkfolio.arpitbajpai.in/#profilepage",
+    url: "https://inkfolio.arpitbajpai.in",
     name: "Arpit Bajpai — Handwritten Developer Notebook | Inkfolio by Arpit Bajpai",
     mainEntity: {
-      "@id": "https://arpitbajpai.in/#person"
+      "@id": "https://inkfolio.arpitbajpai.in/#person"
     }
   };
 

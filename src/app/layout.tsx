@@ -24,13 +24,13 @@ const kalam = Kalam({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://arpitbajpai.in"),
+  metadataBase: new URL("https://inkfolio.arpitbajpai.in"),
   title: {
     default: "Arpit Bajpai — Handwritten Developer Notebook | Inkfolio by Arpit Bajpai (Arpit's Diary)",
     template: "%s | Arpit Bajpai — Inkfolio",
   },
   description:
-    "Explore Inkfolio by Arpit Bajpai (Arpit's Diary) — India's premier interactive handwritten developer notebook & portfolio of Arpit Bajpai. Full Stack Software Engineer experienced in React, Next.js, Node.js, and PostgreSQL. Creator of FormStuff, LifeReceipt, Sulax Solar Website, and ClubSphere.",
+    "Explore Inkfolio by Arpit Bajpai (Arpit's Diary) — India's premier interactive handwritten developer notebook & portfolio of Arpit Bajpai (inkfolio.arpitbajpai.in). Full Stack Software Engineer experienced in React, Next.js, Node.js, and PostgreSQL. Creator of FormStuff, LifeReceipt, Sulax Solar Website, and ClubSphere.",
   keywords: [
     "Arpit Bajpai",
     "arpit bajpai",
@@ -42,6 +42,7 @@ export const metadata: Metadata = {
     "arpits diary",
     "Arpit's Notebook",
     "Arpit Bajpai Portfolio",
+    "inkfolio.arpitbajpai.in",
     "arpitbajpai.in",
     "Arpit Bajpai Kanpur",
     "Arpit Bajpai PSIT",
@@ -58,7 +59,7 @@ export const metadata: Metadata = {
     "Logic Club President PSIT",
     "Handwritten Developer Portfolio"
   ],
-  authors: [{ name: "Arpit Bajpai", url: "https://arpitbajpai.in" }],
+  authors: [{ name: "Arpit Bajpai", url: "https://inkfolio.arpitbajpai.in" }],
   creator: "Arpit Bajpai",
   publisher: "Arpit Bajpai",
   formatDetection: {
@@ -67,9 +68,9 @@ export const metadata: Metadata = {
     telephone: false,
   },
   alternates: {
-    canonical: "https://arpitbajpai.in",
+    canonical: "https://inkfolio.arpitbajpai.in",
     languages: {
-      "en-US": "https://arpitbajpai.in",
+      "en-US": "https://inkfolio.arpitbajpai.in",
     },
   },
   icons: {
@@ -80,7 +81,7 @@ export const metadata: Metadata = {
     title: "Arpit Bajpai — Handwritten Developer Notebook | Inkfolio by Arpit Bajpai",
     description:
       "Official interactive handwritten engineering notebook, developer portfolio, and personal diary of Arpit Bajpai (Inkfolio / Arpit's Diary).",
-    url: "https://arpitbajpai.in",
+    url: "https://inkfolio.arpitbajpai.in",
     siteName: "Inkfolio by Arpit Bajpai",
     locale: "en_US",
     type: "website",

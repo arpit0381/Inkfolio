@@ -65,7 +65,7 @@ export default async function Image() {
               letterSpacing: "1px",
             }}
           >
-            arpitbajpai.in
+            inkfolio.arpitbajpai.in
           </div>
         </div>
 

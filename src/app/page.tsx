@@ -63,9 +63,9 @@ export default function Home() {
           {/* Semantic SEO & Search Crawler Hidden Content */}
           <section className="sr-only">
             <h1>Arpit Bajpai — Handwritten Developer Notebook | Inkfolio by Arpit Bajpai (Arpit's Diary)</h1>
-            <h2>Welcome to Inkfolio by Arpit Bajpai — Official Portfolio & Personal Engineering Notebook (arpitbajpai.in)</h2>
+            <h2>Welcome to Inkfolio by Arpit Bajpai — Official Portfolio & Personal Engineering Notebook (inkfolio.arpitbajpai.in)</h2>
             <p>
-              Arpit Bajpai is a Full Stack Web Developer and Software Engineer from Kanpur, India. Experienced in React.js, Next.js, Node.js, Express.js, TypeScript, PostgreSQL, Python, and Flutter. President of Logic Club at PSIT Kanpur.
+              Arpit Bajpai is a Full Stack Web Developer and Software Engineer from Kanpur, India. Experienced in React.js, Next.js, Node.js, Express.js, TypeScript, PostgreSQL, Python, and Flutter. President of Logic Club at PSIT Kanpur. Official developer notebook hosted at inkfolio.arpitbajpai.in and linked with arpitbajpai.in.
             </p>
             <h3>Featured Engineering Projects by Arpit Bajpai</h3>
             <ul>
@@ -76,7 +76,7 @@ export default function Home() {
               <li><strong>PSIT Ignitia 2K26 Website:</strong> Official college tech fest registration portal built with Next.js and Go.</li>
             </ul>
             <h3>Connect with Arpit Bajpai</h3>
-            <p>Domain: arpitbajpai.in | Email: arpitbajpai038@gmail.com | Phone: +91 9235823255 | Location: Kanpur, UP, India</p>
+            <p>Subdomain: inkfolio.arpitbajpai.in | Main Domain: arpitbajpai.in | Email: arpitbajpai038@gmail.com | Phone: +91 9235823255 | Location: Kanpur, UP, India</p>
           </section>
 
           <FlipBookContainer>
